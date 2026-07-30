@@ -38,7 +38,8 @@
         .btn-secondary:hover { background: #f0f4f8; border-color: #1d4ed8; }
         .hero-social { padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 13px; color: #666; }
         .stars { color: #fbbf24; letter-spacing: 2px; }
-        .hero-visual { display: flex; align-items: center; justify-content: center; height: 400px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 20px; font-size: 120px; color: #1d4ed8; font-weight: 700; }
+        .hero-visual { display: flex; align-items: center; justify-content: center; height: 400px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 20px; font-size: 120px; color: #1d4ed8; font-weight: 700; overflow: hidden; }
+        .hero-visual img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15); }
 
         .main { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
         .section-title { font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; color: #000; }
@@ -242,6 +243,7 @@
             .hero-content { grid-template-columns: 1fr; gap: 40px; }
             .grid { grid-template-columns: 1fr; }
             .hero-text h1 { font-size: 40px; }
+            .hero-visual { height: 350px; }
             .footer-content { grid-template-columns: 1fr; }
             .grid-items-3 { grid-template-columns: repeat(2, 1fr); }
             .grid-items-2 { grid-template-columns: 1fr; }
@@ -259,6 +261,7 @@
             .hero { padding: 60px 20px; }
             .main { padding: 40px 20px; }
             .hero-text h1 { font-size: 32px; }
+            .hero-visual { height: 280px; }
             .nav-links { gap: 8px; font-size: 12px; }
             .hero-buttons { flex-direction: column; }
             .btn { width: 100%; }
@@ -322,7 +325,9 @@
                         <a href="mailto:contacto@capacitacion.cl" style="display: inline-block; padding: 10px 20px; background: #f0f0f0; color: #000; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s; border: 1px solid #e0e0e0;">Contáctanos</a>
                     </div>
                 </div>
-                <div class="hero-visual" style="color: #3b82f6; font-weight: 700;">APRENDE</div>
+                <div class="hero-visual">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop" alt="Educación y Protección de Datos">
+                </div>
             </div>
         </div>
     </section>
