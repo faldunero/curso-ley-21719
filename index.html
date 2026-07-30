@@ -4,920 +4,771 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ley 21.719 - Capacitación en Protección de Datos</title>
-    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Header/Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 16px 0;
-        }
-
-        .navbar-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 700;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: #6b7280;
-            font-weight: 400;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links button {
-            background: none;
-            border: none;
-            font-size: 14px;
-            font-weight: 500;
-            color: #666;
-            cursor: pointer;
-            transition: color 0.2s;
-            padding: 8px 0;
-        }
-
-        .nav-links button:hover,
-        .nav-links button.active {
-            color: #000;
-            font-weight: 600;
-        }
-
-        .navbar-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .user-info {
-            font-size: 13px;
-            text-align: right;
-        }
-
-        .user-name {
-            font-weight: 600;
-            color: #000;
-        }
-
-        .user-email {
-            color: #999;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            background: #f3f4f6;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 13px;
-            color: #1a1a1a;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 40px;
-            background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero-text p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 32px;
-            line-height: 1.6;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 48px;
-        }
-
-        .btn {
-            padding: 12px 28px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: #000;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1a1a1a;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #000;
-            border: 1px solid #e0e0e0;
-        }
-
-        .btn-secondary:hover {
-            background: #f9f9f9;
-            border-color: #d0d0d0;
-            transform: translateY(-1px);
-        }
-
-        .hero-social {
-            padding-top: 32px;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: #666;
-        }
-
-        .stars {
-            color: #fbbf24;
-            letter-spacing: 2px;
-        }
-
-        .hero-visual {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 400px;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f8 100%);
-            border-radius: 20px;
-            font-size: 120px;
-            opacity: 0.8;
-        }
-
-        /* Main Content */
-        .main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 40px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .section-subtitle {
-            font-size: 15px;
-            color: #999;
-            margin-bottom: 40px;
-        }
-
-        /* Progress */
-        .progress-section {
-            margin-bottom: 60px;
-        }
-
-        .progress-card {
-            background: #fafbfc;
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 40px;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            font-size: 13px;
-        }
-
-        .progress-label {
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .progress-percent {
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: #e5e5e5;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #000 0%, #333 100%);
-            transition: width 0.3s ease;
-        }
-
-        .progress-text {
-            font-size: 13px;
-            color: #999;
-            margin-top: 12px;
-        }
-
-        /* Cards Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 32px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            border-color: #d0d0d0;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-            transform: translateY(-2px);
-        }
-
-        .card.completed {
-            background: #f0fdf4;
-            border-color: #86efac;
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: -0.3px;
-        }
-
-        .card-time {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 12px;
-        }
-
-        .card-desc {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-action {
-            font-size: 13px;
-            font-weight: 600;
-            color: #000;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .card-action:hover {
-            color: #666;
-        }
-
-        .card-check {
-            color: #22c55e;
-            font-size: 18px;
-        }
-
-        /* Exam Section */
-        .exam-container {
-            background: white;
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 32px;
-        }
-
-        .question {
-            margin-bottom: 32px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .question:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 16px;
-            font-size: 14px;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .option {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            border: 1.5px solid #e5e5e5;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: white;
-        }
-
-        .option:hover {
-            border-color: #d0d0d0;
-            background: #fafbfc;
-        }
-
-        .option.selected {
-            border-color: #000;
-            background: #f5f5f5;
-        }
-
-        .option input {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .option-text {
-            font-size: 13px;
-            color: #333;
-        }
-
-        /* Results */
-        .result-container {
-            text-align: center;
-            padding: 60px 40px;
-            background: white;
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            margin-bottom: 32px;
-        }
-
-        .result-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .result-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .result-score {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 32px;
-        }
-
-        .certificate {
-            background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
-            border: 1px solid #fcd34d;
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        .cert-icon {
-            font-size: 56px;
-            margin-bottom: 16px;
-        }
-
-        .cert-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .cert-subtitle {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .cert-content {
-            background: white;
-            padding: 24px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #fcd34d;
-        }
-
-        .cert-name {
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .cert-email {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 16px;
-        }
-
-        .cert-text {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
-
-        .cert-date {
-            font-size: 11px;
-            color: #999;
-            padding-top: 12px;
-            border-top: 1px solid #e5e5e5;
-            margin-top: 12px;
-        }
-
-        /* Buttons */
-        .btn-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .btn-group button {
-            flex: 1;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-submit {
-            background: #000;
-            color: white;
-        }
-
-        .btn-submit:hover:not(:disabled) {
-            background: #1a1a1a;
-            transform: translateY(-1px);
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .btn-back {
-            background: #f0f0f0;
-            color: #000;
-            border: 1px solid #e0e0e0;
-        }
-
-        .btn-back:hover {
-            background: #f9f9f9;
-        }
-
-        /* Footer */
-        .footer {
-            background: #fafbfc;
-            border-top: 1px solid #e5e5e5;
-            padding: 60px 40px 40px;
-            margin-top: 80px;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .footer-col h4 {
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #1a1a1a;
-        }
-
-        .footer-col p,
-        .footer-col a {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.8;
-            text-decoration: none;
-        }
-
-        .footer-col a:hover {
-            color: #000;
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: #999;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: #999;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: #1a1a1a;
-        }
-
-        /* Responsive */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #fff; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 16px 0; }
+        .navbar-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 700; color: #000; cursor: pointer; letter-spacing: -0.5px; }
+        .logo span { color: #999; font-weight: 400; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links button { background: none; border: none; font-size: 14px; font-weight: 500; color: #666; cursor: pointer; transition: all 0.2s; padding: 8px 0; }
+        .nav-links button:hover, .nav-links button.active { color: #000; font-weight: 600; }
+        .navbar-actions { display: flex; align-items: center; gap: 16px; }
+        .user-info { font-size: 13px; text-align: right; }
+        .user-name { font-weight: 600; }
+        .user-email { color: #999; }
+        .avatar { width: 36px; height: 36px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; }
+        
+        .hero { padding: 120px 40px; background: linear-gradient(135deg, #fafbfc 0%, #fff 100%); border-bottom: 1px solid #f0f0f0; }
+        .hero-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-text h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-text p { font-size: 18px; color: #666; margin-bottom: 32px; line-height: 1.6; }
+        .hero-buttons { display: flex; gap: 12px; margin-bottom: 48px; }
+        .btn { padding: 12px 28px; border-radius: 8px; border: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: #000; color: white; }
+        .btn-primary:hover { background: #1a1a1a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+        .btn-secondary { background: #f0f0f0; color: #000; border: 1px solid #e0e0e0; }
+        .btn-secondary:hover { background: #f9f9f9; border-color: #d0d0d0; }
+        .hero-social { padding-top: 32px; border-top: 1px solid #e0e0e0; font-size: 13px; color: #666; }
+        .stars { color: #fbbf24; letter-spacing: 2px; }
+        .hero-visual { display: flex; align-items: center; justify-content: center; height: 400px; background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f8 100%); border-radius: 20px; font-size: 120px; }
+        
+        .main { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
+        .section-title { font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 15px; color: #999; margin-bottom: 40px; }
+        
+        .progress-card { background: #fafbfc; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; margin-bottom: 40px; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 13px; }
+        .progress-label { font-weight: 600; }
+        .progress-percent { font-weight: 700; }
+        .progress-bar { width: 100%; height: 6px; background: #e5e5e5; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #000 0%, #333 100%); transition: width 0.3s ease; }
+        .progress-text { font-size: 13px; color: #999; }
+        
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 40px; }
+        .card { background: white; border: 1px solid #e5e5e5; border-radius: 12px; padding: 32px; transition: all 0.3s; cursor: pointer; }
+        .card:hover { border-color: #d0d0d0; box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .card.completed { background: #f0fdf4; border-color: #86efac; }
+        .card-icon { font-size: 40px; margin-bottom: 16px; }
+        .card-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.3px; }
+        .card-time { font-size: 12px; color: #999; margin-bottom: 12px; }
+        .card-desc { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .card-action { font-size: 13px; font-weight: 600; cursor: pointer; }
+        .card-check { color: #22c55e; font-size: 18px; }
+        
+        .exam-container { background: white; border: 1px solid #e5e5e5; border-radius: 12px; padding: 32px; }
+        .question { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #f0f0f0; }
+        .question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 16px; font-size: 14px; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option { display: flex; align-items: center; padding: 12px; border: 1.5px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .option:hover { border-color: #d0d0d0; background: #fafbfc; }
+        .option.selected { border-color: #000; background: #f5f5f5; }
+        .option input { margin-right: 10px; cursor: pointer; }
+        .option-text { font-size: 13px; }
+        
+        .result-container { text-align: center; padding: 60px 40px; background: white; border: 1px solid #e5e5e5; border-radius: 12px; margin-bottom: 32px; }
+        .result-icon { font-size: 64px; margin-bottom: 20px; }
+        .result-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+        .result-score { font-size: 18px; color: #666; margin-bottom: 32px; }
+        
+        .certificate { background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); border: 1px solid #fcd34d; border-radius: 12px; padding: 40px; margin-bottom: 32px; text-align: center; }
+        .cert-icon { font-size: 56px; margin-bottom: 16px; }
+        .cert-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .cert-subtitle { font-size: 13px; color: #666; margin-bottom: 20px; }
+        .cert-content { background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #fcd34d; }
+        .cert-name { font-weight: 700; margin-bottom: 4px; }
+        .cert-email { font-size: 12px; color: #999; margin-bottom: 16px; }
+        .cert-text { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 12px; }
+        .cert-date { font-size: 11px; color: #999; padding-top: 12px; border-top: 1px solid #e5e5e5; margin-top: 12px; }
+        
+        .btn-group { display: flex; gap: 12px; margin-top: 40px; }
+        .btn-group button { flex: 1; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .btn-submit { background: #000; color: white; }
+        .btn-submit:hover:not(:disabled) { background: #1a1a1a; }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-back { background: #f0f0f0; color: #000; border: 1px solid #e0e0e0; }
+        .btn-back:hover { background: #f9f9f9; }
+        
+        .footer { background: #fafbfc; border-top: 1px solid #e5e5e5; padding: 60px 40px 40px; margin-top: 80px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #e5e5e5; }
+        .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col p, .footer-col a { font-size: 13px; color: #666; line-height: 1.8; text-decoration: none; }
+        .footer-col a:hover { color: #000; }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 12px; color: #999; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: #999; text-decoration: none; }
+        .footer-links a:hover { color: #1a1a1a; }
+        
+        .hidden { display: none; }
+        
         @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-text h1 {
-                font-size: 40px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            .hero-content { grid-template-columns: 1fr; gap: 40px; }
+            .grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 40px; }
+            .footer-content { grid-template-columns: 1fr; }
         }
-
+        
         @media (max-width: 768px) {
-            .navbar-content {
-                padding: 0 20px;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .main {
-                padding: 40px 20px;
-            }
-
-            .hero-text h1 {
-                font-size: 32px;
-            }
-
-            .nav-links {
-                gap: 16px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
+            .navbar-content { padding: 0 20px; }
+            .hero { padding: 60px 20px; }
+            .main { padding: 40px 20px; }
+            .hero-text h1 { font-size: 32px; }
+            .nav-links { gap: 16px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
         }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card {
-            animation: fadeUp 0.5s ease forwards;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Ley <span>21.719</span></div>
+            <ul class="nav-links">
+                <li><button class="nav-btn active" data-page="inicio">Inicio</button></li>
+                <li><button class="nav-btn" data-page="cursos">Cursos</button></li>
+                <li><button class="nav-btn" data-page="examen">Examen</button></li>
+            </ul>
+            <div class="navbar-actions">
+                <div class="user-info">
+                    <div class="user-name">Felipe Aldunate</div>
+                    <div class="user-email">faldunate@gmail.com</div>
+                </div>
+                <div class="avatar">FA</div>
+            </div>
+        </div>
+    </nav>
 
-    <script type="text/babel">
-        const { useState } = React;
+    <section id="inicio" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Aprende la nueva Ley 21.719</h1>
+                    <p>Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" data-page="cursos">Comenzar Curso</button>
+                        <button class="btn btn-secondary">Ver Programa</button>
+                    </div>
+                    <div class="hero-social"><span class="stars">★★★★★</span> Más de 3.000 profesionales capacitados</div>
+                </div>
+                <div class="hero-visual">📚</div>
+            </div>
+        </div>
+    </section>
 
-        function App() {
-            const [page, setPage] = useState('inicio');
-            const [completed, setCompleted] = useState([]);
-            const [answers, setAnswers] = useState({});
-            const [submitted, setSubmitted] = useState(false);
-            const [score, setScore] = useState(0);
+    <section id="cursos" class="page hidden">
+        <div class="main">
+            <h2 class="section-title">Mis Cursos</h2>
+            <p class="section-subtitle">Completa todos los módulos para acceder al examen</p>
+            
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="progress-label">Ley 21.719</span>
+                    <span class="progress-percent"><span id="progress-pct">0</span>%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                <div class="progress-text"><span id="progress-text">0 de 5 módulos</span></div>
+            </div>
 
-            const modules = [
-                { id: 1, title: 'Introducción a la Ley 21.719', time: '15 min', icon: '📋', desc: 'Fundamentos y objetivos de la Ley de Protección de Datos Personales.' },
-                { id: 2, title: 'Derechos de los Titulares', time: '20 min', icon: '👤', desc: 'Derechos fundamentales de las personas respecto a sus datos.' },
-                { id: 3, title: 'Obligaciones de Responsables', time: '25 min', icon: '⚖️', desc: 'Responsabilidades de quienes recopilan y procesan datos.' },
-                { id: 4, title: 'Seguridad y Privacidad', time: '20 min', icon: '🔒', desc: 'Medidas de protección y seguridad de datos personales.' },
-                { id: 5, title: 'Cumplimiento Normativo', time: '15 min', icon: '✅', desc: 'Cómo implementar medidas de cumplimiento en tu organización.' }
-            ];
+            <div class="grid" id="modules-grid"></div>
 
-            const questions = [
-                { id: 1, q: '¿Cuál es el objetivo principal de la Ley 21.719?', o: ['Proteger datos personales', 'Aumentar recolección', 'Eliminar privacidad', 'Ninguno'], c: 0 },
-                { id: 2, q: '¿Cuál es un derecho fundamental de los titulares?', o: ['Derecho de opresión', 'Acceso a datos', 'Destrucción de datos', 'Ninguno'], c: 1 },
-                { id: 3, q: '¿Quién es responsable de la seguridad?', o: ['Gobierno', 'Responsable del tratamiento', 'Nadie', 'Solo empleados'], c: 1 },
-                { id: 4, q: '¿Qué hacer ante una brecha?', o: ['Ocultar', 'Notificar', 'Eliminar', 'Seguir operando'], c: 1 },
-                { id: 5, q: '¿Cuál es el fiscalizador?', o: ['Sernac', 'Sernanp', 'Dirección General', 'Superintendencia'], c: 2 }
-            ];
+            <div id="exam-btn-container" class="hidden" style="text-align: center;">
+                <button class="btn btn-primary" data-page="examen">Realizar Examen Final</button>
+            </div>
+        </div>
+    </section>
 
-            const toggleModule = (id) => {
-                if (!completed.includes(id)) setCompleted([...completed, id]);
-            };
+    <section id="examen" class="page hidden">
+        <div class="main">
+            <h2 class="section-title">Examen Final</h2>
+            <p class="section-subtitle">Responde correctamente al menos 4 de 5 preguntas (80%)</p>
+            <div class="exam-container" id="exam-container"></div>
+            <div class="btn-group">
+                <button class="btn-back" data-page="cursos">← Volver</button>
+                <button class="btn-submit" id="submit-btn">Enviar Examen</button>
+            </div>
+        </div>
+    </section>
 
-            const handleAnswer = (qid, idx) => {
-                setAnswers({ ...answers, [qid]: idx });
-            };
+    <section id="resultado" class="page hidden">
+        <div class="main">
+            <div class="result-container">
+                <div class="result-icon" id="result-icon">🎉</div>
+                <h2 class="result-title" id="result-title">¡Aprobado!</h2>
+                <div class="result-score" id="result-score">5/5 correctas (100%)</div>
+            </div>
+            <div id="cert-container"></div>
+            <div class="btn-group">
+                <button class="btn-back" data-page="inicio" style="flex: 1;">← Volver al Inicio</button>
+            </div>
+        </div>
+    </section>
 
-            const submitExam = () => {
-                let pts = 0;
-                questions.forEach(q => { if (answers[q.id] === q.c) pts++; });
-                setScore(pts);
-                setSubmitted(true);
-            };
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Sobre AFAN</h4>
+                <p>Capacitación profesional en cumplimiento normativo y protección de datos personales.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <p><a href="#" class="footer-link" data-page="inicio">Inicio</a></p>
+                <p><a href="#" class="footer-link" data-page="cursos">Cursos</a></p>
+                <p><a href="#" class="footer-link" data-page="examen">Examen</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>info@afanlearning.com</p>
+                <p>+56 2 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AFAN Learning. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+            </div>
+        </div>
+    </footer>
 
-            const progress = (completed.length / modules.length) * 100;
-            const passed = score >= 4;
+    <script>
+        const modules = [
+            { id: 1, title: 'Introducción a la Ley 21.719', time: '15 min', icon: '📋', desc: 'Fundamentos y objetivos de la Ley de Protección de Datos Personales.' },
+            { id: 2, title: 'Derechos de los Titulares', time: '20 min', icon: '👤', desc: 'Derechos fundamentales de las personas respecto a sus datos.' },
+            { id: 3, title: 'Obligaciones de Responsables', time: '25 min', icon: '⚖️', desc: 'Responsabilidades de quienes recopilan y procesan datos.' },
+            { id: 4, title: 'Seguridad y Privacidad', time: '20 min', icon: '🔒', desc: 'Medidas de protección y seguridad de datos personales.' },
+            { id: 5, title: 'Cumplimiento Normativo', time: '15 min', icon: '✅', desc: 'Cómo implementar medidas de cumplimiento en tu organización.' }
+        ];
 
-            return (
-                <>
-                    <nav className="navbar">
-                        <div className="navbar-content">
-                            <a className="logo" onClick={() => { setPage('inicio'); setCompleted([]); setAnswers({}); setSubmitted(false); }} style={{ cursor: 'pointer' }}>Ley <span>21.719</span></a>
-                            <ul className="nav-links">
-                                <li><button className={page === 'inicio' ? 'active' : ''} onClick={() => setPage('inicio')}>Inicio</button></li>
-                                <li><button className={page === 'cursos' ? 'active' : ''} onClick={() => setPage('cursos')}>Cursos</button></li>
-                                <li><button className={page === 'examen' ? 'active' : ''} onClick={() => setPage('examen')}>Examen</button></li>
-                            </ul>
-                            <div className="navbar-actions">
-                                <div className="user-info">
-                                    <div className="user-name">Felipe Aldunate</div>
-                                    <div className="user-email">faldunate@gmail.com</div>
-                                </div>
-                                <div className="avatar">FA</div>
-                            </div>
-                        </div>
-                    </nav>
+        const questions = [
+            { id: 1, q: '¿Cuál es el objetivo principal de la Ley 21.719?', o: ['Proteger datos personales', 'Aumentar recolección', 'Eliminar privacidad', 'Ninguno'], c: 0 },
+            { id: 2, q: '¿Cuál es un derecho fundamental?', o: ['Derecho de opresión', 'Acceso a datos', 'Destrucción de datos', 'Ninguno'], c: 1 },
+            { id: 3, q: '¿Quién es responsable?', o: ['Gobierno', 'Responsable del tratamiento', 'Nadie', 'Solo empleados'], c: 1 },
+            { id: 4, q: '¿Qué hacer ante una brecha?', o: ['Ocultar', 'Notificar', 'Eliminar', 'Seguir operando'], c: 1 },
+            { id: 5, q: '¿Cuál es el fiscalizador?', o: ['Sernac', 'Sernanp', 'Dirección General', 'Superintendencia'], c: 2 }
+        ];
 
-                    {page === 'inicio' && (
-                        <section className="hero">
-                            <div className="hero-content">
-                                <div className="hero-text">
-                                    <h1>Aprende la nueva Ley 21.719</h1>
-                                    <p>Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena.</p>
-                                    <div className="hero-buttons">
-                                        <button className="btn btn-primary" onClick={() => setPage('cursos')}>Comenzar Curso</button>
-                                        <button className="btn btn-secondary">Ver Programa</button>
-                                    </div>
-                                    <div className="hero-social">
-                                        <span className="stars">★★★★★</span>
-                                        <span>Más de 3.000 profesionales capacitados</span>
-                                    </div>
-                                </div>
-                                <div className="hero-visual">📚</div>
-                            </div>
-                        </section>
-                    )}
+        let completed = [];
+        let answers = {};
+        let submitted = false;
 
-                    {page === 'cursos' && (
-                        <div className="main">
-                            <h2 className="section-title">Mis Cursos</h2>
-                            <p className="section-subtitle">Completa todos los módulos para acceder al examen</p>
-
-                            <div className="progress-section">
-                                <div className="progress-card">
-                                    <div className="progress-header">
-                                        <span className="progress-label">Ley 21.719</span>
-                                        <span className="progress-percent">{Math.round(progress)}%</span>
-                                    </div>
-                                    <div className="progress-bar">
-                                        <div className="progress-fill" style={{ width: `${progress}%` }}></div>
-                                    </div>
-                                    <div className="progress-text">{completed.length} de {modules.length} módulos</div>
-                                </div>
-                            </div>
-
-                            <div className="grid">
-                                {modules.map(m => (
-                                    <div key={m.id} className={`card ${completed.includes(m.id) ? 'completed' : ''}`}>
-                                        <div className="card-icon">{m.icon}</div>
-                                        <div className="card-title">{m.title}</div>
-                                        <div className="card-time">⏱️ {m.time}</div>
-                                        <div className="card-desc">{m.desc}</div>
-                                        <div className="card-footer">
-                                            {!completed.includes(m.id) ? (
-                                                <span className="card-action" onClick={() => toggleModule(m.id)}>Ver Módulo →</span>
-                                            ) : (
-                                                <span className="card-check">✓ Completado</span>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {completed.length === modules.length && (
-                                <div style={{ textAlign: 'center', marginTop: '40px' }}>
-                                    <button className="btn btn-primary" onClick={() => setPage('examen')}>Realizar Examen Final</button>
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {page === 'examen' && !submitted && (
-                        <div className="main">
-                            <h2 className="section-title">Examen Final</h2>
-                            <p className="section-subtitle">Responde correctamente al menos 4 de 5 preguntas (80%)</p>
-
-                            <div className="exam-container">
-                                {questions.map((q, i) => (
-                                    <div key={q.id} className="question">
-                                        <div className="question-text">{i + 1}. {q.q}</div>
-                                        <div className="options">
-                                            {q.o.map((opt, j) => (
-                                                <label key={j} className={`option ${answers[q.id] === j ? 'selected' : ''}`}>
-                                                    <input type="radio" name={`q${q.id}`} onChange={() => handleAnswer(q.id, j)} />
-                                                    <span className="option-text">{opt}</span>
-                                                </label>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="btn-group">
-                                <button className="btn-back" onClick={() => setPage('cursos')}>← Volver</button>
-                                <button className="btn-submit" onClick={submitExam} disabled={Object.keys(answers).length < 5}>Enviar Examen</button>
-                            </div>
-                        </div>
-                    )}
-
-                    {page === 'examen' && submitted && (
-                        <div className="main">
-                            <div className="result-container">
-                                <div className="result-icon">{passed ? '🎉' : '📋'}</div>
-                                <h2 className="result-title">{passed ? '¡Aprobado!' : 'No Aprobado'}</h2>
-                                <div className="result-score">{score}/5 correctas ({Math.round((score/5)*100)}%)</div>
-                            </div>
-
-                            {passed && (
-                                <div className="certificate">
-                                    <div className="cert-icon">🏆</div>
-                                    <h3 className="cert-title">Certificado de Aprobación</h3>
-                                    <p className="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
-                                    <div className="cert-content">
-                                        <div className="cert-name">Felipe Aldunate</div>
-                                        <div className="cert-email">faldunate@gmail.com</div>
-                                        <div className="cert-text">
-                                            <p>Ha completado exitosamente el curso de</p>
-                                            <p><strong>Ley de Protección de Datos Personales - Ley 21.719</strong></p>
-                                        </div>
-                                        <div className="cert-date">
-                                            <p>Emitido: {new Date().toLocaleDateString('es-CL')}</p>
-                                        </div>
-                                    </div>
-                                    <button className="btn btn-primary" style={{ width: '100%' }}>📥 Descargar Certificado</button>
-                                </div>
-                            )}
-
-                            <div className="btn-group">
-                                <button className="btn-back" onClick={() => { setPage('inicio'); setCompleted([]); setAnswers({}); setSubmitted(false); }}>← Volver al Inicio</button>
-                            </div>
-                        </div>
-                    )}
-
-                    <footer className="footer">
-                        <div className="footer-content">
-                            <div className="footer-col">
-                                <h4>Sobre AFAN</h4>
-                                <p>Capacitación profesional en cumplimiento normativo y protección de datos personales.</p>
-                            </div>
-                            <div className="footer-col">
-                                <h4>Enlaces</h4>
-                                <p><a href="#" onClick={() => setPage('inicio')}>Inicio</a></p>
-                                <p><a href="#" onClick={() => setPage('cursos')}>Cursos</a></p>
-                                <p><a href="#" onClick={() => setPage('examen')}>Examen</a></p>
-                            </div>
-                            <div className="footer-col">
-                                <h4>Contacto</h4>
-                                <p>info@afanlearning.com</p>
-                                <p>+56 2 1234 5678</p>
-                            </div>
-                        </div>
-                        <div className="footer-bottom">
-                            <p>&copy; 2026 AFAN Learning. Todos los derechos reservados.</p>
-                            <div className="footer-links">
-                                <a href="#">Privacidad</a>
-                                <a href="#">Términos</a>
-                            </div>
-                        </div>
-                    </footer>
-                </>
-            );
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(pageName).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
         }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        function updateProgress() {
+            const pct = Math.round((completed.length / modules.length) * 100);
+            document.getElementById('progress-pct').textContent = pct;
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('progress-text').textContent = completed.length + ' de ' + modules.length + ' módulos';
+            
+            if (completed.length === modules.length) {
+                document.getElementById('exam-btn-container').classList.remove('hidden');
+            }
+        }
+
+        function renderModules() {
+            const grid = document.getElementById('modules-grid');
+            grid.innerHTML = modules.map(m => `
+                <div class="card ${completed.includes(m.id) ? 'completed' : ''}">
+                    <div class="card-icon">${m.icon}</div>
+                    <div class="card-title">${m.title}</div>
+                    <div class="card-time">⏱️ ${m.time}</div>
+                    <div class="card-desc">${m.desc}</div>
+                    <div class="card-footer">
+                        ${completed.includes(m.id) ? 
+                            '<span class="card-check">✓ Completado</span>' :
+                            `<span class="card-action" onclick="toggleModule(${m.id})">Ver Módulo →</span>`
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleModule(id) {
+            if (!completed.includes(id)) {
+                completed.push(id);
+                renderModules();
+                updateProgress();
+            }
+        }
+
+        function renderExam() {
+            const container = document.getElementById('exam-container');
+            container.innerHTML = questions.map((q, i) => `
+                <div class="question">
+                    <div class="question-text">${i + 1}. ${q.q}</div>
+                    <div class="options">
+                        ${q.o.map((opt, j) => `
+                            <label class="option ${answers[q.id] === j ? 'selected' : ''}">
+                                <input type="radio" name="q${q.id}" onchange="answers[${q.id}] = ${j}">
+                                <span class="option-text">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function submitExam() {
+            let score = 0;
+            questions.forEach(q => {
+                if (answers[q.id] === q.c) score++;
+            });
+            
+            const passed = score >= 4;
+            const pct = Math.round((score / 5) * 100);
+            
+            document.getElementById('result-icon').textContent = passed ? '🎉' : '📋';
+            document.getElementById('result-title').textContent = passed ? '¡Aprobado!' : 'No Aprobado';
+            document.getElementById('result-score').textContent = score + '/5 correctas (' + pct + '%)';
+            
+            if (passed) {
+                const today = new Date().toLocaleDateString('es-CL');
+                document.getElementById('cert-container').innerHTML = `
+                    <div class="certificate">
+                        <div class="cert-icon">🏆</div>
+                        <h3 class="cert-title">Certificado de Aprobación</h3>
+                        <p class="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
+                        <div class="cert-content">
+                            <div class="cert-name">Felipe Aldunate</div>
+                            <div class="cert-email">faldunate@gmail.com</div>
+                            <div class="cert-text">
+                                <p>Ha completado exitosamente el curso de</p>
+                                <p><strong>Ley de Protección de Datos Personales - Ley 21.719</strong></p>
+                            </div>
+                            <div class="cert-date">
+                                <p>Emitido: ${today}</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;">📥 Descargar Certificado</button>
+                    </div>
+                `;
+            } else {
+                document.getElementById('cert-container').innerHTML = '';
+            }
+            
+            showPage('resultado');
+        }
+
+        // Event Listeners
+        document.querySelectorAll('[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(btn.dataset.page);
+            });
+        });
+
+        document.getElementById('submit-btn').addEventListener('click', submitExam);
+        
+        document.querySelectorAll('.footer-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        renderModules();
+        updateProgress();
+        renderExam();
+    </script>
+</body>
+</html>
+EOFcd /Users/felipealdunate/Desktop/Desarrollo/capacitacion_ley_21719
+
+# Ejecuta esto en tu terminal:
+cat > premium-design.html << 'EOF'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ley 21.719 - Capacitación en Protección de Datos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #fff; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 16px 0; }
+        .navbar-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 700; color: #000; cursor: pointer; letter-spacing: -0.5px; }
+        .logo span { color: #999; font-weight: 400; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links button { background: none; border: none; font-size: 14px; font-weight: 500; color: #666; cursor: pointer; transition: all 0.2s; padding: 8px 0; }
+        .nav-links button:hover, .nav-links button.active { color: #000; font-weight: 600; }
+        .navbar-actions { display: flex; align-items: center; gap: 16px; }
+        .user-info { font-size: 13px; text-align: right; }
+        .user-name { font-weight: 600; }
+        .user-email { color: #999; }
+        .avatar { width: 36px; height: 36px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; }
+        
+        .hero { padding: 120px 40px; background: linear-gradient(135deg, #fafbfc 0%, #fff 100%); border-bottom: 1px solid #f0f0f0; }
+        .hero-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-text h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-text p { font-size: 18px; color: #666; margin-bottom: 32px; line-height: 1.6; }
+        .hero-buttons { display: flex; gap: 12px; margin-bottom: 48px; }
+        .btn { padding: 12px 28px; border-radius: 8px; border: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .btn-primary { background: #000; color: white; }
+        .btn-primary:hover { background: #1a1a1a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+        .btn-secondary { background: #f0f0f0; color: #000; border: 1px solid #e0e0e0; }
+        .btn-secondary:hover { background: #f9f9f9; border-color: #d0d0d0; }
+        .hero-social { padding-top: 32px; border-top: 1px solid #e0e0e0; font-size: 13px; color: #666; }
+        .stars { color: #fbbf24; letter-spacing: 2px; }
+        .hero-visual { display: flex; align-items: center; justify-content: center; height: 400px; background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f8 100%); border-radius: 20px; font-size: 120px; }
+        
+        .main { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
+        .section-title { font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 15px; color: #999; margin-bottom: 40px; }
+        
+        .progress-card { background: #fafbfc; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; margin-bottom: 40px; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 13px; }
+        .progress-label { font-weight: 600; }
+        .progress-percent { font-weight: 700; }
+        .progress-bar { width: 100%; height: 6px; background: #e5e5e5; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #000 0%, #333 100%); transition: width 0.3s ease; }
+        .progress-text { font-size: 13px; color: #999; }
+        
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 40px; }
+        .card { background: white; border: 1px solid #e5e5e5; border-radius: 12px; padding: 32px; transition: all 0.3s; cursor: pointer; }
+        .card:hover { border-color: #d0d0d0; box-shadow: 0 12px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .card.completed { background: #f0fdf4; border-color: #86efac; }
+        .card-icon { font-size: 40px; margin-bottom: 16px; }
+        .card-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.3px; }
+        .card-time { font-size: 12px; color: #999; margin-bottom: 12px; }
+        .card-desc { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 20px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .card-action { font-size: 13px; font-weight: 600; cursor: pointer; }
+        .card-check { color: #22c55e; font-size: 18px; }
+        
+        .exam-container { background: white; border: 1px solid #e5e5e5; border-radius: 12px; padding: 32px; }
+        .question { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid #f0f0f0; }
+        .question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .question-text { font-weight: 600; margin-bottom: 16px; font-size: 14px; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option { display: flex; align-items: center; padding: 12px; border: 1.5px solid #e5e5e5; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .option:hover { border-color: #d0d0d0; background: #fafbfc; }
+        .option.selected { border-color: #000; background: #f5f5f5; }
+        .option input { margin-right: 10px; cursor: pointer; }
+        .option-text { font-size: 13px; }
+        
+        .result-container { text-align: center; padding: 60px 40px; background: white; border: 1px solid #e5e5e5; border-radius: 12px; margin-bottom: 32px; }
+        .result-icon { font-size: 64px; margin-bottom: 20px; }
+        .result-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+        .result-score { font-size: 18px; color: #666; margin-bottom: 32px; }
+        
+        .certificate { background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); border: 1px solid #fcd34d; border-radius: 12px; padding: 40px; margin-bottom: 32px; text-align: center; }
+        .cert-icon { font-size: 56px; margin-bottom: 16px; }
+        .cert-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .cert-subtitle { font-size: 13px; color: #666; margin-bottom: 20px; }
+        .cert-content { background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #fcd34d; }
+        .cert-name { font-weight: 700; margin-bottom: 4px; }
+        .cert-email { font-size: 12px; color: #999; margin-bottom: 16px; }
+        .cert-text { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 12px; }
+        .cert-date { font-size: 11px; color: #999; padding-top: 12px; border-top: 1px solid #e5e5e5; margin-top: 12px; }
+        
+        .btn-group { display: flex; gap: 12px; margin-top: 40px; }
+        .btn-group button { flex: 1; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .btn-submit { background: #000; color: white; }
+        .btn-submit:hover:not(:disabled) { background: #1a1a1a; }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-back { background: #f0f0f0; color: #000; border: 1px solid #e0e0e0; }
+        .btn-back:hover { background: #f9f9f9; }
+        
+        .footer { background: #fafbfc; border-top: 1px solid #e5e5e5; padding: 60px 40px 40px; margin-top: 80px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #e5e5e5; }
+        .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col p, .footer-col a { font-size: 13px; color: #666; line-height: 1.8; text-decoration: none; }
+        .footer-col a:hover { color: #000; }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; font-size: 12px; color: #999; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: #999; text-decoration: none; }
+        .footer-links a:hover { color: #1a1a1a; }
+        
+        .hidden { display: none; }
+        
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; gap: 40px; }
+            .grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 40px; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-content { padding: 0 20px; }
+            .hero { padding: 60px 20px; }
+            .main { padding: 40px 20px; }
+            .hero-text h1 { font-size: 32px; }
+            .nav-links { gap: 16px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Ley <span>21.719</span></div>
+            <ul class="nav-links">
+                <li><button class="nav-btn active" data-page="inicio">Inicio</button></li>
+                <li><button class="nav-btn" data-page="cursos">Cursos</button></li>
+                <li><button class="nav-btn" data-page="examen">Examen</button></li>
+            </ul>
+            <div class="navbar-actions">
+                <div class="user-info">
+                    <div class="user-name">Felipe Aldunate</div>
+                    <div class="user-email">faldunate@gmail.com</div>
+                </div>
+                <div class="avatar">FA</div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Aprende la nueva Ley 21.719</h1>
+                    <p>Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" data-page="cursos">Comenzar Curso</button>
+                        <button class="btn btn-secondary">Ver Programa</button>
+                    </div>
+                    <div class="hero-social"><span class="stars">★★★★★</span> Más de 3.000 profesionales capacitados</div>
+                </div>
+                <div class="hero-visual">📚</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cursos" class="page hidden">
+        <div class="main">
+            <h2 class="section-title">Mis Cursos</h2>
+            <p class="section-subtitle">Completa todos los módulos para acceder al examen</p>
+            
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="progress-label">Ley 21.719</span>
+                    <span class="progress-percent"><span id="progress-pct">0</span>%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                <div class="progress-text"><span id="progress-text">0 de 5 módulos</span></div>
+            </div>
+
+            <div class="grid" id="modules-grid"></div>
+
+            <div id="exam-btn-container" class="hidden" style="text-align: center;">
+                <button class="btn btn-primary" data-page="examen">Realizar Examen Final</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="examen" class="page hidden">
+        <div class="main">
+            <h2 class="section-title">Examen Final</h2>
+            <p class="section-subtitle">Responde correctamente al menos 4 de 5 preguntas (80%)</p>
+            <div class="exam-container" id="exam-container"></div>
+            <div class="btn-group">
+                <button class="btn-back" data-page="cursos">← Volver</button>
+                <button class="btn-submit" id="submit-btn">Enviar Examen</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultado" class="page hidden">
+        <div class="main">
+            <div class="result-container">
+                <div class="result-icon" id="result-icon">🎉</div>
+                <h2 class="result-title" id="result-title">¡Aprobado!</h2>
+                <div class="result-score" id="result-score">5/5 correctas (100%)</div>
+            </div>
+            <div id="cert-container"></div>
+            <div class="btn-group">
+                <button class="btn-back" data-page="inicio" style="flex: 1;">← Volver al Inicio</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Sobre AFAN</h4>
+                <p>Capacitación profesional en cumplimiento normativo y protección de datos personales.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <p><a href="#" class="footer-link" data-page="inicio">Inicio</a></p>
+                <p><a href="#" class="footer-link" data-page="cursos">Cursos</a></p>
+                <p><a href="#" class="footer-link" data-page="examen">Examen</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>info@afanlearning.com</p>
+                <p>+56 2 1234 5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AFAN Learning. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const modules = [
+            { id: 1, title: 'Introducción a la Ley 21.719', time: '15 min', icon: '📋', desc: 'Fundamentos y objetivos de la Ley de Protección de Datos Personales.' },
+            { id: 2, title: 'Derechos de los Titulares', time: '20 min', icon: '👤', desc: 'Derechos fundamentales de las personas respecto a sus datos.' },
+            { id: 3, title: 'Obligaciones de Responsables', time: '25 min', icon: '⚖️', desc: 'Responsabilidades de quienes recopilan y procesan datos.' },
+            { id: 4, title: 'Seguridad y Privacidad', time: '20 min', icon: '🔒', desc: 'Medidas de protección y seguridad de datos personales.' },
+            { id: 5, title: 'Cumplimiento Normativo', time: '15 min', icon: '✅', desc: 'Cómo implementar medidas de cumplimiento en tu organización.' }
+        ];
+
+        const questions = [
+            { id: 1, q: '¿Cuál es el objetivo principal de la Ley 21.719?', o: ['Proteger datos personales', 'Aumentar recolección', 'Eliminar privacidad', 'Ninguno'], c: 0 },
+            { id: 2, q: '¿Cuál es un derecho fundamental?', o: ['Derecho de opresión', 'Acceso a datos', 'Destrucción de datos', 'Ninguno'], c: 1 },
+            { id: 3, q: '¿Quién es responsable?', o: ['Gobierno', 'Responsable del tratamiento', 'Nadie', 'Solo empleados'], c: 1 },
+            { id: 4, q: '¿Qué hacer ante una brecha?', o: ['Ocultar', 'Notificar', 'Eliminar', 'Seguir operando'], c: 1 },
+            { id: 5, q: '¿Cuál es el fiscalizador?', o: ['Sernac', 'Sernanp', 'Dirección General', 'Superintendencia'], c: 2 }
+        ];
+
+        let completed = [];
+        let answers = {};
+        let submitted = false;
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            document.getElementById(pageName).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
+        }
+
+        function updateProgress() {
+            const pct = Math.round((completed.length / modules.length) * 100);
+            document.getElementById('progress-pct').textContent = pct;
+            document.getElementById('progress-fill').style.width = pct + '%';
+            document.getElementById('progress-text').textContent = completed.length + ' de ' + modules.length + ' módulos';
+            
+            if (completed.length === modules.length) {
+                document.getElementById('exam-btn-container').classList.remove('hidden');
+            }
+        }
+
+        function renderModules() {
+            const grid = document.getElementById('modules-grid');
+            grid.innerHTML = modules.map(m => `
+                <div class="card ${completed.includes(m.id) ? 'completed' : ''}">
+                    <div class="card-icon">${m.icon}</div>
+                    <div class="card-title">${m.title}</div>
+                    <div class="card-time">⏱️ ${m.time}</div>
+                    <div class="card-desc">${m.desc}</div>
+                    <div class="card-footer">
+                        ${completed.includes(m.id) ? 
+                            '<span class="card-check">✓ Completado</span>' :
+                            `<span class="card-action" onclick="toggleModule(${m.id})">Ver Módulo →</span>`
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleModule(id) {
+            if (!completed.includes(id)) {
+                completed.push(id);
+                renderModules();
+                updateProgress();
+            }
+        }
+
+        function renderExam() {
+            const container = document.getElementById('exam-container');
+            container.innerHTML = questions.map((q, i) => `
+                <div class="question">
+                    <div class="question-text">${i + 1}. ${q.q}</div>
+                    <div class="options">
+                        ${q.o.map((opt, j) => `
+                            <label class="option ${answers[q.id] === j ? 'selected' : ''}">
+                                <input type="radio" name="q${q.id}" onchange="answers[${q.id}] = ${j}">
+                                <span class="option-text">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function submitExam() {
+            let score = 0;
+            questions.forEach(q => {
+                if (answers[q.id] === q.c) score++;
+            });
+            
+            const passed = score >= 4;
+            const pct = Math.round((score / 5) * 100);
+            
+            document.getElementById('result-icon').textContent = passed ? '🎉' : '📋';
+            document.getElementById('result-title').textContent = passed ? '¡Aprobado!' : 'No Aprobado';
+            document.getElementById('result-score').textContent = score + '/5 correctas (' + pct + '%)';
+            
+            if (passed) {
+                const today = new Date().toLocaleDateString('es-CL');
+                document.getElementById('cert-container').innerHTML = `
+                    <div class="certificate">
+                        <div class="cert-icon">🏆</div>
+                        <h3 class="cert-title">Certificado de Aprobación</h3>
+                        <p class="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
+                        <div class="cert-content">
+                            <div class="cert-name">Felipe Aldunate</div>
+                            <div class="cert-email">faldunate@gmail.com</div>
+                            <div class="cert-text">
+                                <p>Ha completado exitosamente el curso de</p>
+                                <p><strong>Ley de Protección de Datos Personales - Ley 21.719</strong></p>
+                            </div>
+                            <div class="cert-date">
+                                <p>Emitido: ${today}</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;">📥 Descargar Certificado</button>
+                    </div>
+                `;
+            } else {
+                document.getElementById('cert-container').innerHTML = '';
+            }
+            
+            showPage('resultado');
+        }
+
+        // Event Listeners
+        document.querySelectorAll('[data-page]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(btn.dataset.page);
+            });
+        });
+
+        document.getElementById('submit-btn').addEventListener('click', submitExam);
+        
+        document.querySelectorAll('.footer-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        renderModules();
+        updateProgress();
+        renderExam();
     </script>
 </body>
 </html>
