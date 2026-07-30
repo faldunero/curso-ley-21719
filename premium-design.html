@@ -214,6 +214,14 @@
         .btn-index { position: absolute; top: 40px; right: 40px; background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; transition: all 0.2s; z-index: 100; }
         .btn-index:hover { background: #1d4ed8; transform: translateY(-2px); }
 
+        /* PROGRAMA PAGE STYLES */
+        .programa-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 48px; }
+        .programa-card { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .programa-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #000; display: flex; align-items: center; gap: 8px; }
+        .programa-card ul { list-style: none; padding: 0; margin: 0; }
+        .programa-card li { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e5e7eb; font-size: 14px; color: #555; }
+        .programa-card li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
         /* IMÁGENES */
         .module-image { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; margin-bottom: 24px; }
         .content-image { width: 100%; max-width: 300px; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
@@ -239,6 +247,7 @@
             .sidebar-index { display: none !important; }
             .btn-toggle-sidebar { display: block; }
             .modulo-image { height: 250px; }
+            .programa-grid-2 { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -276,6 +285,7 @@
             <div class="logo">Ley 21.719 <span>Capacitación</span></div>
             <ul class="nav-links">
                 <li><button class="nav-btn active" data-page="inicio">Inicio</button></li>
+                <li><button class="nav-btn" data-page="programa">Programa</button></li>
                 <li><button class="nav-btn" data-page="cursos">Cursos</button></li>
                 <li><button class="nav-btn" data-page="examen">Examen</button></li>
                 <li><a href="mailto:contacto@capacitacion.cl" class="nav-btn" style="text-decoration: none; cursor: pointer;">Contacto</a></li>
@@ -301,7 +311,7 @@
                     <p>Capacitación en Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena.</p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" data-page="cursos">Comenzar Curso</button>
-                        <button class="btn btn-secondary">Ver Programa</button>
+                        <button class="btn btn-secondary" data-page="programa">Ver Programa</button>
                     </div>
                     <div class="hero-social"><span class="stars">★★★★★</span> Más de 3.000 profesionales capacitados</div>
                     <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e0e0e0;">
@@ -310,6 +320,182 @@
                     </div>
                 </div>
                 <div class="hero-visual" style="color: #3b82f6; font-weight: 700;">APRENDE</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programa" class="page hidden">
+        <div class="main">
+            <h2 class="section-title">Programa del Curso</h2>
+            <p class="section-subtitle">Conoce la estructura completa de la capacitación en Ley 21.719</p>
+
+            <div style="background: white; border-radius: 12px; padding: 32px; margin-bottom: 48px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #000;">Descripción General</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: #555; margin-bottom: 12px;">Este curso de eLearning certificado ofrece una capacitación integral en la Ley 21.719 de Protección de Datos Personales chilena. Está diseñado para profesionales, empresas y organizaciones que necesitan cumplir con la normativa vigente y entender sus derechos y obligaciones respecto a la protección de datos.</p>
+                <p style="font-size: 15px; line-height: 1.7; color: #555;">A través de 5 módulos temáticos y un examen final, aprenderás los principios fundamentales, derechos de los titulares, obligaciones de los responsables, medidas de seguridad y cómo implementar cumplimiento normativo en tu organización.</p>
+            </div>
+
+            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: #000;">Módulos del Curso</h3>
+            <div class="grid" style="grid-template-columns: repeat(1, 1fr); gap: 24px; margin-bottom: 48px;">
+
+                <div class="card" style="border-left: 5px solid #2563eb;">
+                    <div class="card-icon" style="font-size: 32px;">📋</div>
+                    <div class="card-title">Módulo 1: Introducción a Protección de Datos</div>
+                    <div class="card-time" style="margin-bottom: 16px;">Duración estimada: 45 minutos | 5 preguntas en quiz</div>
+                    <div class="card-desc">
+                        <p style="margin-bottom: 12px;"><strong>Temas principales:</strong></p>
+                        <ul style="margin-left: 16px; margin-bottom: 12px;">
+                            <li>Historia y contexto de la Protección de Datos</li>
+                            <li>Privacidad como derecho fundamental</li>
+                            <li>Conceptos clave de la Ley 21.719</li>
+                            <li>Cambios principales comparado a legislación anterior</li>
+                            <li>Contexto digital y transformación digital</li>
+                            <li>Objetivo y aplicabilidad de la ley</li>
+                        </ul>
+                        <p style="font-size: 13px; color: #666; background: #f0f4f8; padding: 12px; border-radius: 6px;">En este módulo introductorio, aprenderás los fundamentos de la Ley 21.719, su historia, objetivos y cómo se aplica en el contexto digital actual chileno.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="border-left: 5px solid #2563eb;">
+                    <div class="card-icon" style="font-size: 32px;">👤</div>
+                    <div class="card-title">Módulo 2: Derechos de los Titulares de Datos</div>
+                    <div class="card-time" style="margin-bottom: 16px;">Duración estimada: 50 minutos | 5 preguntas en quiz</div>
+                    <div class="card-desc">
+                        <p style="margin-bottom: 12px;"><strong>Temas principales:</strong></p>
+                        <ul style="margin-left: 16px; margin-bottom: 12px;">
+                            <li>Derecho de Acceso a datos</li>
+                            <li>Derecho de Rectificación de información</li>
+                            <li>Derecho de Eliminación o "derecho al olvido"</li>
+                            <li>Derecho de Oposición al tratamiento</li>
+                            <li>Derecho de Portabilidad de datos</li>
+                            <li>Protección contra decisiones automatizadas</li>
+                        </ul>
+                        <p style="font-size: 13px; color: #666; background: #f0f4f8; padding: 12px; border-radius: 6px;">Conoce los derechos fundamentales que tienen todas las personas sobre sus datos personales y cómo ejercerlos ante responsables de datos.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="border-left: 5px solid #2563eb;">
+                    <div class="card-icon" style="font-size: 32px;">🔒</div>
+                    <div class="card-title">Módulo 3: Obligaciones de Responsables y Transparencia</div>
+                    <div class="card-time" style="margin-bottom: 16px;">Duración estimada: 55 minutos | 5 preguntas en quiz</div>
+                    <div class="card-desc">
+                        <p style="margin-bottom: 12px;"><strong>Temas principales:</strong></p>
+                        <ul style="margin-left: 16px; margin-bottom: 12px;">
+                            <li>Requisitos de Consentimiento informado y explícito</li>
+                            <li>Obligaciones de Transparencia en comunicación</li>
+                            <li>Medidas de Seguridad requeridas</li>
+                            <li>Notificación de Brechas de seguridad en 72 horas</li>
+                            <li>Facilitar ejercicio de derechos de titulares</li>
+                            <li>Registros de tratamiento de datos</li>
+                        </ul>
+                        <p style="font-size: 13px; color: #666; background: #f0f4f8; padding: 12px; border-radius: 6px;">Descubre las principales obligaciones que tienen los responsables de datos para cumplir con la ley y proteger información de los titulares.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="border-left: 5px solid #2563eb;">
+                    <div class="card-icon" style="font-size: 32px;">🛡️</div>
+                    <div class="card-title">Módulo 4: Seguridad y Protección Técnica de Datos</div>
+                    <div class="card-time" style="margin-bottom: 16px;">Duración estimada: 50 minutos | 5 preguntas en quiz</div>
+                    <div class="card-desc">
+                        <p style="margin-bottom: 12px;"><strong>Temas principales:</strong></p>
+                        <ul style="margin-left: 16px; margin-bottom: 12px;">
+                            <li>Medidas técnicas de protección (encriptación, etc.)</li>
+                            <li>Medidas organizacionales (políticas, procedimientos)</li>
+                            <li>Evaluación de riesgos de seguridad</li>
+                            <li>Plan de respuesta a incidentes de seguridad</li>
+                            <li>Auditorías y revisiones de seguridad</li>
+                            <li>Responsabilidad compartida en ecosistema digital</li>
+                        </ul>
+                        <p style="font-size: 13px; color: #666; background: #f0f4f8; padding: 12px; border-radius: 6px;">Aprende cómo implementar medidas técnicas y organizacionales para proteger datos personales contra accesos no autorizados, pérdida o daño.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="border-left: 5px solid #2563eb;">
+                    <div class="card-icon" style="font-size: 32px;">✅</div>
+                    <div class="card-title">Módulo 5: Cumplimiento Normativo y Régimen Sancionatorio</div>
+                    <div class="card-time" style="margin-bottom: 16px;">Duración estimada: 40 minutos | 5 preguntas en quiz</div>
+                    <div class="card-desc">
+                        <p style="margin-bottom: 12px;"><strong>Temas principales:</strong></p>
+                        <ul style="margin-left: 16px; margin-bottom: 12px;">
+                            <li>Marco normativo de cumplimiento (compliance)</li>
+                            <li>Directrices de la DGDP para implementación</li>
+                            <li>Proceso de reclamos ante la DGDP</li>
+                            <li>Régimen de sanciones y multas</li>
+                            <li>Mejores prácticas en protección de datos</li>
+                            <li>Preparación para auditorías de cumplimiento</li>
+                        </ul>
+                        <p style="font-size: 13px; color: #666; background: #f0f4f8; padding: 12px; border-radius: 6px;">Entiende cómo cumplir la ley, el proceso de fiscalización, sanciones aplicables y cómo preparar tu organización para auditorías de cumplimiento.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="programa-grid-2">
+                <div class="programa-card">
+                    <h3><span style="font-size: 20px;">📝</span> Examen Final</h3>
+                    <ul>
+                        <li><strong>Total de Preguntas:</strong> 15 preguntas</li>
+                        <li><strong>Calificación Mínima:</strong> 80% (12 de 15 correctas)</li>
+                        <li><strong>Tipo de Preguntas:</strong> Opción múltiple</li>
+                        <li><strong>Certificado:</strong> Disponible tras aprobar con 80%+</li>
+                    </ul>
+                </div>
+
+                <div class="programa-card">
+                    <h3><span style="font-size: 20px;">⏱️</span> Duración Total</h3>
+                    <ul>
+                        <li><strong>Módulos:</strong> 240 minutos (~4 horas)</li>
+                        <li><strong>Quizzes:</strong> 25 preguntas (5 por módulo)</li>
+                        <li><strong>Ritmo:</strong> A tu propio paso, 24/7</li>
+                        <li><strong>Acceso:</strong> Permanente a toda la plataforma</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="programa-grid-2">
+                <div style="background: linear-gradient(135deg, #f0f4f8 0%, #e8f1ff 100%); border-radius: 12px; padding: 28px; border-left: 5px solid #2563eb;">
+                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #000; display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">🎯</span> Objetivo General</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: #555;">Capacitar a profesionales y empresas en la Ley 21.719 de Protección de Datos Personales, garantizando la comprensión de derechos de titulares, obligaciones de responsables, medidas de seguridad y cómo implementar cumplimiento normativo en organizaciones chilenas.</p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); border-radius: 12px; padding: 28px; border-left: 5px solid #fbbf24;">
+                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #000; display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">👥</span> A Quién Va Dirigido</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px; font-size: 13px; color: #555;;">• Profesionales de TI y Ciberseguridad</li>
+                        <li style="margin-bottom: 8px; font-size: 13px; color: #555;;">• Abogados y Especialistas en Privacidad</li>
+                        <li style="margin-bottom: 8px; font-size: 13px; color: #555;;">• Responsables de Cumplimiento (Compliance)</li>
+                        <li style="margin-bottom: 8px; font-size: 13px; color: #555;;">• Gerentes de Recursos Humanos</li>
+                        <li style="margin-bottom: 8px; font-size: 13px; color: #555;;">• Ejecutivos de Empresas y Organizaciones</li>
+                        <li style="font-size: 13px; color: #555;;">• Cualquier profesional que maneje datos personales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: white; border-radius: 12px; padding: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); margin-bottom: 48px;">
+                <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: #000; display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">📚</span> Requisitos y Prerrequisitos</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div>
+                        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #2563eb;">Requisitos Técnicos</h4>
+                        <ul style="margin-left: 16px; margin-bottom: 0;">
+                            <li style="font-size: 13px; color: #555; margin-bottom: 8px;">Conexión a internet estable</li>
+                            <li style="font-size: 13px; color: #555; margin-bottom: 8px;">Navegador web actualizado (Chrome, Firefox, Safari)</li>
+                            <li style="font-size: 13px; color: #555;">Dispositivo: PC, laptop, tablet o smartphone</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: #2563eb;">Conocimientos Previos</h4>
+                        <ul style="margin-left: 16px; margin-bottom: 0;">
+                            <li style="font-size: 13px; color: #555; margin-bottom: 8px;">No se requieren conocimientos legales previos</li>
+                            <li style="font-size: 13px; color: #555; margin-bottom: 8px;">Lectura en español a nivel profesional</li>
+                            <li style="font-size: 13px; color: #555;">Capacidad de dedicar 4-5 horas al curso</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group" style="max-width: 600px; margin: 0 auto;">
+                <button class="btn btn-primary" data-page="cursos" style="flex: 1;">Comenzar el Curso</button>
+                <button class="btn btn-back" data-page="inicio" style="flex: 1;">Volver al Inicio</button>
             </div>
         </div>
     </section>
