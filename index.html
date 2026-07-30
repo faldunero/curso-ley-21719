@@ -197,12 +197,6 @@
         .btn-toggle-sidebar { display: none; position: fixed; bottom: 20px; right: 80px; width: 48px; height: 48px; background: #2563eb; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 20px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); transition: all 0.2s; z-index: 499; }
         .btn-toggle-sidebar:hover { background: #1d4ed8; transform: scale(1.1); }
 
-        /* BOTONES SCROLL ARRIBA/ABAJO */
-        .scroll-buttons { display: none; position: fixed; bottom: 20px; right: 20px; flex-direction: column; gap: 8px; z-index: 499; }
-        .scroll-buttons.active { display: flex; }
-        .btn-scroll { width: 48px; height: 48px; background: white; color: #2563eb; border: 2px solid #2563eb; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-weight: bold; }
-        .btn-scroll:hover { background: #e8f1ff; transform: scale(1.15); }
-        .btn-scroll:disabled { opacity: 0.4; cursor: not-allowed; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: flex; opacity: 1; align-items: center; justify-content: center; }
@@ -268,8 +262,6 @@
             .modulo-header { flex-direction: column; align-items: flex-start; }
             .modulo-icon { margin-top: 12px; }
             .modal-content { max-width: 90%; padding: 24px; }
-            .scroll-buttons { bottom: 100px; right: 10px; }
-            .btn-scroll { width: 44px; height: 44px; font-size: 16px; }
             .pagination-buttons { flex-direction: column; }
             .pagination-buttons button { width: 100%; }
             .modulo-image { height: 200px; }
@@ -351,11 +343,6 @@
         <ul id="sidebar-index-list"></ul>
     </div>
 
-    <!-- BOTONES SCROLL -->
-    <div class="scroll-buttons" id="scroll-buttons">
-        <button class="btn-scroll" id="btn-scroll-up" onclick="scrollToTop()" title="Ir arriba">▲</button>
-        <button class="btn-scroll" id="btn-scroll-down" onclick="scrollToBottom()" title="Ir abajo">▼</button>
-    </div>
 
     <!-- BOTÓN TOGGLE SIDEBAR -->
     <button class="btn-toggle-sidebar" id="btn-toggle-sidebar" onclick="toggleSidebar()" title="Índice">☰</button>
@@ -1416,6 +1403,7 @@
             document.getElementById(pageName).classList.remove('hidden');
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`[data-page="${pageName}"]`) ? document.querySelector(`[data-page="${pageName}"]`).classList.add('active') : null;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function startModuleQuiz(moduleId) {
@@ -1431,6 +1419,8 @@
             const quiz = quizzes[moduleId];
             document.getElementById('quiz-title').textContent = quiz.title;
             document.getElementById('quiz-submit-btn').textContent = 'Enviar Quiz';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             renderModuleQuiz(moduleId);
         }
 
@@ -1683,6 +1673,9 @@
             // Renderizar índice en sidebar
             renderSidebar(moduleSections);
 
+            // Scroll al top antes de mostrar el módulo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
             // Mostrar primera página
             renderPage(currentPage);
 
@@ -1779,14 +1772,12 @@
                 const existingBtn = document.getElementById('btn-go-quiz');
                 if (existingBtn) existingBtn.remove();
             }
-
-            // Scroll suave hacia el contenido
-            document.getElementById('modulo-content').scrollIntoView({ behavior: 'smooth' });
         }
 
         function nextPage() {
             if (currentPage < totalPages) {
                 currentPage++;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 renderPage(currentPage);
                 updateSidebarActive();
             }
@@ -1795,6 +1786,7 @@
         function prevPage() {
             if (currentPage > 1) {
                 currentPage--;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 renderPage(currentPage);
                 updateSidebarActive();
             }
@@ -1850,37 +1842,6 @@
             sidebar.classList.remove('active');
         }
 
-        function scrollToTop() {
-            const modContent = document.getElementById('modulo-content');
-            if (modContent) {
-                modContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function scrollToBottom() {
-            const pagination = document.getElementById('modulo-pagination');
-            if (pagination) {
-                pagination.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function updateScrollButtons() {
-            const scrollBtns = document.getElementById('scroll-buttons');
-            const btnsUp = document.getElementById('btn-scroll-up');
-            const btnsDown = document.getElementById('btn-scroll-down');
-
-            if (document.getElementById('modulo').classList.contains('hidden')) {
-                scrollBtns.classList.remove('active');
-            } else {
-                scrollBtns.classList.add('active');
-                btnsUp.disabled = window.scrollY < 300;
-                btnsDown.disabled = (window.scrollY + window.innerHeight) >= document.body.scrollHeight - 100;
-            }
-        }
-
-        window.addEventListener('scroll', updateScrollButtons);
 
         function renderExam() {
             const container = document.getElementById('exam-container');
