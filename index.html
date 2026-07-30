@@ -72,10 +72,15 @@
         .option input { margin-right: 10px; cursor: pointer; }
         .option-text { font-size: 13px; }
 
-        .result-container { text-align: center; padding: 60px 40px; background: white; border: 1px solid #e5e5e5; border-radius: 12px; margin-bottom: 32px; }
+        .result-container { text-align: center; padding: 60px 40px; background: #f9fafb; border: 1px solid #e5e5e5; border-radius: 12px; margin-bottom: 32px; }
         .result-icon { font-size: 64px; margin-bottom: 20px; }
         .result-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
         .result-score { font-size: 18px; color: #666; margin-bottom: 32px; }
+
+        #modulo-view { display: block; }
+        #modulo-view.hidden { display: none; }
+        #quiz-view { display: block; }
+        #quiz-view.hidden { display: none; }
 
         .certificate { background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); border: 1px solid #fcd34d; border-radius: 12px; padding: 40px; margin-bottom: 32px; text-align: center; }
         .cert-icon { font-size: 56px; margin-bottom: 16px; }
@@ -201,16 +206,32 @@
     <section id="modulo" class="page hidden">
         <div class="main">
             <div class="modulo-container">
-                <div class="modulo-header">
-                    <div>
-                        <h2 class="modulo-title" id="modulo-title">Módulo</h2>
+                <div id="modulo-view">
+                    <div class="modulo-header">
+                        <div>
+                            <h2 class="modulo-title" id="modulo-title">Módulo</h2>
+                        </div>
+                        <div class="modulo-icon" id="modulo-icon">📋</div>
                     </div>
-                    <div class="modulo-icon" id="modulo-icon">📋</div>
+                    <div class="modulo-content" id="modulo-content"></div>
+                    <div class="modulo-actions">
+                        <button class="btn btn-secondary" onclick="startModuleQuiz(currentModuleId)">📝 Hacer Quiz del Módulo</button>
+                        <button class="btn btn-back" onclick="showPage('cursos')">Volver a Cursos</button>
+                        <button class="btn btn-primary" onclick="completeCurrentModule()">Marcar como Completado</button>
+                    </div>
                 </div>
-                <div class="modulo-content" id="modulo-content"></div>
-                <div class="modulo-actions">
-                    <button class="btn btn-back" onclick="showPage('cursos')">← Volver a Cursos</button>
-                    <button class="btn btn-primary" onclick="completeCurrentModule()">✓ Marcar como Completado</button>
+                <div id="quiz-view" class="hidden">
+                    <div class="modulo-header">
+                        <div>
+                            <h2 class="modulo-title" id="quiz-title">Quiz</h2>
+                        </div>
+                        <div class="modulo-icon">📝</div>
+                    </div>
+                    <div class="exam-container" id="quiz-container"></div>
+                    <div class="btn-group">
+                        <button class="btn-back" onclick="closeModuleQuiz()">Volver al Módulo</button>
+                        <button class="btn-submit" id="quiz-submit-btn">Enviar Quiz</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,7 +243,7 @@
             <p class="section-subtitle">Responde correctamente al menos 4 de 5 preguntas (80%)</p>
             <div class="exam-container" id="exam-container"></div>
             <div class="btn-group">
-                <button class="btn-back" data-page="cursos">← Volver</button>
+                <button class="btn-back" data-page="cursos">Volver</button>
                 <button class="btn-submit" id="submit-btn">Enviar Examen</button>
             </div>
         </div>
@@ -237,7 +258,7 @@
             </div>
             <div id="cert-container"></div>
             <div class="btn-group">
-                <button class="btn-back" data-page="inicio" style="flex: 1;">← Volver al Inicio</button>
+                <button class="btn-back" data-page="inicio" style="flex: 1;">Volver al Inicio</button>
             </div>
         </div>
     </section>
@@ -310,6 +331,26 @@
                             <li><strong>Fiscalizadores:</strong> La Dirección General de Protección de Datos Personales (DGDP)</li>
                         </ul>
                     </div>
+                    <div class="modulo-section">
+                        <h3>Ejemplos de Aplicación en la Vida Real</h3>
+                        <ul>
+                            <li>
+                                <strong>Empresa de Seguros:</strong> Una aseguradora recopila datos personales de clientes (nombre, edad, dirección, historial médico) para evaluar riesgos de pólizas de seguro. Debe cumplir con la Ley 21.719 al informar cómo se usan estos datos y permitir que los clientes accedan, corrijan o soliciten la eliminación de su información.
+                            </li>
+                            <li>
+                                <strong>Hospital:</strong> Un centro médico maneja historiales médicos sensibles de pacientes. Debe proteger estos datos con medidas de seguridad robustas, obtener consentimiento previo para tratamientos específicos, y notificar a los pacientes si hay una brecha de seguridad.
+                            </li>
+                            <li>
+                                <strong>E-Commerce:</strong> Una tienda en línea registra preferencias de compra, historial de navegación, dirección de envío y datos de pago. Debe ser transparente sobre qué datos recopila y cómo los usa (ej: recomendaciones personalizadas), y permitir que los clientes controlen sus datos.
+                            </li>
+                            <li>
+                                <strong>Banco:</strong> Una institución financiera procesa datos de transacciones, ingresos y antecedentes crediticios. Está obligada a implementar sistemas de encriptación robustos y a notificar inmediatamente si hay un ataque cibernético que afecte datos de clientes.
+                            </li>
+                            <li>
+                                <strong>Red Social:</strong> Una plataforma de redes sociales recopila ubicación, intereses, conexiones y comportamiento en línea. Debe obtener consentimiento explícito para usar datos con fines publicitarios y permitir a los usuarios descargar y eliminar sus datos.
+                            </li>
+                        </ul>
+                    </div>
                 `
             },
             2: {
@@ -323,26 +364,32 @@
                     <div class="modulo-section">
                         <h3>1. Derecho de Acceso</h3>
                         <p>Toda persona tiene derecho a acceder a sus datos personales en poder de un responsable. Las organizaciones deben responder solicitudes de acceso de forma gratuita y dentro de 30 días. El acceso debe ser en formato claro, comprensible y sin costo.</p>
+                        <p><strong>Ejemplo:</strong> Un usuario de Netflix puede solicitar ver qué información personal tiene la plataforma sobre él (email, historial de visualización, métodos de pago, ubicación). Netflix debe proporcionar esta información dentro de 30 días sin cobrar nada.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>2. Derecho de Rectificación</h3>
                         <p>Las personas pueden solicitar la corrección de datos personales inexactos, incompletos u obsoletos. Las organizaciones deben corregir o actualizar los datos sin costo dentro del plazo de 30 días.</p>
+                        <p><strong>Ejemplo:</strong> Un cliente descubre que su banco tiene registrada una dirección incorrecta en su perfil. Puede solicitar que corrijan la información, y el banco debe hacerlo sin costo.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>3. Derecho de Eliminación</h3>
                         <p>También conocido como "derecho al olvido", permite solicitar que se eliminen datos personales cuando ya no son necesarios para el fin que fueron recopilados, o cuando se retira el consentimiento.</p>
+                        <p><strong>Ejemplo:</strong> Un cliente solicita a su banco eliminar su perfil completamente después de cerrar su cuenta. El banco debe eliminar sus datos personales según lo establecido por ley, excepto los registros que deba mantener por obligaciones legales de auditoría.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>4. Derecho de Oposición</h3>
                         <p>Las personas pueden oponerse al tratamiento de sus datos en ciertos casos, especialmente para marketing o decisiones automatizadas que afecten derechos fundamentales.</p>
+                        <p><strong>Ejemplo:</strong> Un usuario de Spotify puede optar por no recibir recomendaciones personalizadas basadas en su historial de escucha, o rechazar que la plataforma venda información sobre sus hábitos de consumo a terceros.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>5. Derecho de Portabilidad</h3>
                         <p>Permite que los titulares reciban sus datos en formato estructurado e interoperable, y transmitirlos a otro responsable sin obstáculos.</p>
+                        <p><strong>Ejemplo:</strong> Un usuario puede solicitar a Google que descargue todos sus datos (contactos, fotos, emails) en un formato estándar para transferirlos a otro proveedor de servicios de correo.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>6. Derecho a No Ser Objeto de Decisiones Automatizadas</h3>
                         <p>Las personas no pueden ser sometidas a decisiones individuales basadas únicamente en tratamiento automatizado de sus datos, especialmente si afectan derechos fundamentales.</p>
+                        <p><strong>Ejemplo:</strong> Un banco no puede negar un préstamo únicamente basándose en un algoritmo de puntuación de crédito sin que un humano revise el caso. La persona tiene derecho a apelar la decisión automatizada.</p>
                     </div>
                 `
             },
@@ -357,26 +404,31 @@
                     <div class="modulo-section">
                         <h3>1. Consentimiento</h3>
                         <p>Los responsables deben obtener consentimiento previo, informado, específico e inequívoco de los titulares antes de recopilar o procesar datos personales, excepto en casos legales específicos. El consentimiento debe ser fácil de revocar en cualquier momento.</p>
+                        <p><strong>Ejemplo:</strong> Una empresa de marketing debe obtener consentimiento explícito ANTES de enviar correos electrónicos promocionales. No puede usar la falta de respuesta como consentimiento. El usuario debe poder desuscribirse fácilmente.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>2. Transparencia</h3>
                         <p>Los responsables deben proporcionar información clara sobre: identidad del responsable, finalidad del tratamiento, datos que se recopilan, derechos de los titulares, y a quién se compartirán los datos. Esta información debe ser accesible, clara y fácil de entender.</p>
+                        <p><strong>Ejemplo:</strong> Una tienda en línea debe informar claramente en su Política de Privacidad que recopila datos de compra para procesar pedidos Y para enviar recomendaciones personalizadas, indicando que estos son dos usos diferentes que podrían requerir consentimientos separados.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>3. Seguridad</h3>
                         <p>Las organizaciones deben implementar medidas técnicas y organizacionales adecuadas para proteger los datos contra pérdida, daño, acceso no autorizado o divulgación accidental o ilícita.</p>
+                        <p><strong>Ejemplo:</strong> Un hospital debe encriptar todos los datos médicos, usar autenticación multifactor para acceder a sistemas, mantener copias de seguridad, y realizar auditorías regulares de seguridad.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>4. Notificación de Brechas</h3>
                         <p>Cuando ocurra una violación de seguridad que afecte datos personales, los responsables deben notificar a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas.</p>
+                        <p><strong>Ejemplo:</strong> Un banco descubre que un servidor fue hackeado y se expusieron datos de 10.000 clientes. Debe notificar a la DGDP y a todos los clientes afectados dentro de 72 horas, explicando qué datos se comprometieron y qué medidas tomará.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>5. Respeto a los Derechos</h3>
                         <p>Los responsables deben garantizar el ejercicio de los derechos de los titulares (acceso, rectificación, eliminación, oposición, portabilidad y no perfilado) dentro de los plazos establecidos y de forma efectiva.</p>
+                        <p><strong>Ejemplo:</strong> Un usuario solicita acceso a sus datos. La empresa debe procesar la solicitud dentro de 30 días, proporcionar los datos en un formato comprensible y sin costo, verificar la identidad del solicitante de forma segura.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Consecuencias del Incumplimiento</h3>
-                        <p>La DGDP puede sancionar a los responsables con multas de hasta 2.700 Unidades de Fomento (UF) por violaciones graves de la ley.</p>
+                        <p>La DGDP puede sancionar a los responsables con multas de hasta 2.700 Unidades de Fomento (UF) por violaciones graves de la ley. Ejemplos de infracciones graves incluyen: no notificar brechas de seguridad, no responder a solicitudes de derechos, no implementar medidas de seguridad adecuadas, o procesar datos sin consentimiento.</p>
                     </div>
                 `
             },
@@ -391,23 +443,23 @@
                     <div class="modulo-section">
                         <h3>Medidas Técnicas</h3>
                         <ul>
-                            <li><strong>Encriptación:</strong> Codificar datos en reposo y en tránsito para hacerlos ilegibles sin la clave de desencriptación</li>
-                            <li><strong>Autenticación Multifactor (MFA):</strong> Requerir múltiples formas de verificación de identidad</li>
-                            <li><strong>Firewalls:</strong> Filtrar tráfico no autorizado hacia sistemas y datos</li>
-                            <li><strong>Backups Regulares:</strong> Realizar copias de seguridad para recuperación ante desastres</li>
-                            <li><strong>Monitoreo de Seguridad:</strong> Detectar y responder a amenazas en tiempo real</li>
-                            <li><strong>Actualizaciones de Software:</strong> Mantener sistemas con parches de seguridad actualizados</li>
+                            <li><strong>Encriptación:</strong> Codificar datos en reposo y en tránsito para hacerlos ilegibles sin la clave de desencriptación. Ejemplo: WhatsApp usa encriptación end-to-end, lo que significa que ni siquiera WhatsApp puede leer tus mensajes.</li>
+                            <li><strong>Autenticación Multifactor (MFA):</strong> Requerir múltiples formas de verificación de identidad. Ejemplo: Gmail requiere tu contraseña + un código enviado a tu teléfono antes de permitir acceso.</li>
+                            <li><strong>Firewalls:</strong> Filtrar tráfico no autorizado hacia sistemas y datos. Ejemplo: Un banco usa firewalls para evitar que hackers accedan a los servidores con datos de clientes.</li>
+                            <li><strong>Backups Regulares:</strong> Realizar copias de seguridad para recuperación ante desastres. Ejemplo: Una aseguradora realiza backups diarios de todas las pólizas en servidores separados.</li>
+                            <li><strong>Monitoreo de Seguridad:</strong> Detectar y responder a amenazas en tiempo real. Ejemplo: Un sistema detecta cuando alguien intenta acceder a datos desde una ubicación inusual y bloquea el acceso.</li>
+                            <li><strong>Actualizaciones de Software:</strong> Mantener sistemas con parches de seguridad actualizados. Ejemplo: Una empresa aplica actualizaciones de seguridad críticas en 24 horas después de ser lanzadas.</li>
                         </ul>
                     </div>
                     <div class="modulo-section">
                         <h3>Medidas Organizacionales</h3>
                         <ul>
-                            <li><strong>Capacitación de Personal:</strong> Entrenar empleados en prácticas seguras de manejo de datos</li>
-                            <li><strong>Control de Acceso:</strong> Limitar acceso a datos según roles y responsabilidades</li>
-                            <li><strong>Auditorías Internas:</strong> Revisar regularmente el cumplimiento de medidas de seguridad</li>
-                            <li><strong>Designación de DPO:</strong> Nombrar un Delegado de Protección de Datos (si aplica)</li>
-                            <li><strong>Políticas de Seguridad:</strong> Documentar procedimientos y estándares de seguridad</li>
-                            <li><strong>Evaluación de Riesgos:</strong> Identificar y mitigar riesgos de seguridad</li>
+                            <li><strong>Capacitación de Personal:</strong> Entrenar empleados en prácticas seguras de manejo de datos. Ejemplo: Empleados reciben entrenamiento sobre cómo identificar emails de phishing que intentan robar credenciales.</li>
+                            <li><strong>Control de Acceso:</strong> Limitar acceso a datos según roles y responsabilidades. Ejemplo: Solo el equipo de nómina puede acceder a información salarial, no todos los empleados.</li>
+                            <li><strong>Auditorías Internas:</strong> Revisar regularmente el cumplimiento de medidas de seguridad. Ejemplo: Una auditoría descubre que un servidor viejo no tiene encriptación y se reemplaza inmediatamente.</li>
+                            <li><strong>Designación de DPO:</strong> Nombrar un Delegado de Protección de Datos (si aplica). Ejemplo: Una empresa grande designa a un ejecutivo como responsable de privacidad.</li>
+                            <li><strong>Políticas de Seguridad:</strong> Documentar procedimientos y estándares de seguridad. Ejemplo: Una política establece que las contraseñas deben tener 12+ caracteres y cambiarse cada 90 días.</li>
+                            <li><strong>Evaluación de Riesgos:</strong> Identificar y mitigar riesgos de seguridad. Ejemplo: Una evaluación identifica que los datos se transfieren a través de conexiones inseguras, así que se implementa VPN obligatorio.</li>
                         </ul>
                     </div>
                     <div class="modulo-section">
@@ -431,96 +483,245 @@
                 content: `
                     <div class="modulo-section">
                         <h3>6 Pasos para Implementar Cumplimiento Normativo</h3>
-                        <p>Implementar el cumplimiento de la Ley 21.719 requiere un enfoque sistemático con estos pasos clave:</p>
+                        <p>Implementar el cumplimiento de la Ley 21.719 requiere un enfoque sistemático con estos pasos clave. Estos pasos son esenciales para pequeños negocios y grandes corporaciones.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Paso 1: Auditoría de Datos</h3>
                         <p>Realizar un inventario completo de todos los datos personales que tu organización recopila, procesa y almacena. Identifica:</p>
                         <ul>
-                            <li>Tipos de datos personales tratados</li>
-                            <li>Ubicación de almacenamiento</li>
-                            <li>Duración de retención</li>
-                            <li>Quién tiene acceso</li>
-                            <li>Riesgos de seguridad</li>
+                            <li>Tipos de datos personales tratados (nombres, emails, teléfonos, etc.)</li>
+                            <li>Ubicación de almacenamiento (en la nube, servidores locales, etc.)</li>
+                            <li>Duración de retención (cuánto tiempo se guardan los datos)</li>
+                            <li>Quién tiene acceso (empleados, departamentos, terceros)</li>
+                            <li>Riesgos de seguridad identificados</li>
                         </ul>
+                        <p><strong>Ejemplo para pequeño negocio:</strong> Una peluquería descubre que guarda números de teléfono de clientes en una hoja de cálculo sin protección, sin saber que es ilegal sin consentimiento.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Paso 2: Políticas Documentadas</h3>
                         <p>Crear y documentar políticas de protección de datos que incluyan:</p>
                         <ul>
-                            <li>Política de Privacidad y Protección de Datos</li>
-                            <li>Política de Consentimiento</li>
-                            <li>Política de Seguridad</li>
-                            <li>Procedimientos de Respuesta a Incidentes</li>
-                            <li>Política de Retención de Datos</li>
+                            <li>Política de Privacidad y Protección de Datos (publicada en tu sitio web)</li>
+                            <li>Política de Consentimiento (cómo obtienes consentimiento)</li>
+                            <li>Política de Seguridad (cómo proteges los datos)</li>
+                            <li>Procedimientos de Respuesta a Incidentes (qué hacer si hay un hack)</li>
+                            <li>Política de Retención de Datos (cuándo eliminar datos)</li>
                         </ul>
+                        <p><strong>Implementación concreta:</strong> Una tienda en línea agrega a su sitio web una sección clara de "Privacidad" donde explica que recopila emails para confirmaciones de pedidos, que no vende datos a terceros, y que los clientes pueden solicitar eliminar su información en cualquier momento.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Paso 3: Designar Responsable</h3>
                         <p>Designar un responsable interno de protección de datos o un Delegado de Protección de Datos (DPO) que sea responsable de:</p>
                         <ul>
-                            <li>Supervisar el cumplimiento</li>
-                            <li>Atender solicitudes de derechos</li>
+                            <li>Supervisar el cumplimiento día a día</li>
+                            <li>Atender solicitudes de derechos de los titulares</li>
                             <li>Gestionar relaciones con la DGDP</li>
-                            <li>Coordinar capacitación</li>
+                            <li>Coordinar capacitación de empleados</li>
                             <li>Realizar auditorías internas</li>
                         </ul>
+                        <p><strong>Para pequeño negocio:</strong> El dueño o un gerente designado es responsable. Para grandes empresas: Se contrata a un DPO profesional dedicado a tiempo completo.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Paso 4: Implementar Medidas</h3>
                         <p>Implementar las medidas técnicas y organizacionales de seguridad identificadas:</p>
                         <ul>
-                            <li>Encriptación de datos</li>
-                            <li>Autenticación multifactor</li>
-                            <li>Control de acceso</li>
-                            <li>Monitoreo de seguridad</li>
-                            <li>Protección física de servidores</li>
+                            <li>Encriptación de datos (especialmente datos sensibles como contraseñas)</li>
+                            <li>Autenticación multifactor en acceso a sistemas</li>
+                            <li>Control de acceso (solo empleados autorizados ven ciertos datos)</li>
+                            <li>Monitoreo de seguridad (detectar accesos sospechosos)</li>
+                            <li>Protección física de servidores (no dejar computadoras con datos desatendidas)</li>
                         </ul>
+                        <p><strong>Pasos concretos para un pequeño negocio:</strong> Usar herramientas como Google Workspace (con cifrado), establecer contraseñas fuertes, hacer backups semanales, no guardar datos en computadoras personales sin protección.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Paso 5: Capacitar Personal</h3>
                         <p>Proporcionar capacitación continua a todos los empleados sobre:</p>
                         <ul>
                             <li>Obligaciones de la Ley 21.719</li>
-                            <li>Derechos de titulares</li>
-                            <li>Prácticas seguras</li>
-                            <li>Procedimientos de seguridad</li>
-                            <li>Respuesta a incidentes</li>
+                            <li>Derechos de los titulares</li>
+                            <li>Prácticas seguras (no compartir contraseñas, reconocer phishing)</li>
+                            <li>Procedimientos de seguridad internos</li>
+                            <li>Cómo responder a solicitudes de datos</li>
                         </ul>
+                        <p><strong>Ejemplo:</strong> Una empresa realiza sesiones mensuales de 30 minutos para entrenar a empleados sobre seguridad. Un correo de phishing simulado prueba quién reconoce ataques.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Paso 6: Monitoreo Continuo</h3>
                         <p>Establecer un proceso de monitoreo y auditoría continuos:</p>
                         <ul>
-                            <li>Auditorías internas regulares</li>
-                            <li>Evaluación de cumplimiento</li>
-                            <li>Revisión de políticas y procedimientos</li>
+                            <li>Auditorías internas regulares (mensuales o trimestrales)</li>
+                            <li>Evaluación de cumplimiento con la ley</li>
+                            <li>Revisión y actualización de políticas y procedimientos</li>
                             <li>Análisis de incidentes de seguridad</li>
-                            <li>Actualización ante cambios normativos</li>
+                            <li>Actualización ante cambios normativos o nuevas amenazas</li>
                         </ul>
+                        <p><strong>Monitoreo en práctica:</strong> Cada mes, revisar quién accedió a datos sensibles, si hay intentos fallidos de acceso, si hay datos obsoletos que deberían eliminarse.</p>
                     </div>
                 `
             }
         };
 
-        const questions = [
-            { id: 1, q: '¿Cuál es el objetivo principal de la Ley 21.719?', o: ['Proteger datos personales', 'Aumentar recolección', 'Eliminar privacidad', 'Ninguno'], c: 0 },
-            { id: 2, q: '¿Cuál es un derecho fundamental?', o: ['Derecho de opresión', 'Acceso a datos', 'Destrucción de datos', 'Ninguno'], c: 1 },
-            { id: 3, q: '¿Quién es responsable?', o: ['Gobierno', 'Responsable del tratamiento', 'Nadie', 'Solo empleados'], c: 1 },
-            { id: 4, q: '¿Qué hacer ante una brecha?', o: ['Ocultar', 'Notificar', 'Eliminar', 'Seguir operando'], c: 1 },
-            { id: 5, q: '¿Cuál es el fiscalizador?', o: ['Sernac', 'Sernanp', 'Dirección General', 'Superintendencia'], c: 2 }
-        ];
+        const quizzes = {
+            1: {
+                title: 'Quiz Módulo 1: Introducción a la Ley 21.719',
+                questions: [
+                    { id: 1, q: '¿En qué fecha entró en vigencia la Ley 21.719?', o: ['28 de septiembre de 2022', '28 de septiembre de 2023', '1 de enero de 2023', '15 de marzo de 2024'], c: 1 },
+                    { id: 2, q: '¿Cuál de las siguientes NO es una razón por la que existe la Ley 21.719?', o: ['Proteger derechos fundamentales', 'Equilibrar protección con libre circulación de información', 'Aumentar recolección de datos sin restricciones', 'Alinearse con estándares internacionales'], c: 2 },
+                    { id: 3, q: 'La Ley 21.719 se alinea con qué estándar internacional?', o: ['GDPR de la Unión Europea', 'CCPA de California', 'LGPD de Brasil', 'Todas las anteriores'], c: 0 },
+                    { id: 4, q: '¿Quién es considerado "Titular" según la Ley 21.719?', o: ['Personas jurídicas que recopilan datos', 'Personas naturales cuyos datos son tratados', 'La DGDP', 'Terceros que procesan datos'], c: 1 },
+                    { id: 5, q: '¿Cuál es el organismo fiscalizador de la Ley 21.719?', o: ['Sernac', 'Dirección General de Protección de Datos (DGDP)', 'Superintendencia de Valores', 'Ministerio del Interior'], c: 1 },
+                    { id: 6, q: '¿Qué normativa anterior fue modernizada por la Ley 21.719?', o: ['Ley 19.496', 'Ley 19.628', 'Ley 19.912', 'Ninguna, fue la primera'], c: 1 },
+                    { id: 7, q: 'Un hospital que maneja historiales médicos, ¿está obligado a cumplir con la Ley 21.719?', o: ['Solo si es privado', 'Solo si es público', 'Sí, siempre que trate datos personales', 'No, está exento por ser salud'], c: 2 },
+                    { id: 8, q: '¿Cuál de estos es un objetivo principal de la Ley 21.719?', o: ['Prohibir completamente la recolección de datos', 'Establecer derechos y obligaciones de titulares y responsables', 'Eliminar el uso de datos para investigación', 'Crear impuestos sobre datos'], c: 1 },
+                    { id: 9, q: '¿Qué es un "Responsable" en el contexto de la Ley?', o: ['La persona cuya información es tratada', 'Quien recopila y procesa datos personales', 'El fiscalizador de la ley', 'Un tercero autorizado por la DGDP'], c: 1 },
+                    { id: 10, q: '¿En qué contexto fue creada la Ley 21.719?', o: ['Reducción de tecnología', 'Transformación digital e internet', 'Emergencia sanitaria', 'Reforma tributaria'], c: 1 }
+                ]
+            },
+            2: {
+                title: 'Quiz Módulo 2: Derechos de los Titulares',
+                questions: [
+                    { id: 1, q: '¿Cuántos derechos fundamentales reconoce la Ley 21.719?', o: ['3 derechos', '5 derechos', '6 derechos', '8 derechos'], c: 2 },
+                    { id: 2, q: '¿Cuál es el plazo máximo para responder una solicitud de acceso a datos?', o: ['7 días', '15 días', '30 días', '60 días'], c: 2 },
+                    { id: 3, q: 'El derecho de acceso, ¿tiene algún costo para la persona?', o: ['Sí, debe pagar por cada solicitud', 'Sí, pero es reducido (máximo UF1)', 'No, debe ser gratuito', 'Costo determinado por la empresa'], c: 2 },
+                    { id: 4, q: '¿Cuál es otro nombre para el "Derecho de Eliminación"?', o: ['Derecho de borrado', 'Derecho al olvido', 'Derecho de desaparición', 'Ambas opciones B y C'], c: 1 },
+                    { id: 5, q: '¿El Derecho de Rectificación permite corregir qué tipo de datos?', o: ['Solo datos erróneos', 'Solo datos incompletos', 'Datos inexactos, incompletos u obsoletos', 'Solo datos de edad'], c: 2 },
+                    { id: 6, q: '¿Quién puede oponerse al tratamiento de sus datos?', o: ['Solo personas mayores de 18', 'Solo ciudadanos chilenos', 'Cualquier persona titular de datos', 'Solo empresas'], c: 2 },
+                    { id: 7, q: '¿Qué permite el Derecho de Portabilidad?', o: ['Llevar datos impresos a otro lugar', 'Recibir datos en formato estructurado y transmitirlos a otro responsable', 'Acceder a datos desde cualquier dispositivo', 'Vender tus datos a otros'], c: 1 },
+                    { id: 8, q: '¿El Derecho a No Ser Objeto de Decisiones Automatizadas permite qué?', o: ['Rechazar recomendaciones de algoritmos', 'No ser sometido a decisiones basadas únicamente en automatización', 'Pedir que todas las decisiones sean manuales', 'Bloquear toda tecnología'], c: 1 },
+                    { id: 9, q: 'Si Netflix almacena tu historial de visualización, ¿puedes solicitar verlo?', o: ['No, es propiedad de Netflix', 'Sí, usando el Derecho de Acceso', 'Solo si eres suscriptor Premium', 'Solo en Chile'], c: 1 },
+                    { id: 10, q: '¿Puede una empresa negar el Derecho de Acceso si el usuario es moroso?', o: ['Sí, puede negarlo', 'Solo si es deuda muy alta', 'No, los derechos son independientes de otras relaciones', 'Depende del tipo de empresa'], c: 2 }
+                ]
+            },
+            3: {
+                title: 'Quiz Módulo 3: Obligaciones de Responsables',
+                questions: [
+                    { id: 1, q: '¿Cuándo debe obtenerse consentimiento para recopilar datos?', o: ['Después de recopilar los datos', 'Previo, informado, específico e inequívoco', 'Nunca es necesario', 'Solo para datos de contacto'], c: 1 },
+                    { id: 2, q: '¿El consentimiento obtenido tácitamente (no responder = sí) es válido?', o: ['Sí, es válido', 'No, debe ser explícito', 'Solo para mensajes de marketing', 'Depende del tipo de datos'], c: 1 },
+                    { id: 3, q: '¿Qué obligación tiene un responsable respecto a la TRANSPARENCIA?', o: ['Mantener secreto total de sus prácticas', 'Proporcionar información clara sobre identidad, fines, datos y derechos', 'Publicar solo en redes sociales', 'Nada, es opcional'], c: 1 },
+                    { id: 4, q: '¿Cuál es el plazo máximo para notificar una brecha de seguridad?', o: ['24 horas', '48 horas', '72 horas', '30 días'], c: 2 },
+                    { id: 5, q: '¿Un banco que sufre un ataque cibernético está obligado a notificar?', o: ['No, es privado', 'Solo si más de 100 clientes fueron afectados', 'Sí, debe notificar a DGDP y afectados', 'Solo si es información de tarjetas'], c: 2 },
+                    { id: 6, q: '¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UF', '500 UF', '2.700 UF', 'Sin límite'], c: 2 },
+                    { id: 7, q: '¿Una empresa pequeña está obligada a cumplir con la Ley 21.719?', o: ['No, solo empresas grandes', 'Solo si tiene más de 50 empleados', 'Sí, todas las organizaciones que traten datos', 'Solo si tiene sitio web'], c: 2 },
+                    { id: 8, q: '¿Qué medidas organizacionales DEBE implementar un responsable?', o: ['Solo encriptación', 'Capacitación de personal, control de acceso, auditorías', 'Nada, solo son recomendaciones', 'Solo contraseñas'], c: 1 },
+                    { id: 9, q: '¿Puede una empresa compartir datos con terceros sin consentimiento?', o: ['Sí, siempre', 'No, debe informar y obtener consentimiento', 'Solo en casos específicos con notificación', 'Opciones B y C'], c: 3 },
+                    { id: 10, q: '¿Quién es responsable de cumplir con la Ley en una empresa?', o: ['Solo el Gerente de TI', 'El gerente general y toda la organización', 'Solo el abogado', 'La DGDP'], c: 1 }
+                ]
+            },
+            4: {
+                title: 'Quiz Módulo 4: Seguridad y Privacidad',
+                questions: [
+                    { id: 1, q: '¿Qué es la encriptación end-to-end como usa WhatsApp?', o: ['Guardar datos en dos servidores', 'Codificar datos para que ni siquiera el proveedor pueda leerlos', 'Controlar acceso al teléfono', 'Borrar mensajes automáticamente'], c: 1 },
+                    { id: 2, q: '¿Cuál es el propósito de la Autenticación Multifactor (MFA)?', o: ['Aumentar la complejidad innecesariamente', 'Requerir múltiples formas de verificación de identidad', 'Ralentizar el acceso a propósito', 'Solo es para hackers'], c: 1 },
+                    { id: 3, q: '¿Un firewall protege contra qué?', o: ['Virus en archivos descargados', 'Tráfico no autorizado hacia sistemas', 'Errores de usuario', 'Nada, es obsoleto'], c: 1 },
+                    { id: 4, q: '¿Con qué frecuencia se RECOMIENDA realizar backups de datos?', o: ['Una vez al año', 'Diariamente o según criticidad', 'Nunca son necesarios', 'Solo cuando hay problemas'], c: 1 },
+                    { id: 5, q: '¿Qué significa "datos en tránsito"?', o: ['Datos borrados', 'Datos siendo transferidos entre sistemas', 'Datos en backup', 'Datos obsoletos'], c: 1 },
+                    { id: 6, q: '¿Cuál es una medida ORGANIZACIONAL (no técnica) de seguridad?', o: ['Encriptación', 'Capacitación de personal', 'Firewalls', 'Backups automáticos'], c: 1 },
+                    { id: 7, q: '¿El control de acceso basado en roles significa qué?', o: ['Todos los empleados acceden a todos los datos', 'Solo el CEO accede a datos', 'Limitar acceso según responsabilidades de cada persona', 'Acceso mediante contraseña solamente'], c: 2 },
+                    { id: 8, q: '¿Una auditoría interna de seguridad qué busca descubrir?', o: ['Errores gramaticales', 'Vulnerabilidades y cumplimiento de medidas de seguridad', 'Empleados perezosos', 'Costos de operación'], c: 1 },
+                    { id: 9, q: '¿Qué debe incluir un Plan de Respuesta a Incidentes?', o: ['Recetas de cocina', 'Detección, investigación, notificación, mitigación', 'Solo un número de teléfono', 'Nada formal'], c: 1 },
+                    { id: 10, q: '¿Por qué son importantes las actualizaciones de software?', o: ['Para agregar nuevas funciones', 'Para corregir vulnerabilidades de seguridad', 'Es solo una molestia', 'No importan'], c: 1 }
+                ]
+            },
+            5: {
+                title: 'Quiz Módulo 5: Cumplimiento Normativo',
+                questions: [
+                    { id: 1, q: '¿Cuál es el PRIMER paso para implementar cumplimiento normativo?', o: ['Comprar software de seguridad', 'Realizar una auditoría de datos', 'Contratar a un DPO', 'Publicar política de privacidad'], c: 1 },
+                    { id: 2, q: '¿Qué debe incluir una Política de Privacidad?', o: ['Solo el nombre de la empresa', 'Qué datos se recopilan, para qué, derechos del usuario', 'Precios de productos', 'Fotos del equipo'], c: 1 },
+                    { id: 3, q: '¿Un pequeño negocio necesita designar un DPO dedicado a tiempo completo?', o: ['Sí, es obligatorio', 'No, pueden designar a un responsable interno', 'Nunca es necesario', 'Solo si tiene 1000+ clientes'], c: 1 },
+                    { id: 4, q: '¿Cuál es la responsabilidad del DPO?', o: ['Vender productos', 'Supervisar cumplimiento, atender solicitudes, auditorías', 'Hacer marketing', 'Contratar empleados'], c: 1 },
+                    { id: 5, q: '¿La encriptación es importante para cumplimiento normativo?', o: ['No, es opcional', 'Sí, es una medida técnica esencial', 'Solo para bancos', 'Solo para datos médicos'], c: 1 },
+                    { id: 6, q: '¿Con qué frecuencia se recomienda capacitar a empleados?', o: ['Una sola vez', 'Continuamente (mensual, trimestral, etc)', 'Nunca es necesario', 'Solo los nuevos'], c: 1 },
+                    { id: 7, q: '¿Qué es un "Política de Retención de Datos"?', o: ['Guardar datos eternamente', 'Especificar cuánto tiempo se guardan datos antes de eliminarlos', 'Copiar datos múltiples veces', 'Vender datos antiguos'], c: 1 },
+                    { id: 8, q: '¿Pasos concretos para pequeño negocio que guarda datos de clientes?', o: ['Ignorar la ley', 'Usar Google Workspace, contraseñas fuertes, backups regulares', 'Guardar en carpeta sin protección', 'Compartir datos públicamente'], c: 1 },
+                    { id: 9, q: '¿Con qué frecuencia se recomienda revisar cumplimiento normativo?', o: ['Una vez cada 5 años', 'Nunca después de implementar', 'Mensual o trimestral', 'Solo cuando hay problemas'], c: 2 },
+                    { id: 10, q: '¿Qué es el monitoreo continuo en cumplimiento normativo?', o: ['Espiar a empleados', 'Revisar accesos a datos, incidentes, actualizar políticas', 'Instalar cámaras', 'Nada importante'], c: 1 }
+                ]
+            }
+        };
+
+        const questions = quizzes[5].questions;
 
         let completed = [];
         let answers = {};
         let submitted = false;
         let currentModuleId = null;
+        let currentQuizId = null;
+        let quizAnswers = {};
 
         function showPage(pageName) {
             document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
             document.getElementById(pageName).classList.remove('hidden');
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`[data-page="${pageName}"]`) ? document.querySelector(`[data-page="${pageName}"]`).classList.add('active') : null;
+        }
+
+        function startModuleQuiz(moduleId) {
+            currentQuizId = moduleId;
+            quizAnswers = {};
+            document.getElementById('modulo-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            const quiz = quizzes[moduleId];
+            document.getElementById('quiz-title').textContent = quiz.title;
+            document.getElementById('quiz-submit-btn').textContent = 'Enviar Quiz';
+            renderModuleQuiz(moduleId);
+        }
+
+        function closeModuleQuiz() {
+            document.getElementById('quiz-view').classList.add('hidden');
+            document.getElementById('modulo-view').classList.remove('hidden');
+            currentQuizId = null;
+            quizAnswers = {};
+        }
+
+        function renderModuleQuiz(quizId) {
+            const quiz = quizzes[quizId];
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quiz.questions.map((q, i) => `
+                <div class="question">
+                    <div class="question-text">${i + 1}. ${q.q}</div>
+                    <div class="options">
+                        ${q.o.map((opt, j) => `
+                            <label class="option ${quizAnswers[q.id] === j ? 'selected' : ''}">
+                                <input type="radio" name="quiz-q${q.id}" onchange="quizAnswers[${q.id}] = ${j}; updateOptionSelection(event)">
+                                <span class="option-text">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('quiz-submit-btn').onclick = () => submitModuleQuiz(quizId);
+        }
+
+        function updateOptionSelection(event) {
+            const parent = event.target.closest('.option');
+            parent.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            parent.classList.add('selected');
+        }
+
+        function submitModuleQuiz(quizId) {
+            const quiz = quizzes[quizId];
+            let score = 0;
+            quiz.questions.forEach(q => {
+                if (quizAnswers[q.id] === q.c) score++;
+            });
+
+            const total = quiz.questions.length;
+            const pct = Math.round((score / total) * 100);
+            const passed = pct >= 70;
+
+            const resultHTML = `
+                <div class="result-container">
+                    <div class="result-icon">${passed ? '✓' : '✗'}</div>
+                    <h2 class="result-title">${passed ? 'Excelente' : 'Necesitas mejorar'}</h2>
+                    <div class="result-score">${score}/${total} correctas (${pct}%)</div>
+                    <p style="margin-top: 20px; color: #666;">${passed ? 'Felicidades, aprobaste el quiz' : 'Te recomendamos revisar el módulo nuevamente'}</p>
+                </div>
+            `;
+
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = resultHTML;
+            document.getElementById('quiz-submit-btn').textContent = 'Volver al Módulo';
+            document.getElementById('quiz-submit-btn').onclick = () => closeModuleQuiz();
         }
 
         function updateProgress() {
@@ -545,7 +746,7 @@
                     <div class="card-footer">
                         ${completed.includes(m.id) ?
                             '<span class="card-check">✓ Completado</span>' :
-                            `<span class="card-action" onclick="viewModule(${m.id})">Ver Módulo →</span>`
+                            `<span class="card-action" onclick="viewModule(${m.id})">Ver Módulo</span>`
                         }
                     </div>
                 </div>
