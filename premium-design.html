@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ley 21.719 - Capacitación en Protección de Datos</title>
+    <title>AFAN Learning - Ley 21.719 - Capacitación en Protección de Datos</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,13 +15,16 @@
         .logo { font-size: 20px; font-weight: 700; color: #000; cursor: pointer; letter-spacing: -0.5px; }
         .logo span { color: #999; font-weight: 400; }
         .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links button { background: none; border: none; font-size: 14px; font-weight: 500; color: #666; cursor: pointer; transition: all 0.2s; padding: 8px 0; }
-        .nav-links button:hover, .nav-links button.active { color: #000; font-weight: 600; }
+        .nav-links button, .nav-links a { background: none; border: none; font-size: 14px; font-weight: 500; color: #666; cursor: pointer; transition: all 0.2s; padding: 8px 0; }
+        .nav-links button:hover, .nav-links button.active, .nav-links a:hover { color: #000; font-weight: 600; }
         .navbar-actions { display: flex; align-items: center; gap: 16px; }
         .user-info { font-size: 13px; text-align: right; }
         .user-name { font-weight: 600; }
         .user-email { color: #999; }
         .avatar { width: 36px; height: 36px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; }
+        .navbar-logo { display: flex; align-items: center; margin-right: 20px; cursor: pointer; transition: opacity 0.2s; }
+        .navbar-logo:hover { opacity: 0.8; }
+        .navbar-logo img { max-height: 40px; width: auto; }
 
         .hero { padding: 120px 40px; background: linear-gradient(135deg, #fafbfc 0%, #fff 100%); border-bottom: 1px solid #f0f0f0; }
         .hero-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -166,27 +169,34 @@
         }
 
         @media (max-width: 768px) {
-            .navbar-content { padding: 0 20px; }
+            .navbar-content { padding: 0 20px; flex-wrap: wrap; gap: 12px; }
             .hero { padding: 60px 20px; }
             .main { padding: 40px 20px; }
             .hero-text h1 { font-size: 32px; }
-            .nav-links { gap: 16px; }
+            .nav-links { gap: 8px; font-size: 12px; }
             .hero-buttons { flex-direction: column; }
             .btn { width: 100%; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .navbar-logo { margin-right: 10px; }
+            .navbar-logo img { height: 32px; }
+            .navbar-actions { flex-wrap: wrap; gap: 10px; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-content">
-            <div class="logo">Ley <span>21.719</span></div>
+            <div class="logo">AFAN Learning <span>Ley 21.719</span></div>
             <ul class="nav-links">
                 <li><button class="nav-btn active" data-page="inicio">Inicio</button></li>
                 <li><button class="nav-btn" data-page="cursos">Cursos</button></li>
                 <li><button class="nav-btn" data-page="examen">Examen</button></li>
+                <li><a href="mailto:contacto@afanmarketing.com" class="nav-btn" style="text-decoration: none; cursor: pointer;">📧 Contacto</a></li>
             </ul>
             <div class="navbar-actions">
+                <a href="#" onclick="showPage('inicio'); return false;" class="navbar-logo" title="AFAN Marketing Digital">
+                    <img src="https://afanmarketing.com/wp-content/uploads/2024/08/LOGO-HRZ-blanco-120x46.png" alt="AFAN Marketing Digital" style="height: 40px; width: auto; display: block;">
+                </a>
                 <div class="user-info">
                     <div class="user-name">Felipe Aldunate</div>
                     <div class="user-email">faldunate@gmail.com</div>
@@ -201,12 +211,16 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Aprende la nueva Ley 21.719</h1>
-                    <p>Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena.</p>
+                    <p>Capacitación en Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena de AFAN Marketing Digital.</p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" data-page="cursos">Comenzar Curso</button>
                         <button class="btn btn-secondary">Ver Programa</button>
                     </div>
                     <div class="hero-social"><span class="stars">★★★★★</span> Más de 3.000 profesionales capacitados</div>
+                    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e0e0e0;">
+                        <p style="font-size: 13px; color: #666; margin-bottom: 12px;">¿Tienes preguntas sobre la capacitación?</p>
+                        <a href="mailto:contacto@afanmarketing.com" style="display: inline-block; padding: 10px 20px; background: #f0f0f0; color: #000; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s; border: 1px solid #e0e0e0;">📧 Contacta con AFAN Marketing</a>
+                    </div>
                 </div>
                 <div class="hero-visual">📚</div>
             </div>
@@ -299,7 +313,7 @@
         <div class="footer-content">
             <div class="footer-col">
                 <h4>Sobre AFAN</h4>
-                <p>Capacitación profesional en cumplimiento normativo y protección de datos personales.</p>
+                <p>AFAN Marketing Digital ofrece capacitación especializada en cumplimiento normativo y protección de datos personales, con enfoque en la Ley 21.719 chilena.</p>
             </div>
             <div class="footer-col">
                 <h4>Enlaces</h4>
@@ -309,12 +323,12 @@
             </div>
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p>info@afanlearning.com</p>
-                <p>+56 2 1234 5678</p>
+                <p><a href="mailto:contacto@afanmarketing.com" class="footer-link">contacto@afanmarketing.com</a></p>
+                <p><a href="https://afanmarketing.com" target="_blank" class="footer-link">www.afanmarketing.com</a></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 AFAN Learning. Todos los derechos reservados.</p>
+            <p>&copy; 2026 AFAN Marketing Digital. Todos los derechos reservados.</p>
             <div class="footer-links">
                 <a href="#">Privacidad</a>
                 <a href="#">Términos</a>
