@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFAN Learning - Ley 21.719 - Capacitación en Protección de Datos</title>
+    <title>LUDOLAB - Capacitación Ley 21.719 - Protección de Datos</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -281,16 +281,16 @@
 <body>
     <nav class="navbar">
         <div class="navbar-content">
-            <div class="logo">AFAN Learning <span>Ley 21.719</span></div>
+            <div class="logo">LUDOLAB <span>Ley 21.719</span></div>
             <ul class="nav-links">
                 <li><button class="nav-btn active" data-page="inicio">Inicio</button></li>
                 <li><button class="nav-btn" data-page="cursos">Cursos</button></li>
                 <li><button class="nav-btn" data-page="examen">Examen</button></li>
-                <li><a href="mailto:contacto@afanmarketing.com" class="nav-btn" style="text-decoration: none; cursor: pointer;">Contacto</a></li>
+                <li><a href="mailto:contacto@ludolab.cl" class="nav-btn" style="text-decoration: none; cursor: pointer;">Contacto</a></li>
             </ul>
             <div class="navbar-actions">
-                <a href="#" onclick="showPage('inicio'); return false;" class="navbar-logo" title="AFAN Marketing">
-                    <img src="https://afanmarketing.com/wp-content/uploads/2024/08/LOGO-HRZ-blanco-120x46.png" alt="AFAN Marketing" style="height: 40px; width: auto; display: block;">
+                <a href="#" onclick="showPage('inicio'); return false;" class="navbar-logo" title="LUDOLAB.CL">
+                    <span style="font-weight: 700; color: #2563eb; font-size: 16px;">LUDOLAB.CL</span>
                 </a>
                 <div class="user-info">
                     <div class="user-name">Felipe Aldunate</div>
@@ -306,7 +306,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Aprende la nueva Ley 21.719</h1>
-                    <p>Capacitación en Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena de AFAN Marketing.</p>
+                    <p>Capacitación en Protección de Datos Personales. Curso eLearning certificado para profesionales y empresas que quieren cumplir con la normativa chilena.</p>
                     <div class="hero-buttons">
                         <button class="btn btn-primary" data-page="cursos">Comenzar Curso</button>
                         <button class="btn btn-secondary">Ver Programa</button>
@@ -314,7 +314,7 @@
                     <div class="hero-social"><span class="stars">★★★★★</span> Más de 3.000 profesionales capacitados</div>
                     <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e0e0e0;">
                         <p style="font-size: 13px; color: #666; margin-bottom: 12px;">¿Tienes preguntas sobre la capacitación?</p>
-                        <a href="mailto:contacto@afanmarketing.com" style="display: inline-block; padding: 10px 20px; background: #f0f0f0; color: #000; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s; border: 1px solid #e0e0e0;">Contacta con AFAN Marketing</a>
+                        <a href="mailto:contacto@ludolab.cl" style="display: inline-block; padding: 10px 20px; background: #f0f0f0; color: #000; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s; border: 1px solid #e0e0e0;">Contacta con LUDOLAB.CL</a>
                     </div>
                 </div>
                 <div class="hero-visual" style="color: #3b82f6; font-weight: 700;">APRENDE</div>
@@ -381,7 +381,7 @@
                     </div>
                     <div class="modulo-actions" id="modulo-actions">
                         <button class="btn btn-secondary" onclick="startModuleQuiz(currentModuleId)">Hacer Quiz del Módulo</button>
-                        <button class="btn btn-back" onclick="showPage('cursos')">Volver a Cursos</button>
+                        <button class="btn btn-back" onclick="showPage('cursos')">Volver al Índice</button>
                         <button class="btn btn-primary" onclick="completeCurrentModule()">Marcar como Completado</button>
                     </div>
                 </div>
@@ -397,6 +397,257 @@
                         <button class="btn-back" onclick="if(quizSubmitted) { closeModuleQuiz(); } else { if(confirm('¿Deseas volver sin enviar el quiz? Tus respuestas se guardarán.')) closeModuleQuiz(); }">Volver al Módulo</button>
                         <button class="btn-submit" id="quiz-submit-btn">Enviar Quiz</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacidad" class="page hidden">
+        <div class="main">
+            <div class="modulo-container">
+                <div class="modulo-header">
+                    <div>
+                        <h2 class="modulo-title">Política de Privacidad</h2>
+                    </div>
+                    <div class="modulo-icon">[PRIVACIDAD]</div>
+                </div>
+                <div class="modulo-content">
+                    <div class="modulo-section">
+                        <h3>Responsable de Datos</h3>
+                        <p>LUDOLAB.CL es el responsable del tratamiento de tus datos personales en esta plataforma de capacitación. Para consultas sobre privacidad, contáctanos en contacto@ludolab.cl.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Datos que Recopilamos</h3>
+                        <p>Recopilamos únicamente los siguientes datos personales:</p>
+                        <ul>
+                            <li><strong>Nombre completo:</strong> Necesario para la identidad del estudiante</li>
+                            <li><strong>Email:</strong> Para comunicaciones y notificaciones del curso</li>
+                            <li><strong>Progreso del curso:</strong> Información sobre módulos completados, respuestas a quizzes, calificaciones finales</li>
+                            <li><strong>Datos de uso:</strong> Páginas visitadas, tiempo de permanencia, para mejorar la experiencia</li>
+                        </ul>
+                        <p>No recopilamos datos de tarjeta de crédito, información financiera sensible, ni datos de salud sin consentimiento explícito.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Propósito del Tratamiento de Datos</h3>
+                        <p>Tus datos se utilizan ÚNICAMENTE para:</p>
+                        <ul>
+                            <li>Gestionar tu participación en el curso de Ley 21.719</li>
+                            <li>Registrar tu progreso y calificaciones</li>
+                            <li>Generar tu certificado de aprobación</li>
+                            <li>Enviar notificaciones sobre el curso (nuevos módulos, recordatorios)</li>
+                            <li>Mejorar la plataforma según patrones de uso anónimos</li>
+                            <li>Cumplir con obligaciones legales bajo la Ley 21.719</li>
+                        </ul>
+                        <p>NO vendemos, compartimos ni transferimos tus datos a terceros sin tu consentimiento explícito.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Protección de Datos</h3>
+                        <p>Implementamos medidas técnicas y organizacionales para proteger tus datos:</p>
+                        <ul>
+                            <li><strong>Encriptación:</strong> Datos en tránsito se transmiten bajo HTTPS/SSL</li>
+                            <li><strong>Almacenamiento seguro:</strong> Base de datos encriptada con acceso restringido</li>
+                            <li><strong>Control de acceso:</strong> Solo personal autorizado puede acceder a datos</li>
+                            <li><strong>Auditorías:</strong> Revisiones periódicas de seguridad</li>
+                            <li><strong>Backups:</strong> Copias de seguridad regularmente para evitar pérdida</li>
+                        </ul>
+                        <p>A pesar de estas medidas, ningún sistema es 100% seguro. Si detectamos una brecha de seguridad, te notificaremos dentro de 72 horas conforme a la Ley 21.719.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Derechos del Titular de Datos</h3>
+                        <p>Conforme a la Ley 21.719, tienes derecho a ejercer los siguientes derechos respecto a tus datos personales:</p>
+                        <ul>
+                            <li><strong>Derecho de Acceso:</strong> Solicitar acceso a todos tus datos en nuestro poder</li>
+                            <li><strong>Derecho de Rectificación:</strong> Corregir datos inexactos, incompletos u obsoletos</li>
+                            <li><strong>Derecho de Eliminación:</strong> Solicitar eliminación de datos cuando ya no son necesarios</li>
+                            <li><strong>Derecho de Oposición:</strong> Oponerte al tratamiento de datos para ciertos fines</li>
+                            <li><strong>Derecho de Portabilidad:</strong> Recibir tus datos en formato estructurado (Excel, JSON)</li>
+                            <li><strong>Derecho a No Ser Objeto de Decisiones Automatizadas:</strong> No ser sometido únicamente a decisiones automáticas que afecten derechos fundamentales</li>
+                        </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Cómo Ejercer tus Derechos</h3>
+                        <p>Para ejercer cualquiera de estos derechos, envía una solicitud escrita a: <strong>contacto@ludolab.cl</strong></p>
+                        <p>Incluye en tu solicitud:</p>
+                        <ul>
+                            <li>Tu nombre completo y email</li>
+                            <li>Tipo de derecho que deseas ejercer</li>
+                            <li>Descripción clara de lo que solicitas</li>
+                            <li>Cualquier documentación que apoye tu solicitud</li>
+                        </ul>
+                        <p>Responderemos tu solicitud dentro de 30 días hábiles, conforme a la ley. La respuesta será gratuita.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Cookies y Tecnología de Rastreo</h3>
+                        <p>Esta plataforma utiliza cookies y tecnología de rastreo para:</p>
+                        <ul>
+                            <li>Mantener tu sesión activa durante el curso</li>
+                            <li>Recordar tus preferencias de navegación</li>
+                            <li>Medir uso de la plataforma con Google Analytics (anónimamente)</li>
+                        </ul>
+                        <p>Puedes desactivar cookies en tu navegador, pero esto puede afectar la funcionalidad del curso. No compartimos información de cookies con terceros.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Cambios a esta Política</h3>
+                        <p>LUDOLAB.CL puede actualizar esta Política de Privacidad en cualquier momento. Te notificaremos de cambios significativos enviando un email o publicando un aviso en la plataforma. Tu uso continuado de la plataforma después de cambios constituye aceptación de la política actualizada.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Información de Contacto</h3>
+                        <p>Para preguntas, reclamos o denuncias sobre privacidad:</p>
+                        <ul>
+                            <li><strong>Email:</strong> contacto@ludolab.cl</li>
+                            <li><strong>Sitio web:</strong> www.ludolab.cl</li>
+                            <li><strong>Dirección General de Protección de Datos Personales (DGDP):</strong> www.datosabiertos.gob.cl/dgdp para presentar denuncias si consideramos que LUDOLAB.CL viola la Ley 21.719</li>
+                        </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Fecha de Última Actualización</h3>
+                        <p><strong>Última actualización: julio 2026</strong></p>
+                        <p>Esta política entra en vigencia inmediatamente y se aplica a todos los datos recopilados a partir de hoy.</p>
+                    </div>
+                </div>
+                <div class="modulo-actions">
+                    <button class="btn btn-back" onclick="showPage('cursos')">Volver al Índice</button>
+                    <button class="btn btn-primary" onclick="showPage('cursos')">Ir a Cursos</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="terminos" class="page hidden">
+        <div class="main">
+            <div class="modulo-container">
+                <div class="modulo-header">
+                    <div>
+                        <h2 class="modulo-title">Términos y Condiciones</h2>
+                    </div>
+                    <div class="modulo-icon">[TÉRMINOS]</div>
+                </div>
+                <div class="modulo-content">
+                    <div class="modulo-section">
+                        <h3>Aceptación de Términos</h3>
+                        <p>Al acceder y utilizar esta plataforma de capacitación en Ley 21.719 de LUDOLAB.CL, aceptas completamente estos Términos y Condiciones. Si no estás de acuerdo con algún término, no debes usar la plataforma. El uso continuado implica aceptación total.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Descripción del Servicio</h3>
+                        <p>LUDOLAB.CL proporciona una plataforma de e-learning para la capacitación en Protección de Datos Personales conforme a la Ley 21.719 chilena. El servicio incluye:</p>
+                        <ul>
+                            <li>5 módulos de contenido educativo</li>
+                            <li>Quizzes por módulo para evaluar aprendizaje</li>
+                            <li>Examen final de 15 preguntas</li>
+                            <li>Certificado de aprobación descargable (si apruebas con 80%+)</li>
+                            <li>Acceso 24/7 a la plataforma desde cualquier dispositivo</li>
+                        </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Licencia de Contenido</h3>
+                        <p>Todo el contenido de esta plataforma (textos, imágenes, videos, quizzes, exámenes) es propiedad intelectual de LUDOLAB.CL o de sus licenciatarios. Se te otorga una licencia personal, no-transferible, revocable, limitada para acceder y usar el contenido exclusivamente para tu capacitación personal.</p>
+                        <p><strong>Prohibido:</strong></p>
+                        <ul>
+                            <li>Copiar, reproducir, distribuir o vender el contenido</li>
+                            <li>Usar el contenido con fines comerciales sin autorización</li>
+                            <li>Modificar o crear trabajos derivados del contenido</li>
+                            <li>Realizar ingeniería inversa o hackear la plataforma</li>
+                            <li>Compartir tu acceso con terceros</li>
+                        </ul>
+                        <p>Cualquier violación resultará en terminación inmediata del acceso sin reembolso.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Propiedad Intelectual</h3>
+                        <p>LUDOLAB.CL retiene todos los derechos de propiedad intelectual sobre:</p>
+                        <ul>
+                            <li>Diseño y estructura de la plataforma</li>
+                            <li>Contenido educativo (módulos, lecturas, casos de estudio)</li>
+                            <li>Preguntas y respuestas de quizzes y exámenes</li>
+                            <li>Logo, marca y identidad visual</li>
+                            <li>Software y código fuente (protegido por derecho de autor)</li>
+                        </ul>
+                        <p>No se cede ninguna propiedad a los usuarios. El acceso no implica compra de derechos de propiedad intelectual.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Responsabilidades del Usuario</h3>
+                        <p>Como usuario, te comprometes a:</p>
+                        <ul>
+                            <li>Proporcionar información exacta y completa durante el registro</li>
+                            <li>Mantener confidencial tu contraseña y no compartirla</li>
+                            <li>Usar la plataforma únicamente para educación personal conforme a la Ley 21.719</li>
+                            <li>No usar la plataforma para actividades ilegales, fraudulentas o discriminatorias</li>
+                            <li>No intentar hackear, interferir o sabotear la plataforma</li>
+                            <li>No cargar malware, virus o código malicioso</li>
+                            <li>Respetar los derechos de otros usuarios y de LUDOLAB.CL</li>
+                        </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Limitación de Responsabilidad</h3>
+                        <p>LUDOLAB.CL no es responsable por:</p>
+                        <ul>
+                            <li>Daño directo, indirecto, incidental o consecuente derivado del uso de la plataforma</li>
+                            <li>Pérdida de datos, archivos o información causada por interrupciones del servicio</li>
+                            <li>Acceso no autorizado a tu cuenta si no proteges tu contraseña</li>
+                            <li>Errores de terceros (ISP, proveedores de nube, etc.)</li>
+                            <li>Disponibilidad continua de la plataforma (puede haber mantenimiento)</li>
+                        </ul>
+                        <p><strong>El servicio se proporciona "tal cual"</strong>. LUDOLAB.CL NO garantiza:</p>
+                        <ul>
+                            <li>Que el contenido sea 100% exacto o completo</li>
+                            <li>Que apruebas el examen final solo por completar los módulos</li>
+                            <li>Validez legal del certificado más allá de fines informativos</li>
+                        </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Garantía del Certificado</h3>
+                        <p>El certificado de aprobación es un documento informativo que valida tu participación en el curso. LUDOLAB.CL no garantiza que empleadores, instituciones o reguladores acepten el certificado como comprobante oficial de cumplimiento con la Ley 21.719. Para validación legal, se recomienda consultar con profesionales en derecho o la DGDP.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Prohibiciones</h3>
+                        <p>Está expresamente prohibido:</p>
+                        <ul>
+                            <li>Usar información del curso para engañar, estafar o defraudar</li>
+                            <li>Suplantar identidad de otro usuario</li>
+                            <li>Cargar contenido que viole leyes (racista, sexista, violento, etc.)</li>
+                            <li>Usar la plataforma para análisis de datos sin autorización</li>
+                            <li>Intentar acceder a datos de otros usuarios</li>
+                            <li>Descargar en masa contenido para redistribución</li>
+                        </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Terminación de Acceso</h3>
+                        <p>LUDOLAB.CL puede terminar tu acceso a la plataforma inmediatamente y sin previo aviso si:</p>
+                        <ul>
+                            <li>Violas estos Términos y Condiciones</li>
+                            <li>Realizas actividades ilícitas o fraudulentas</li>
+                            <li>Intentas hackear o comprometer la seguridad</li>
+                            <li>LUDOLAB.CL cesa operaciones del servicio</li>
+                        </ul>
+                        <p>La terminación no reembolsa cuotas pagadas (si aplica) ni afecta derechos bajo Ley 21.719 (puedes presentar reclamos ante DGDP).</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Conformidad con Leyes</h3>
+                        <p>Esta plataforma cumple con:</p>
+                        <ul>
+                            <li><strong>Ley 21.719:</strong> Protección de Datos Personales chilena</li>
+                            <li><strong>Leyes de derechos de autor:</strong> Protección de contenido</li>
+                            <li><strong>Regulaciones de comercio electrónico:</strong> Seguridad de transacciones</li>
+                        </ul>
+                        <p>Estos Términos se rigen por las leyes de la República de Chile.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Contacto y Reclamos</h3>
+                        <p>Para reclamos o preguntas sobre estos Términos, contacta:</p>
+                        <ul>
+                            <li><strong>Email:</strong> contacto@ludolab.cl</li>
+                            <li><strong>Sitio web:</strong> www.ludolab.cl</li>
+                        </ul>
+                        <p>Si tienes denuncia sobre violación de Ley 21.719, puedes contactar a la Dirección General de Protección de Datos Personales (DGDP).</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Cambios a los Términos</h3>
+                        <p>LUDOLAB.CL se reserva el derecho de modificar estos Términos en cualquier momento. Cambios significativos serán notificados por email. Tu uso continuado después de cambios implica aceptación.</p>
+                        <p><strong>Última actualización: julio 2026</strong></p>
+                    </div>
+                </div>
+                <div class="modulo-actions">
+                    <button class="btn btn-back" onclick="showPage('cursos')">Volver al Índice</button>
+                    <button class="btn btn-primary" onclick="showPage('cursos')">Ir a Cursos</button>
                 </div>
             </div>
         </div>
@@ -442,8 +693,8 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-col">
-                <h4>Sobre AFAN</h4>
-                <p>AFAN Marketing ofrece capacitación especializada en cumplimiento normativo y protección de datos personales, con enfoque en la Ley 21.719 chilena.</p>
+                <h4>Sobre LUDOLAB</h4>
+                <p>LUDOLAB.CL ofrece capacitación especializada en cumplimiento normativo y protección de datos personales, con enfoque en la Ley 21.719 chilena.</p>
             </div>
             <div class="footer-col">
                 <h4>Enlaces</h4>
@@ -453,15 +704,15 @@
             </div>
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p><a href="mailto:contacto@afanmarketing.com" class="footer-link">contacto@afanmarketing.com</a></p>
-                <p><a href="https://afanmarketing.com" target="_blank" class="footer-link">www.afanmarketing.com</a></p>
+                <p><a href="mailto:contacto@ludolab.cl" class="footer-link">contacto@ludolab.cl</a></p>
+                <p><a href="https://www.ludolab.cl" target="_blank" class="footer-link">www.ludolab.cl</a></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 AFAN Marketing. Todos los derechos reservados.</p>
+            <p>&copy; 2026 LUDOLAB.CL. Todos los derechos reservados.</p>
             <div class="footer-links">
-                <a href="#">Privacidad</a>
-                <a href="#">Términos</a>
+                <a href="#" onclick="showPage('privacidad'); return false;">Privacidad</a>
+                <a href="#" onclick="showPage('terminos'); return false;">Términos</a>
             </div>
         </div>
     </footer>
@@ -1472,7 +1723,7 @@
             // Botones comunes
             const backBtn = document.createElement('button');
             backBtn.className = 'btn btn-back';
-            backBtn.textContent = 'Volver a Cursos';
+            backBtn.textContent = 'Volver al Índice';
             backBtn.onclick = () => showPage('cursos');
             actionsDiv.appendChild(backBtn);
 
@@ -1600,9 +1851,11 @@
         }
 
         function scrollToTop() {
-            const modContent = document.getElementById('modulo-header');
+            const modContent = document.getElementById('modulo-content');
             if (modContent) {
-                modContent.scrollIntoView({ behavior: 'smooth' });
+                modContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
