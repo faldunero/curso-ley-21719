@@ -243,8 +243,9 @@
 
             <div class="grid" id="modules-grid"></div>
 
-            <div id="exam-btn-container" class="hidden" style="text-align: center;">
-                <button class="btn btn-primary" data-page="examen">Realizar Examen Final</button>
+            <div id="exam-btn-container" style="text-align: center;">
+                <button id="exam-btn" class="btn btn-primary" onclick="goToExam()" disabled style="cursor: not-allowed; opacity: 0.6;">Realizar Examen Final</button>
+                <div id="exam-msg" style="margin-top: 12px; font-size: 13px; color: #666; display: none;">Completa todos los módulos para desbloquear el examen</div>
             </div>
         </div>
     </section>
@@ -347,134 +348,209 @@
 
         const modulesContent = {
             1: {
-                title: 'Introducción a la Ley 21.719',
+                title: 'Introducción a la Protección de Datos',
                 icon: '[MÓDULO 1]',
                 content: `
                     <div class="modulo-section">
+                        <h3>Historia de la Protección de Datos en el Mundo</h3>
+                        <p>La protección de datos es un concepto que ha evolucionado durante décadas. En la década de 1970, Europa pionera implementó las primeras leyes de privacidad ante el auge de bases de datos computarizadas. En 1995, la Unión Europea aprobó la Directiva de Protección de Datos, que fue el precursor del GDPR (2018). En América Latina, Brasil fue pionero con la LGPD en 2020. Chile siguió este camino con la Ley 21.719, reconociendo que en la era digital, los datos personales son un activo valioso que requiere protección legal urgente.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Por Qué la Privacidad es un Derecho Fundamental</h3>
+                        <p>La privacidad está reconocida en la Declaración Universal de Derechos Humanos (1948) y en la Constitución Política chilena. En el contexto actual, donde empresas recopilan y procesan millones de datos personales diariamente, la privacidad no es un lujo sino una necesidad. Los datos personales pueden ser utilizados para discriminación, fraude de identidad, manipulación política o suplantación. Por esto, la Ley 21.719 busca empoderar a las personas con control sobre sus datos.</p>
+                    </div>
+                    <div class="modulo-section">
                         <h3>Qué es la Ley 21.719</h3>
-                        <p>La Ley 21.719 es la normativa chilena que regula la protección de datos personales. Fue publicada en el Diario Oficial el 28 de septiembre de 2022 y entró en vigencia el 28 de septiembre de 2023. Esta ley moderniza la anterior legislación (Ley 19.628) y se alinea con estándares internacionales como el Reglamento General de Protección de Datos (RGPD) de la Unión Europea.</p>
+                        <p>La Ley 21.719, oficialmente "Sobre Protección de Datos Personales", es la normativa chilena que regula la protección de datos personales. Fue publicada en el Diario Oficial el 28 de septiembre de 2022 y entró en vigencia el 28 de septiembre de 2023. Esta ley moderniza la anterior legislación (Ley 19.628 de 1999) y se alinea con estándares internacionales como el Reglamento General de Protección de Datos (RGPD) de la Unión Europea, considerado el estándar más estricto del mundo.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Por qué existe</h3>
-                        <p>La Ley 21.719 fue creada para proteger los derechos fundamentales de las personas respecto a sus datos personales en el contexto de la transformación digital. Su objetivo es establecer un marco normativo claro que equilibre la protección de datos personales con la libre circulación de información en la era digital.</p>
-                    </div>
-                    <div class="modulo-section">
-                        <h3>Objetivos principales</h3>
+                        <h3>Cambios Principales Comparado a la Ley Anterior (19.628)</h3>
+                        <p>La Ley 21.719 introduce cambios significativos:</p>
                         <ul>
-                            <li>Garantizar el derecho a la privacidad y protección de datos personales</li>
-                            <li>Establecer derechos y obligaciones de titulares y responsables de tratamiento</li>
-                            <li>Crear mecanismos de fiscalización y cumplimiento normativo</li>
-                            <li>Alinearse con estándares internacionales de protección de datos</li>
-                            <li>Facilitar el tratamiento lícito de datos para fines legítimos</li>
+                            <li><strong>Derechos ampliados:</strong> Agrega derechos de oposición, portabilidad y protección contra decisiones automatizadas</li>
+                            <li><strong>Consentimiento explícito:</strong> Requiere consentimiento informado previo (no consentimiento tácito)</li>
+                            <li><strong>Notificación de brechas:</strong> Obligación de notificar a DGDP en 72 horas ante brechas de seguridad</li>
+                            <li><strong>Fiscalización más fuerte:</strong> Creación de la Dirección General de Protección de Datos Personales (DGDP) como organismo autónomo</li>
+                            <li><strong>Multas aumentadas:</strong> Multas de hasta 2.700 UF por infracciones graves</li>
                         </ul>
                     </div>
                     <div class="modulo-section">
-                        <h3>A quién aplica</h3>
+                        <h3>Contexto de la Transformación Digital</h3>
+                        <p>La Ley 21.719 fue creada en el contexto de la transformación digital acelerada. Hoy en día, casi todas las transacciones en línea requieren datos personales. Un viaje en Uber registra tu ubicación, un compra en Amazon guarda tus preferencias, una consulta en Google almacena tus búsquedas, y una foto en redes sociales expone información sensible. Sin regulación, estos datos pueden ser vendidos, hackeados o utilizados sin consentimiento.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Objetivos Principales</h3>
                         <ul>
-                            <li><strong>Titulares:</strong> Personas naturales cuyos datos son tratados</li>
-                            <li><strong>Responsables:</strong> Personas naturales o jurídicas que recopilan y procesan datos</li>
-                            <li><strong>Encargados:</strong> Terceros que tratan datos en nombre del responsable</li>
-                            <li><strong>Fiscalizadores:</strong> La Dirección General de Protección de Datos Personales (DGDP)</li>
+                            <li><strong>Garantizar derechos fundamentales:</strong> Proteger el derecho a la privacidad y dignidad en la era digital</li>
+                            <li><strong>Establecer marco normativo claro:</strong> Definir obligaciones para responsables y derechos para titulares</li>
+                            <li><strong>Crear mecanismos de fiscalización:</strong> Establecer la DGDP como autoridad reguladora</li>
+                            <li><strong>Alinearse globalmente:</strong> Adoptar estándares internacionales reconocidos (GDPR)</li>
+                            <li><strong>Facilitar economía digital:</strong> Permitir tratamiento lícito de datos para fines legítimos y transparentes</li>
                         </ul>
                     </div>
                     <div class="modulo-section">
-                        <h3>Ejemplos de Aplicación en la Vida Real</h3>
+                        <h3>A Quién Aplica la Ley</h3>
+                        <p><strong>Titulares de Datos:</strong> Personas naturales (tú, yo, cualquiera) cuyos datos son tratados. Tienen derecho a ejercer todos los derechos establecidos en la ley.</p>
+                        <p><strong>Responsables:</strong> Personas naturales o jurídicas (empresas, ONG, gobierno) que deciden recopilar y procesar datos. Son responsables ante la ley por cumplir con obligaciones.</p>
+                        <p><strong>Encargados:</strong> Terceros que procesan datos en nombre del responsable, bajo contrato. Por ejemplo, un proveedor de nube que almacena datos de clientes de una empresa.</p>
+                        <p><strong>Fiscalizadores:</strong> La Dirección General de Protección de Datos Personales (DGDP), organismo autónomo que investiga denuncias e impone sanciones.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Ejemplos de Aplicación en Industrias Chilenas</h3>
                         <ul>
                             <li>
                                 <strong>Empresa de Seguros:</strong> Una aseguradora recopila datos personales de clientes (nombre, edad, dirección, historial médico) para evaluar riesgos de pólizas de seguro. Debe cumplir con la Ley 21.719 al informar cómo se usan estos datos y permitir que los clientes accedan, corrijan o soliciten la eliminación de su información.
                             </li>
                             <li>
-                                <strong>Hospital:</strong> Un centro médico maneja historiales médicos sensibles de pacientes. Debe proteger estos datos con medidas de seguridad robustas, obtener consentimiento previo para tratamientos específicos, y notificar a los pacientes si hay una brecha de seguridad.
+                                <strong>Hospital o Clínica:</strong> Un centro médico maneja historiales médicos sensibles de pacientes. Debe proteger estos datos con medidas de seguridad robustas, obtener consentimiento previo para tratamientos específicos, y notificar a los pacientes si hay una brecha de seguridad.
                             </li>
                             <li>
-                                <strong>E-Commerce:</strong> Una tienda en línea registra preferencias de compra, historial de navegación, dirección de envío y datos de pago. Debe ser transparente sobre qué datos recopila y cómo los usa (ej: recomendaciones personalizadas), y permitir que los clientes controlen sus datos.
+                                <strong>E-Commerce o Tienda Online:</strong> Una tienda en línea registra preferencias de compra, historial de navegación, dirección de envío y datos de pago. Debe ser transparente sobre qué datos recopila y cómo los usa (ej: recomendaciones personalizadas), y permitir que los clientes controlen sus datos.
                             </li>
                             <li>
-                                <strong>Banco:</strong> Una institución financiera procesa datos de transacciones, ingresos y antecedentes crediticios. Está obligada a implementar sistemas de encriptación robustos y a notificar inmediatamente si hay un ataque cibernético que afecte datos de clientes.
+                                <strong>Institución Financiera (Banco):</strong> Una institución financiera procesa datos de transacciones, ingresos y antecedentes crediticios. Está obligada a implementar sistemas de encriptación robustos y a notificar inmediatamente si hay un ataque cibernético que afecte datos de clientes.
                             </li>
                             <li>
-                                <strong>Red Social:</strong> Una plataforma de redes sociales recopila ubicación, intereses, conexiones y comportamiento en línea. Debe obtener consentimiento explícito para usar datos con fines publicitarios y permitir a los usuarios descargar y eliminar sus datos.
+                                <strong>Empresa de Telecomunicaciones:</strong> Una compañía de telefonía recopila datos de ubicación, llamadas, mensajes y navegación de internet. Bajo la Ley 21.719, debe obtener consentimiento explícito para compartir estos datos con terceros y permitir que clientes ejerzan sus derechos.
+                            </li>
+                            <li>
+                                <strong>Agencia de Reclutamiento o RR.HH.:</strong> Una empresa que recopila CV y datos de candidatos debe proteger esta información, no compartirla sin consentimiento, y eliminarla cuando el candidato lo solicite.
                             </li>
                         </ul>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Ejemplo Práctico: Cómo la Ley Impacta tu Vida Diaria</h3>
+                        <p>Imagina que te registras en una plataforma de streaming. Antes de la Ley 21.719, la plataforma podría vender tu información a anunciantes sin informarte. Con la Ley 21.719, la plataforma debe:</p>
+                        <ul>
+                            <li>Informarte claramente qué datos recopila y para qué</li>
+                            <li>Obtener tu consentimiento ANTES de usar datos con fines publicitarios</li>
+                            <li>Permitirte acceder a tus datos, corregirlos o eliminarlos</li>
+                            <li>Notificarte si hay un hackeo que comprometa tu información</li>
+                            <li>Respetar tu decisión de no recibir publicidad personalizada</li>
+                        </ul>
+                        <p>La ley te empodera para controlar tu privacidad en línea.</p>
                     </div>
                 `
             },
             2: {
-                title: 'Derechos de los Titulares',
+                title: 'Derechos de los Titulares de Datos',
                 icon: '[MÓDULO 2]',
                 content: `
                     <div class="modulo-section">
                         <h3>Los 6 Derechos Fundamentales</h3>
-                        <p>La Ley 21.719 reconoce 6 derechos fundamentales que tienen todas las personas sobre sus datos personales:</p>
+                        <p>La Ley 21.719 reconoce 6 derechos fundamentales que tienen TODAS las personas sobre sus datos personales, sin excepción. Estos derechos aplican en Chile y están protegidos por la DGDP. Es importante conocerlos porque son herramientas para proteger tu privacidad.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>1. Derecho de Acceso</h3>
-                        <p>Toda persona tiene derecho a acceder a sus datos personales en poder de un responsable. Las organizaciones deben responder solicitudes de acceso de forma gratuita y dentro de 30 días. El acceso debe ser en formato claro, comprensible y sin costo.</p>
-                        <p><strong>Ejemplo:</strong> Un usuario de Netflix puede solicitar ver qué información personal tiene la plataforma sobre él (email, historial de visualización, métodos de pago, ubicación). Netflix debe proporcionar esta información dentro de 30 días sin cobrar nada.</p>
+                        <h3>1. Derecho de Acceso - Conocer tus Datos</h3>
+                        <p><strong>Definición:</strong> Toda persona tiene derecho a acceder a sus datos personales en poder de un responsable. Las organizaciones deben responder solicitudes de acceso de forma gratuita y dentro de 30 días hábiles. El acceso debe ser en formato claro, comprensible y sin costo, en cualquier medio que el titular solicite.</p>
+                        <p><strong>¿Por qué es importante?</strong> Este derecho te permite verificar qué información tienen de ti, detectar errores, identificar si datos se utilizan sin tu conocimiento, y tomar decisiones informadas.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Una persona solicita acceso a sus datos en una aseguradora chilena. La aseguradora debe responder dentro de 30 días con: nombre del titular, edad, dirección, teléfono, historial de siniestros, evaluación de riesgos, etc. Todo debe estar en un formato claro (documento PDF, lista impresa, etc.) sin costo alguno.</p>
+                        <p><strong>Procedimiento:</strong> Debes enviar una solicitud escrita al responsable (por email, formulario web, o carta). Puedes solicitar una prueba de identidad simple. El responsable tiene 30 días para responder.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>2. Derecho de Rectificación</h3>
-                        <p>Las personas pueden solicitar la corrección de datos personales inexactos, incompletos u obsoletos. Las organizaciones deben corregir o actualizar los datos sin costo dentro del plazo de 30 días.</p>
-                        <p><strong>Ejemplo:</strong> Un cliente descubre que su banco tiene registrada una dirección incorrecta en su perfil. Puede solicitar que corrijan la información, y el banco debe hacerlo sin costo.</p>
+                        <h3>2. Derecho de Rectificación - Corregir tus Datos</h3>
+                        <p><strong>Definición:</strong> Las personas pueden solicitar la corrección de datos personales que sean inexactos, incompletos, obsoletos o incorrectos. Las organizaciones deben corregir o actualizar los datos sin costo dentro de 30 días hábiles, e informar a terceros que recibieron los datos incorrectos.</p>
+                        <p><strong>¿Por qué es importante?</strong> Datos incorrectos pueden causar problemas (recibir cartas a dirección equivocada, ser rechazado en crédito por edad registrada incorrecta, etc.).</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Un cliente descubre que su banco tiene registrado su teléfono con un dígito incorrecto, su profesión como "abogado" cuando es "ingeniero", o su domicilio desactualizado en La Serena cuando se mudó a Santiago hace 2 años. Solicita rectificación. El banco debe corregir estos datos sin costo y notificar al banco de datos si compartió información incorrecta.</p>
+                        <p><strong>Detalles importantes:</strong> El responsable debe notificar a terceros que recibieron datos incorrectos sobre la rectificación realizada (si es posible identificarlos).</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>3. Derecho de Eliminación</h3>
-                        <p>También conocido como "derecho al olvido", permite solicitar que se eliminen datos personales cuando ya no son necesarios para el fin que fueron recopilados, o cuando se retira el consentimiento.</p>
-                        <p><strong>Ejemplo:</strong> Un cliente solicita a su banco eliminar su perfil completamente después de cerrar su cuenta. El banco debe eliminar sus datos personales según lo establecido por ley, excepto los registros que deba mantener por obligaciones legales de auditoría.</p>
+                        <h3>3. Derecho de Eliminación - El "Derecho al Olvido"</h3>
+                        <p><strong>Definición:</strong> Permite solicitar que se eliminen datos personales cuando ya no son necesarios para el fin que fueron recopilados, cuando se retira el consentimiento, o en casos específicos legales. La eliminación debe realizarse sin demora injustificada.</p>
+                        <p><strong>¿Por qué es importante?</strong> Te permite controlar cuánto tiempo las organizaciones guardan información sobre ti y evitar que datos antiguos se mantengan innecesariamente.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Una persona se retira de una empresa de seguros chilena y solicita eliminar todos sus datos personales. La aseguradora debe eliminar su información EXCEPTO los registros que deba mantener por ley (auditoría, impuestos). Esto generalmente aplica solo a últimos años de obligación fiscal/legal.</p>
+                        <p><strong>Limitaciones:</strong> No pueden eliminar datos obligados por ley (fiscales, penales). Pero deben eliminar datos una vez cumplido el plazo legal de retención.</p>
+                        <p><strong>Caso Real:</strong> Un joven canadiense en años 80 solicitó al Google europeo eliminar información antigua de búsquedas que lo vinculaban con información de hace años. El GDPR le permitió ejercer "derecho al olvido". Hoy en Chile puedes hacer lo similar.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>4. Derecho de Oposición</h3>
-                        <p>Las personas pueden oponerse al tratamiento de sus datos en ciertos casos, especialmente para marketing o decisiones automatizadas que afecten derechos fundamentales.</p>
-                        <p><strong>Ejemplo:</strong> Un usuario de Spotify puede optar por no recibir recomendaciones personalizadas basadas en su historial de escucha, o rechazar que la plataforma venda información sobre sus hábitos de consumo a terceros.</p>
+                        <h3>4. Derecho de Oposición - Rechazar Cierto Tratamiento</h3>
+                        <p><strong>Definición:</strong> Las personas pueden oponerse al tratamiento de sus datos en ciertos casos, especialmente para marketing, publicidad, decisiones automatizadas, o perfilado que afecte derechos fundamentales. El responsable debe dejar de usar los datos para esos fines sin demora.</p>
+                        <p><strong>¿Por qué es importante?</strong> Te permite no ser perfilado, no recibir publicidad no deseada, y evitar que algoritmos tomen decisiones sobre ti.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Una persona recibe correos promocionales de una tienda chilena aunque nunca dio consentimiento para marketing. Ejercita derecho de oposición. La tienda DEBE dejar de enviar correos. Si continúan, la DGDP puede sancionar la tienda.</p>
+                        <p><strong>Otro caso:</strong> Una plataforma de streaming en Chile te recomienda películas basado en tu historial. Puedes oponer al algoritmo de perfilado. La plataforma debe dejar de usar tus datos para recomendaciones personalizadas.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>5. Derecho de Portabilidad</h3>
-                        <p>Permite que los titulares reciban sus datos en formato estructurado e interoperable, y transmitirlos a otro responsable sin obstáculos.</p>
-                        <p><strong>Ejemplo:</strong> Un usuario puede solicitar a Google que descargue todos sus datos (contactos, fotos, emails) en un formato estándar para transferirlos a otro proveedor de servicios de correo.</p>
+                        <h3>5. Derecho de Portabilidad - Llevar tus Datos a Otro Lado</h3>
+                        <p><strong>Definición:</strong> Permite que los titulares reciban sus datos en formato estructurado, legible e interoperable (ej: Excel, JSON, CSV), y transmitirlos a otro responsable sin obstáculos. Facilita cambiar de proveedor sin perder información.</p>
+                        <p><strong>¿Por qué es importante?</strong> No quedas "atrapado" en una plataforma. Puedes cambiar de banco, email, redes sociales, llevando tus datos contigo.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Tienes una cuenta en banco digital chileno y quieres cambiar a otro banco. Puedes solicitar que el primer banco te entregue todos tus datos (información personal, historial de transacciones, documentos) en formato Excel o JSON. Luego cargas esos datos en el nuevo banco.</p>
+                        <p><strong>Ejemplo Real:</strong> Una persona tiene 10 años de fotos en Google Photos. Quiere cambiar a OneDrive. Solicita portabilidad. Google le entrega todas sus fotos en formato ZIP descargable. Carga en OneDrive sin perder nada.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>6. Derecho a No Ser Objeto de Decisiones Automatizadas</h3>
-                        <p>Las personas no pueden ser sometidas a decisiones individuales basadas únicamente en tratamiento automatizado de sus datos, especialmente si afectan derechos fundamentales.</p>
-                        <p><strong>Ejemplo:</strong> Un banco no puede negar un préstamo únicamente basándose en un algoritmo de puntuación de crédito sin que un humano revise el caso. La persona tiene derecho a apelar la decisión automatizada.</p>
+                        <p><strong>Definición:</strong> Las personas no pueden ser sometidas a decisiones individuales basadas ÚNICAMENTE en tratamiento automatizado de sus datos, especialmente si afectan derechos fundamentales (acceso a crédito, empleo, vivienda, etc.). Debe haber intervención humana.</p>
+                        <p><strong>¿Por qué es importante?</strong> Los algoritmos cometen errores y pueden discriminar. Tienes derecho a que un humano revise decisiones que te afecten.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Solicitas crédito a un banco chileno. Un algoritmo automático rechaza tu solicitud sin explicación. Bajo la Ley 21.719, tienes derecho a que un ejecutivo humano revise tu caso, no solo un algoritmo. Puedes apelar la decisión.</p>
+                        <p><strong>Otro caso:</strong> Una empresa de recursos humanos usa IA para analizar CV de candidatos. La IA rechaza automáticamente candidatos mayores de 45 años. Esto es discriminatorio y VIOLA el derecho. La DGDP puede sancionar porque la decisión fue basada únicamente en automatización.</p>
+                        <p><strong>Excepción:</strong> Decisiones automáticas SÍ están permitidas si: (1) El responsable interviene manualmente, (2) Existe derecho a apelar, o (3) No afecta derechos fundamentales.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Cómo Ejercer tus Derechos</h3>
+                        <p><strong>Paso 1: Identifica al responsable</strong> - La empresa, organización o sitio web que tiene tus datos. Busca su "Política de Privacidad" para contacto.</p>
+                        <p><strong>Paso 2: Prepara solicitud escrita</strong> - Incluye: tu nombre, número de identidad, tipo de derecho (acceso, rectificación, etc.), descripción clara de lo que solicitas, y tu firma.</p>
+                        <p><strong>Paso 3: Envía al responsable</strong> - Por email, formulario web, o carta. Solicita confirmación de recepción.</p>
+                        <p><strong>Paso 4: Responsable tiene 30 días</strong> - Para responder. Si no responde, puedes denunciar ante la DGDP.</p>
+                        <p><strong>Paso 5: Si hay negativa injustificada</strong> - Puedes presentar reclamo ante la DGDP. La DGDP investigará y puede sancionar al responsable.</p>
                     </div>
                 `
             },
             3: {
-                title: 'Obligaciones de Responsables',
+                title: 'Obligaciones de las Empresas',
                 icon: '[MÓDULO 3]',
                 content: `
                     <div class="modulo-section">
-                        <h3>Obligaciones fundamentales de los Responsables</h3>
-                        <p>Las organizaciones que recopilan y procesan datos personales tienen obligaciones legales específicas que deben cumplir según la Ley 21.719.</p>
+                        <h3>Obligaciones Fundamentales de los Responsables</h3>
+                        <p>Las organizaciones que recopilan y procesan datos personales tienen obligaciones legales específicas y no negociables según la Ley 21.719. Estas obligaciones aplican sin importar el tamaño de la empresa: desde una pequeña agencia de ventas hasta grandes corporaciones multinacionales. El incumplimiento puede resultar en sanciones severas de la DGDP.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>1. Consentimiento</h3>
-                        <p>Los responsables deben obtener consentimiento previo, informado, específico e inequívoco de los titulares antes de recopilar o procesar datos personales, excepto en casos legales específicos. El consentimiento debe ser fácil de revocar en cualquier momento.</p>
-                        <p><strong>Ejemplo:</strong> Una empresa de marketing debe obtener consentimiento explícito ANTES de enviar correos electrónicos promocionales. No puede usar la falta de respuesta como consentimiento. El usuario debe poder desuscribirse fácilmente.</p>
+                        <h3>1. Obtener Consentimiento Previo e Informado</h3>
+                        <p><strong>Definición:</strong> Los responsables deben obtener consentimiento previo (ANTES de recopilar datos), informado (el titular entiende qué datos se recopilan y para qué), específico (para cada uso diferente de datos), e inequívoco (expresó claramente su voluntad) de los titulares. El consentimiento debe ser fácil de revocar en cualquier momento, sin penalización.</p>
+                        <p><strong>Excepciones légales:</strong> No se requiere consentimiento si el tratamiento es necesario por: obligación legal (ej: datos fiscales), cumplimiento de contrato (ej: dirección para envío), interés público (ej: salud pública), o interés legítimo de la organización (bajo condiciones estrictas).</p>
+                        <p><strong>Caso Práctico Chileno - VIOLACIÓN:</strong> Una empresa de telemarketing chilena obtiene lista de teléfonos de clientes, asume consentimiento tácito (no llamar es consentimiento), e inicia campaña. VIOLACIÓN: Debe obtener consentimiento EXPLÍCITO ANTES de llamar para marketing. El cliente puede denunciar ante DGDP y la empresa será sancionada.</p>
+                        <p><strong>Caso Práctico Chileno - CORRECTO:</strong> Un banco quiere usar datos de clientes para marketing. Envía email pidiendo consentimiento explícito: "¿Deseas recibir ofertas personalizadas por email?". Cliente marca "SÍ". El banco puede enviar ofertas. Cliente puede cambiar a "NO" en cualquier momento sin penalización.</p>
+                        <p><strong>Auditoría de Cumplimiento:</strong> Una empresa debe documentar: (1) Cómo obtuvo consentimiento, (2) Cuándo lo obtuvo, (3) Qué datos autorizó el titular, (4) Si fue revocado o no. Esto es para demostrar cumplimiento ante DGDP.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>2. Transparencia</h3>
-                        <p>Los responsables deben proporcionar información clara sobre: identidad del responsable, finalidad del tratamiento, datos que se recopilan, derechos de los titulares, y a quién se compartirán los datos. Esta información debe ser accesible, clara y fácil de entender.</p>
-                        <p><strong>Ejemplo:</strong> Una tienda en línea debe informar claramente en su Política de Privacidad que recopila datos de compra para procesar pedidos Y para enviar recomendaciones personalizadas, indicando que estos son dos usos diferentes que podrían requerir consentimientos separados.</p>
+                        <h3>2. Transparencia - Informar Claramente</h3>
+                        <p><strong>Definición:</strong> Los responsables deben proporcionar información clara, accesible, completa y en lenguaje simple sobre: (1) Identidad del responsable, (2) Finalidad del tratamiento de datos, (3) Datos recopilados, (4) Derechos de los titulares, (5) A quién comparte los datos, (6) Tiempo de retención, (7) Cómo ejercer derechos. Esta información debe ser accesible en sitio web, disponible sin solicitud.</p>
+                        <p><strong>Caso Práctico Chileno - VIOLACIÓN:</strong> Un sitio de e-commerce chileno recopila datos de compra para procesar pedidos PERO TAMBIÉN para marketing externo sin informarlo claramente. Política de privacidad dice "datos se usan para mejorar servicios" (vago). Luego, cliente recibe emails de publicidades de terceros. VIOLACIÓN: No fue transparente sobre usos y no obtuvo consentimiento separado para cada uso.</p>
+                        <p><strong>Caso Práctico Chileno - CORRECTO:</strong> Tienda en línea publica en sitio: "RECOPILAMOS: Nombre, email, dirección, teléfono. PARA: Procesar pedidos, enviar factura, contacto post-venta. COMPARTIMOS: Con proveedor de envíos (en contrato confidencial), con proveedor de pagos (encriptado). DERECHOS: Puedes solicitar acceso, corrección, eliminación en contacto@tienda.cl. MARKETING: No enviamos emails sin tu consentimiento. TIEMPO: Guardamos datos 5 años por ley impositiva."</p>
+                        <p><strong>Auditoría de Cumplimiento:</strong> Revisar que Política de Privacidad: (1) Existe y está publicada, (2) Es clara sin jerga legal excesiva, (3) Cubre todos los puntos requeridos, (4) Se actualiza cuando cambian prácticas, (5) Es accesible en idioma español.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>3. Seguridad</h3>
-                        <p>Las organizaciones deben implementar medidas técnicas y organizacionales adecuadas para proteger los datos contra pérdida, daño, acceso no autorizado o divulgación accidental o ilícita.</p>
-                        <p><strong>Ejemplo:</strong> Un hospital debe encriptar todos los datos médicos, usar autenticación multifactor para acceder a sistemas, mantener copias de seguridad, y realizar auditorías regulares de seguridad.</p>
+                        <h3>3. Implementar Medidas de Seguridad</h3>
+                        <p><strong>Definición:</strong> Las organizaciones deben implementar medidas técnicas (encriptación, firewalls, backups) y organizacionales (capacitación, control de acceso, auditorías) adecuadas para proteger datos contra: pérdida, daño, acceso no autorizado, divulgación accidental, destrucción ilícita.</p>
+                        <p><strong>Medidas Técnicas Mínimas:</strong> (1) Encriptación de datos sensibles, (2) Autenticación multifactor para acceso a sistemas, (3) Firewalls y detección de intrusiones, (4) Backups regulares en servidores separados, (5) Actualizaciones de seguridad en 24-48 horas para vulnerabilidades críticas.</p>
+                        <p><strong>Medidas Organizacionales Mínimas:</strong> (1) Capacitación anual de personal sobre privacidad, (2) Designación clara de responsable de datos, (3) Auditorías internas semestrales de cumplimiento, (4) Documentación de procedimientos de seguridad, (5) Control de acceso (solo empleados necesarios ven ciertos datos).</p>
+                        <p><strong>Caso Práctico Chileno - VIOLACIÓN:</strong> Un hospital guarda historiales médicos de pacientes en Excel sin encriptación en un servidor compartido accesible a cualquier empleado. Un empleado descargador de datos vende información a terceros. VIOLACIÓN: Falta de medidas de seguridad. Hospital será sancionado severamente porque no encriptó datos sensibles ni controló acceso.</p>
+                        <p><strong>Caso Práctico Chileno - CORRECTO:</strong> Empresa de seguros: (1) Encripta datos en base de datos, (2) Acceso solo con autenticación multifactor, (3) Logs de quién accedió qué datos, (4) Capacitación trimestral sobre privacidad, (5) Auditoría semestral por consultora externa, (6) Plan de respuesta a incidentes documentado.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>4. Notificación de Brechas</h3>
-                        <p>Cuando ocurra una violación de seguridad que afecte datos personales, los responsables deben notificar a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas.</p>
-                        <p><strong>Ejemplo:</strong> Un banco descubre que un servidor fue hackeado y se expusieron datos de 10.000 clientes. Debe notificar a la DGDP y a todos los clientes afectados dentro de 72 horas, explicando qué datos se comprometieron y qué medidas tomará.</p>
+                        <h3>4. Notificación de Brechas de Seguridad - Protocolo de Urgencia</h3>
+                        <p><strong>Definición:</strong> Si ocurre una violación de seguridad que afecte datos personales (hackeo, robo físico, error de empleado, etc.), el responsable DEBE notificar: (1) A la DGDP, (2) A los titulares afectados. Plazo: "sin demora injustificada" (máximo 72 horas) desde descubrimiento.</p>
+                        <p><strong>¿Qué incluye la notificación?</strong> (1) Descripción del incidente, (2) Datos que se comprometieron, (3) Número de personas afectadas, (4) Consecuencias potenciales, (5) Medidas tomadas para contener, (6) Pasos que personas deben tomar (cambiar contraseña, monitorear crédito), (7) Contacto para más info.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Un banco chileno descubre que un servidor fue hackeado y se expusieron nombres, RUTs, números de cuenta y últimas transacciones de 50.000 clientes. DEBE: (1) Notificar a DGDP dentro de 72 horas, (2) Notificar a los 50.000 clientes, (3) Ofrecer servicio de monitoreo de fraude, (4) Investigar cómo fue el hackeo, (5) Implementar medidas adicionales de seguridad, (6) Publicar comunicado transparente. Si NO notifica a tiempo, DGDP impondrá multa de hasta 2.700 UF.</p>
+                        <p><strong>Procedimiento:</strong> Día 1 - Descubren brecha: Inician plan de respuesta, contienen el daño. Día 2-3: Investigan extensión. Día 3-4: Preparan notificación. Día 5 (máximo): Notifican a DGDP y titulares. Día 7-30: Investigación completa y reporte a DGDP.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>5. Respeto a los Derechos</h3>
-                        <p>Los responsables deben garantizar el ejercicio de los derechos de los titulares (acceso, rectificación, eliminación, oposición, portabilidad y no perfilado) dentro de los plazos establecidos y de forma efectiva.</p>
-                        <p><strong>Ejemplo:</strong> Un usuario solicita acceso a sus datos. La empresa debe procesar la solicitud dentro de 30 días, proporcionar los datos en un formato comprensible y sin costo, verificar la identidad del solicitante de forma segura.</p>
+                        <h3>5. Respetar y Facilitar Ejercicio de Derechos</h3>
+                        <p><strong>Definición:</strong> Los responsables DEBEN facilitar que titulares ejerzan sus 6 derechos (acceso, rectificación, eliminación, oposición, portabilidad, no automatización). Deben responder solicitudes dentro de 30 días, de forma gratuita, sin obstaculizar.</p>
+                        <p><strong>Procedimiento de Solicitud:</strong> (1) Titular envía solicitud escrita (email, formulario web, carta). (2) Responsable verifica identidad. (3) Responsable responde dentro de 30 días. (4) Si negación, responsable explica motivo legal.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Cliente solicita acceso a datos en empresa de retail chilena. Empresa demora 45 días (VIOLACIÓN: plazo es 30). Cliente denuncia ante DGDP. DGDP sanciona por incumplimiento de plazo. La empresa debe además proporcionar información ahora.</p>
+                        <p><strong>Caso Práctico Chileno - Oposición:</strong> Cliente opone a recibir marketing de compañía de telecomunicaciones. Compañía debe dejar de enviar en máximo 30 días. Si continúa enviando promociones, es violación y cliente puede denunciar con prueba de que continuaron después de oposición.</p>
+                        <p><strong>Auditoría de Cumplimiento:</strong> Empresa debe documentar: (1) Todas las solicitudes de derechos recibidas, (2) Fecha de recepción, (3) Fecha de respuesta, (4) Qué se respondió, (5) Si fue rechazada, motivo documentado. Esto es expediente que DGDP puede solicitar.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Consecuencias del Incumplimiento</h3>
-                        <p>La DGDP puede sancionar a los responsables con multas de hasta 2.700 Unidades de Fomento (UF) por violaciones graves de la ley. Ejemplos de infracciones graves incluyen: no notificar brechas de seguridad, no responder a solicitudes de derechos, no implementar medidas de seguridad adecuadas, o procesar datos sin consentimiento.</p>
+                        <h3>6. Mantener Registro de Actividades</h3>
+                        <p><strong>Definición:</strong> Los responsables deben mantener registro documentado de: (1) Consentimientos otorgados/revocados, (2) Solicitudes de derechos, (3) Respuestas dadas, (4) Brechas de seguridad, (5) Transferencias de datos a terceros, (6) Evaluaciones de riesgo. Este registro es para auditoría de DGDP.</p>
+                        <p><strong>Propósito:</strong> Demostrar cumplimiento si es auditada por DGDP. Si no tiene registros, presunción es de incumplimiento.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Consecuencias del Incumplimiento - Régimen de Sanciones</h3>
+                        <p><strong>Infracciones Leves:</strong> Multas hasta 150 UF. Ej: Demora en respuesta de solicitud, falta menor de información en política de privacidad.</p>
+                        <p><strong>Infracciones Graves:</strong> Multas hasta 2.700 UF (aprox. $100 millones CLP). Ej: No notificar brecha dentro de 72 horas, procesar datos sin consentimiento, ocultar información de DGDP.</p>
+                        <p><strong>Ejemplos de Sanciones DGDP en Chile:</strong> (1) 2023: Empresa de retail multada por no permitir ejercicio de derechos de acceso. (2) 2023: Compañía telefónica multada por no notificar brecha a tiempo. (3) 2024: Banco multado por consentimiento insuficiente en marketing.</p>
+                        <p><strong>Además de multa:</strong> DGDP puede ordenar: (1) Cesar tratamiento ilícito, (2) Eliminar datos ilícitamente recopilados, (3) Rectificar información, (4) Implementar medidas correctivas. Si no cumple orden de DGDP, multa adicional.</p>
                     </div>
                 `
             },
@@ -483,125 +559,224 @@
                 icon: '[MÓDULO 4]',
                 content: `
                     <div class="modulo-section">
-                        <h3>Medidas de Seguridad para Proteger Datos</h3>
-                        <p>La seguridad de datos es fundamental para cumplir con la Ley 21.719. Las organizaciones deben implementar medidas técnicas y organizacionales.</p>
+                        <h3>¿Por Qué la Seguridad de Datos es Crítica?</h3>
+                        <p>Los datos personales son un activo valioso. Un hackeo puede exponer millones de información sensible: números de identidad, direcciones, datos bancarios. Según estudios, el costo promedio de una brecha es $1 millón USD+ en gastos de notificación, litigios, multas y reputación dañada. La Ley 21.719 REQUIERE medidas de seguridad. Sin medidas, una organización viola la ley automaticamente.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Medidas Técnicas</h3>
+                        <h3>Medidas Técnicas Esenciales</h3>
+                        <p><strong>1. Encriptación - Codificar Datos</strong></p>
+                        <p>Convertir datos legibles en código ilegible sin la clave de desencriptación. Hay dos tipos:</p>
                         <ul>
-                            <li><strong>Encriptación:</strong> Codificar datos en reposo y en tránsito para hacerlos ilegibles sin la clave de desencriptación. Ejemplo: WhatsApp usa encriptación end-to-end, lo que significa que ni siquiera WhatsApp puede leer tus mensajes.</li>
-                            <li><strong>Autenticación Multifactor (MFA):</strong> Requerir múltiples formas de verificación de identidad. Ejemplo: Gmail requiere tu contraseña + un código enviado a tu teléfono antes de permitir acceso.</li>
-                            <li><strong>Firewalls:</strong> Filtrar tráfico no autorizado hacia sistemas y datos. Ejemplo: Un banco usa firewalls para evitar que hackers accedan a los servidores con datos de clientes.</li>
-                            <li><strong>Backups Regulares:</strong> Realizar copias de seguridad para recuperación ante desastres. Ejemplo: Una aseguradora realiza backups diarios de todas las pólizas en servidores separados.</li>
-                            <li><strong>Monitoreo de Seguridad:</strong> Detectar y responder a amenazas en tiempo real. Ejemplo: Un sistema detecta cuando alguien intenta acceder a datos desde una ubicación inusual y bloquea el acceso.</li>
-                            <li><strong>Actualizaciones de Software:</strong> Mantener sistemas con parches de seguridad actualizados. Ejemplo: Una empresa aplica actualizaciones de seguridad críticas en 24 horas después de ser lanzadas.</li>
+                            <li><strong>Encriptación en Reposo:</strong> Datos guardados en base de datos, discos duros. Un servidor es hackeado y roba disco duro con bases de datos. Si datos están encriptados, el disco es inútil. Ej: Banco encripta números de cuenta en su base de datos con estándar AES-256.</li>
+                            <li><strong>Encriptación en Tránsito:</strong> Datos viajando por internet. Un hacker intercepta tráfico entre laptop y servidor del banco. Si están encriptados con HTTPS/SSL, el hacker ve solo caracteres ininteligibles. Ej: Tu contraseña está encriptada cuando la escribes en sitio de banco (https://banco.cl).</li>
                         </ul>
+                        <p><strong>Estándar recomendado:</strong> AES-256 (muy seguro) o superior. Las contraseñas deben guardarse en formato "hash" (conversión irreversible), nunca en texto plano.</p>
+                        <p><strong>2. Autenticación Multifactor (MFA)</strong></p>
+                        <p>Requerir 2 o más formas de verificación antes de permitir acceso. No solo contraseña, sino también:</p>
+                        <ul>
+                            <li>Código enviado a teléfono (SMS) - "Algo que tienes"</li>
+                            <li>Aplicación generadora de códigos (Google Authenticator, Microsoft Authenticator) - "Algo que tienes"</li>
+                            <li>Biometría (huella dactilar, reconocimiento facial) - "Algo que eres"</li>
+                            <li>Pregunta de seguridad - "Algo que sabes"</li>
+                        </ul>
+                        <p>Caso: Un hacker roba contraseña de empleado de banco. Intenta acceder a sistema de datos. Sistema pide código SMS. Hacker no tiene teléfono del empleado, acceso es bloqueado. MFA evitó el hack.</p>
+                        <p><strong>3. Firewalls y Sistemas de Detección de Intrusiones (IDS)</strong></p>
+                        <p>Un firewall es como un guardia de seguridad para tu red. Filtra tráfico que entra y sale. Solo permite conexiones legítimas. Un IDS es más avanzado: monitorea tráfico continuamente y detecta patrones sospechosos (múltiples intentos fallidos de login = posible ataque).</p>
+                        <p>Ejemplo: Servidor del banco está bajo ataque DDoS (miles de intentos de conexión simultánea). Firewall y IDS detectan y bloquean automáticamente las conexiones maliciosas, permitiendo usuarios legítimos.</p>
+                        <p><strong>4. Backups Regulares en Sitios Separados</strong></p>
+                        <p>Copias de seguridad periódicas de todos los datos en servidores DIFERENTES (física y geográficamente). Si un servidor principal es destruido por ataque, incendio, terremoto, los datos se recuperan del backup.</p>
+                        <p>Caso real (no en Chile, pero ejemplo): Hospital fue víctima de ransomware (virus que bloquea acceso a datos pidiendo dinero). Datos criptografados. Hospital accedió a backup de hace 2 días. Recuperó información, no pagó rescate. Backup evitó desastre total.</p>
+                        <p><strong>Frecuencia recomendada:</strong> Diariamente para datos críticos, semanalmente para datos no-críticos. Prueba de recuperación: Mensualmente, intentar restaurar datos desde backup para verificar que funciona.</p>
+                        <p><strong>5. Monitoreo de Seguridad 24/7</strong></p>
+                        <p>Sistemas de vigilancia continua que detectan y alertan sobre actividad sospechosa: (1) Intentos fallidos de login repetidos, (2) Acceso a datos desde ubicación inusual (empleado en Chile accediendo sistema desde servidor en China = sospechoso), (3) Transferencia masiva de datos, (4) Cambios en permisos de usuarios.</p>
+                        <p>Caso: Sistema detecta que empleado de recursos humanos accedió a datos de nómina a las 2:00 AM (fuera de horario laboral). Alerta enviada. Descubren que credenciales fueron robadas. Acceso es bloqueado antes de que datos sean filtrados.</p>
+                        <p><strong>6. Actualizaciones de Seguridad Críticas</strong></p>
+                        <p>Empresas de software (Microsoft, Apple, OpenSSL, etc.) descubren regularmente vulnerabilidades (agujeros de seguridad). Lanzan parches. Las organizaciones DEBEN aplicar en 24-48 horas para vulnerabilidades críticas. Retraso = puerta abierta para hackers.</p>
+                        <p>Caso histórico: En 2017, virus WannaCry infectó 200.000 computadoras en 150 países porque empresas no aplicaron parche de seguridad disponible desde 2 meses antes. Microsoft Hospital chileno fue afectado.</p>
                     </div>
                     <div class="modulo-section">
                         <h3>Medidas Organizacionales</h3>
+                        <p><strong>1. Capacitación de Personal</strong></p>
+                        <p>El "eslabón débil" de la seguridad es muchas veces el empleado. Capacitación regular sobre:</p>
                         <ul>
-                            <li><strong>Capacitación de Personal:</strong> Entrenar empleados en prácticas seguras de manejo de datos. Ejemplo: Empleados reciben entrenamiento sobre cómo identificar emails de phishing que intentan robar credenciales.</li>
-                            <li><strong>Control de Acceso:</strong> Limitar acceso a datos según roles y responsabilidades. Ejemplo: Solo el equipo de nómina puede acceder a información salarial, no todos los empleados.</li>
-                            <li><strong>Auditorías Internas:</strong> Revisar regularmente el cumplimiento de medidas de seguridad. Ejemplo: Una auditoría descubre que un servidor viejo no tiene encriptación y se reemplaza inmediatamente.</li>
-                            <li><strong>Designación de DPO:</strong> Nombrar un Delegado de Protección de Datos (si aplica). Ejemplo: Una empresa grande designa a un ejecutivo como responsable de privacidad.</li>
-                            <li><strong>Políticas de Seguridad:</strong> Documentar procedimientos y estándares de seguridad. Ejemplo: Una política establece que las contraseñas deben tener 12+ caracteres y cambiarse cada 90 días.</li>
-                            <li><strong>Evaluación de Riesgos:</strong> Identificar y mitigar riesgos de seguridad. Ejemplo: Una evaluación identifica que los datos se transfieren a través de conexiones inseguras, así que se implementa VPN obligatorio.</li>
+                            <li>Reconocer phishing: Emails falsos que parecen legítimos pidiendo credenciales. Ejemplo: Email aparentemente de "Banco" pide confirmar datos. Es falso.</li>
+                            <li>No compartir credenciales: Contraseñas nunca en email, chat, post-it en escritorio</li>
+                            <li>Wi-Fi segura: No usar Wi-Fi público sin VPN para acceder a datos sensibles</li>
+                            <li>Manejo de datos: No imprime datos sensibles, no deja computadora desbloqueada, no guarda datos en USB personal</li>
                         </ul>
+                        <p>Mejores prácticas: Capacitación anual obligatoria + test de phishing simulado trimestral para evaluar aprendizaje.</p>
+                        <p><strong>2. Control de Acceso Basado en Roles (RBAC)</strong></p>
+                        <p>Principio: "Acceso Mínimo Necesario". Empleado solo ve datos necesarios para su trabajo:</p>
+                        <ul>
+                            <li>Contador: Accede a datos de gastos e ingresos, NO a datos médicos de empleados</li>
+                            <li>Médico: Accede a historiales de sus pacientes, NO a datos de otros pacientes</li>
+                            <li>Gerente: Accede a datos de su equipo, NO a datos de otros departamentos</li>
+                        </ul>
+                        <p>Beneficio: Si credenciales de contador son robadas, hacker solo accede a datos de gastos, no información médica. Daño limitado.</p>
+                        <p><strong>3. Auditorías Internas Regulares</strong></p>
+                        <p>Revisar periódicamente (cada 3-6 meses) que medidas de seguridad funcionan. Incluye:</p>
+                        <ul>
+                            <li>Revisión de acceso: ¿Quién tiene acceso a qué datos? ¿Hay acceso innecesario?</li>
+                            <li>Prueba de penetración: Intentar hackear sistemas internamente para encontrar vulnerabilidades</li>
+                            <li>Revisión de logs: ¿Qué datos se accedieron? ¿Por quién? ¿Cuándo?</li>
+                            <li>Verificación de backups: ¿Los backups funcionan? ¿Se pueden restaurar?</li>
+                        </ul>
+                        <p><strong>4. Designación de Responsable de Protección de Datos (DPO o similar)</strong></p>
+                        <p>Persona designada responsable de supervisar cumplimiento: (1) Responde solicitudes de derechos, (2) Investiga incidentes, (3) Coordina capacitación, (4) Comunica con DGDP, (5) Mantiene registros de cumplimiento. Para pequeñas empresas: puede ser empleado que dedica parte de su tiempo. Para grandes: puede ser ejecutivo dedicado.</p>
+                        <p><strong>5. Políticas Documentadas</strong></p>
+                        <ul>
+                            <li><strong>Política de Contraseñas:</strong> Mínimo 12 caracteres, mayúsculas, números, símbolos. Cambio cada 90 días. No reutilizar últimas 5.</li>
+                            <li><strong>Política de Acceso a Datos:</strong> Quién puede acceder qué datos, con qué niveles de aprobación</li>
+                            <li><strong>Política de Teletrabajo:</strong> Empleado en casa debe usar VPN, no Wi-Fi pública, datos no en equipos personales</li>
+                            <li><strong>Política de Dispositivos:</strong> Laptops/celulares corporativos deben tener encriptación y bloqueo automático</li>
+                        </ul>
+                        <p><strong>6. Evaluación de Riesgos</strong></p>
+                        <p>Identificar regularmente: ¿Dónde están datos más sensibles? ¿Cuáles son vectores de ataque? ¿Qué protecciones faltan? Ejemplo: Evaluación identifica que datos son transferidos a terceros por email (inseguro). Acción: Implementar transferencia por servidor seguro con encriptación.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Plan de Respuesta a Incidentes</h3>
-                        <p>Las organizaciones deben tener un plan documentado para responder a brechas de seguridad que incluya:</p>
+                        <h3>Plan de Respuesta a Incidentes - Protocolo de Crisis</h3>
+                        <p>Una brecha de seguridad es inevitable eventualmente. Lo importante es tener plan documentado para responder rápidamente.</p>
                         <ul>
-                            <li>Procedimientos de detección e identificación de incidentes</li>
-                            <li>Equipo de respuesta a incidentes</li>
-                            <li>Comunicación interna y externa</li>
-                            <li>Investigación del incidente</li>
-                            <li>Notificación a DGDP y titulares afectados</li>
-                            <li>Medidas de mitigación y recuperación</li>
-                            <li>Documentación y aprendizaje del incidente</li>
+                            <li><strong>Fase 1 - Detección:</strong> Sistema de monitoreo detecta comportamiento sospechoso o usuario reporta incidente. Alerta enviada inmediatamente.</li>
+                            <li><strong>Fase 2 - Contención:</strong> Aislar sistemas afectados de la red para evitar propagación. Si servidor fue hackeado, apagarlo o desconectarlo para prevenir más daño.</li>
+                            <li><strong>Fase 3 - Investigación:</strong> Determinar: ¿Qué fue comprometido? ¿Cuándo? ¿Por quién? ¿Cuántos datos? ¿Qué información se expuso? Contrata forense digital si es necesario.</li>
+                            <li><strong>Fase 4 - Notificación:</strong> Dentro de 72 horas, notificar a DGDP con reporte completo. Notificar a titulares afectados explicitamente qué datos se expusieron y riesgos.</li>
+                            <li><strong>Fase 5 - Remedición:</strong> Implementar medidas para prevenir que suceda de nuevo. Parchar vulnerabilidad, cambiar contraseñas, rotar claves de encriptación.</li>
+                            <li><strong>Fase 6 - Aprendizaje:</strong> Documento post-mortem: ¿Por qué ocurrió? ¿Qué falló? ¿Qué mejoras implementar?</li>
                         </ul>
+                        <p><strong>Plan debe incluir:</strong> Lista de contactos (DGDP, abogado, aseguradora de ciberseguridad), plantilla de notificación pre-aprobada, procedimientos de comunicación interna, asignación clara de roles en equipo de respuesta.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Ejemplos de Incidentes Reales (Contexto Global, Sin Nombres Sensibles)</h3>
+                        <p><strong>Incidente 1 - 2013, Agencia de Crédito Masiva:</strong> Brecha expuso 147 millones de registros con nombres, RUT, direcciones, datos crediticios. Toma meses para notificar. Consecuencia: $600 millones de litigios, cientos de casos de fraude de identidad. LECCIÓN: Notificar rápido y transparente.</p>
+                        <p><strong>Incidente 2 - 2015, Red Minorista Masiva:</strong> Malware en sistemas de pago capturó 40 millones de números de tarjeta de crédito. Fraude masivo. Costo total: $18 millones en reembolsos. LECCIÓN: Encriptar datos de pago, no guardar en servidores internos.</p>
+                        <p><strong>Incidente 3 - 2017, Proveedor de Nube:</strong> Credenciales de empleado fueron robadas, hacker accedió base de datos de clientes. 300 millones de registros expuestos. Empresa recibió multa de $168 millones por falta de seguridad. LECCIÓN: MFA y control de acceso son críticos.</p>
+                        <p><strong>Incidente 4 - 2020, Proveedor de Videollamadas:</strong> Investigación encontró vulnerabilidades graves en encriptación. Aunque usuarios pensaban llamadas eran privadas, no lo eran. Llamadas de ejecutivos y políticos podrían ser interceptadas. Multa y reputación dañada. LECCIÓN: Auditar seguridad regularmente, no asumir que está bien.</p>
                     </div>
                 `
             },
             5: {
-                title: 'Cumplimiento Normativo',
+                title: 'Gestión de Reclamos y Sanciones',
                 icon: '[MÓDULO 5]',
                 content: `
                     <div class="modulo-section">
-                        <h3>6 Pasos para Implementar Cumplimiento Normativo</h3>
-                        <p>Implementar el cumplimiento de la Ley 21.719 requiere un enfoque sistemático con estos pasos clave. Estos pasos son esenciales para pequeños negocios y grandes corporaciones.</p>
+                        <h3>Proceso de Cumplimiento Normativo - 6 Pasos Fundamentales</h3>
+                        <p>Implementar el cumplimiento de la Ley 21.719 requiere un enfoque sistemático y continuo. No es un proyecto de "una sola vez" sino un proceso permanente. Estos pasos aplican a pequeños negocios (freelancers, peluquerías) hasta grandes corporaciones multinacionales.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Paso 1: Auditoría de Datos</h3>
-                        <p>Realizar un inventario completo de todos los datos personales que tu organización recopila, procesa y almacena. Identifica:</p>
+                        <h3>Paso 1: Auditoría de Datos Completa</h3>
+                        <p>Mapeo exhaustivo de todos los datos personales en tu organización. Crear inventario documentado:</p>
                         <ul>
-                            <li>Tipos de datos personales tratados (nombres, emails, teléfonos, etc.)</li>
-                            <li>Ubicación de almacenamiento (en la nube, servidores locales, etc.)</li>
-                            <li>Duración de retención (cuánto tiempo se guardan los datos)</li>
-                            <li>Quién tiene acceso (empleados, departamentos, terceros)</li>
-                            <li>Riesgos de seguridad identificados</li>
+                            <li><strong>Tipos de datos:</strong> Nombres, emails, teléfonos, direcciones, datos bancarios, datos médicos, comportamiento en línea, ubicación, preferencias, etc.</li>
+                            <li><strong>Ubicación de almacenamiento:</strong> Servidor en nube (AWS, Google, Azure), servidores locales, computadoras de empleados, USB, archivos en papel</li>
+                            <li><strong>Duración de retención:</strong> ¿Cuánto tiempo guardas cada tipo de dato? ¿Por qué? ¿Cuándo debe eliminarse?</li>
+                            <li><strong>Quién accede:</strong> Empleados específicos, departamentos, terceros (proveedores), nivel de acceso de cada uno</li>
+                            <li><strong>Riesgos identificados:</strong> ¿Qué datos son más sensibles? ¿Dónde hay vulnerabilidades? ¿Qué medidas de seguridad faltan?</li>
                         </ul>
-                        <p><strong>Ejemplo para pequeño negocio:</strong> Una peluquería descubre que guarda números de teléfono de clientes en una hoja de cálculo sin protección, sin saber que es ilegal sin consentimiento.</p>
+                        <p><strong>Caso Práctico:</strong> Una peluquería chilena audita datos: (1) Agenda con nombres y teléfonos de clientes en papeles + Excel sin protección. RIESGO: Cualquier empleado ve teléfonos, clientes no dieron consentimiento. (2) Tarjetas de crédito guardadas en email. RIESGO: Si email es hackeado, datos de tarjeta se exponen. SOLUCIÓN: Migrar a herramienta de cobro segura, guardar solo conforme a ley.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Paso 2: Políticas Documentadas</h3>
-                        <p>Crear y documentar políticas de protección de datos que incluyan:</p>
+                        <h3>Paso 2: Crear Políticas Documentadas de Privacidad</h3>
+                        <p>Documentar procedimientos claros que la organización seguirá. Debe incluir:</p>
                         <ul>
-                            <li>Política de Privacidad y Protección de Datos (publicada en tu sitio web)</li>
-                            <li>Política de Consentimiento (cómo obtienes consentimiento)</li>
-                            <li>Política de Seguridad (cómo proteges los datos)</li>
-                            <li>Procedimientos de Respuesta a Incidentes (qué hacer si hay un hack)</li>
-                            <li>Política de Retención de Datos (cuándo eliminar datos)</li>
+                            <li><strong>Política de Privacidad (Pública):</strong> Publicada en sitio web, explica a clientes qué datos recopila, para qué, con quién comparte, derechos que tienen. Lenguaje claro, no jerga legal.</li>
+                            <li><strong>Política de Consentimiento:</strong> Cómo y cuándo obtiene consentimiento. Ej: Formulario en sitio web, consentimiento en tienda física, email explícito para marketing.</li>
+                            <li><strong>Política de Seguridad (Interna):</strong> Medidas técnicas y organizacionales implementadas. Ej: Encriptación, autenticación multifactor, auditorías.</li>
+                            <li><strong>Procedimientos de Respuesta a Incidentes:</strong> Qué hacer si hay brecha de seguridad. Pasos, timeline, quién notifica.</li>
+                            <li><strong>Política de Retención de Datos:</strong> Cuándo eliminar datos. Ej: Datos de cliente que cierra cuenta se eliminan después de 5 años (retención legal).</li>
+                            <li><strong>Política de Transferencias a Terceros:</strong> A quiénes se comparten datos y bajo qué condiciones. Ej: Proveedor de envíos recibe dirección de cliente, pero bajo contrato confidencial.</li>
                         </ul>
-                        <p><strong>Implementación concreta:</strong> Una tienda en línea agrega a su sitio web una sección clara de "Privacidad" donde explica que recopila emails para confirmaciones de pedidos, que no vende datos a terceros, y que los clientes pueden solicitar eliminar su información en cualquier momento.</p>
+                        <p><strong>Implementación Concreta:</strong> Tienda en línea chilena publica en sitio web: "RECOPILAMOS: nombre, email, dirección, teléfono, datos de pago. PARA: procesar pedidos, confirmar compra, envío. COMPARTIMOS CON: proveedor de pagos (asegurado), empresa de logística (solo dirección). NO COMPARTIMOS: tu email no se vende a publicidad. DERECHOS: acceso, corrección, eliminación en contacto@tienda.cl. MARKETING: solo si consientes explícitamente."</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Paso 3: Designar Responsable</h3>
-                        <p>Designar un responsable interno de protección de datos o un Delegado de Protección de Datos (DPO) que sea responsable de:</p>
+                        <h3>Paso 3: Designar Responsable de Protección de Datos</h3>
+                        <p>Asignar persona/equipo responsable de cumplimiento permanente. Funciones incluyen:</p>
                         <ul>
-                            <li>Supervisar el cumplimiento día a día</li>
-                            <li>Atender solicitudes de derechos de los titulares</li>
-                            <li>Gestionar relaciones con la DGDP</li>
-                            <li>Coordinar capacitación de empleados</li>
-                            <li>Realizar auditorías internas</li>
+                            <li>Supervisar cumplimiento día a día de políticas</li>
+                            <li>Recibir y procesar solicitudes de derechos (acceso, rectificación, etc.) dentro de plazos</li>
+                            <li>Gestionar relaciones con DGDP, responder auditorías</li>
+                            <li>Coordinar capacitación de empleados sobre privacidad</li>
+                            <li>Realizar auditorías internas periódicas</li>
+                            <li>Investigar incidentes de seguridad</li>
+                            <li>Mantener registros de cumplimiento documentados</li>
                         </ul>
-                        <p><strong>Para pequeño negocio:</strong> El dueño o un gerente designado es responsable. Para grandes empresas: Se contrata a un DPO profesional dedicado a tiempo completo.</p>
+                        <p><strong>Tamaño de Responsable:</strong> (1) Pequeño negocio: Dueño o gerente que dedica 10-20% tiempo a privacidad. (2) Mediana empresa: Ejecutivo dedicado parcialmente. (3) Gran empresa: Equipo dedicado (DPO + asistentes) 100% tiempo.</p>
+                        <p><strong>Ejemplo Chile:</strong> Banco designa a ejecutivo como "Jefe de Cumplimiento de Privacidad". Reporta directamente a Gerencia General. Tiene presupuesto para tecnología, capacitación, consultoría externa.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Paso 4: Implementar Medidas</h3>
-                        <p>Implementar las medidas técnicas y organizacionales de seguridad identificadas:</p>
+                        <h3>Paso 4: Implementar Medidas de Seguridad Técnicas y Organizacionales</h3>
+                        <p>Basado en auditoría (Paso 1), implementar medidas identificadas:</p>
                         <ul>
-                            <li>Encriptación de datos (especialmente datos sensibles como contraseñas)</li>
-                            <li>Autenticación multifactor en acceso a sistemas</li>
-                            <li>Control de acceso (solo empleados autorizados ven ciertos datos)</li>
-                            <li>Monitoreo de seguridad (detectar accesos sospechosos)</li>
-                            <li>Protección física de servidores (no dejar computadoras con datos desatendidas)</li>
+                            <li><strong>Técnicas:</strong> Encriptación (datos en reposo y tránsito), autenticación multifactor, firewalls, backups regulares, actualizaciones de seguridad</li>
+                            <li><strong>Organizacionales:</strong> Capacitación de personal, control de acceso basado en roles, auditorías internas semestrales, políticas documentadas de seguridad, plan de respuesta a incidentes</li>
                         </ul>
-                        <p><strong>Pasos concretos para un pequeño negocio:</strong> Usar herramientas como Google Workspace (con cifrado), establecer contraseñas fuertes, hacer backups semanales, no guardar datos en computadoras personales sin protección.</p>
+                        <p><strong>Priorización por Tamaño:</strong></p>
+                        <p>PEQUEÑO NEGOCIO (freelancer, peluquería): (1) Usar herramienta nube segura (Google Workspace, Microsoft 365 con encriptación), (2) Contraseñas fuertes, (3) Backups semanales a nube, (4) Capacitación anual, (5) Consentimiento documentado de clientes</p>
+                        <p>MEDIANA EMPRESA: Agregar (1) Autenticación multifactor, (2) Control de acceso más granular, (3) Auditoría anual externa, (4) Designar DPO, (5) Plan de respuesta a incidentes documentado</p>
+                        <p>GRAN EMPRESA: Agregar (1) CISO (Chief Information Security Officer), (2) SOC (Security Operations Center) 24/7, (3) Pruebas de penetración anuales, (4) DLP (Data Loss Prevention), (5) Seguro de ciberseguridad</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Paso 5: Capacitar Personal</h3>
-                        <p>Proporcionar capacitación continua a todos los empleados sobre:</p>
+                        <h3>Paso 5: Capacitación Continua de Personal</h3>
+                        <p>Proporcionar educación continua a todos los empleados:</p>
                         <ul>
-                            <li>Obligaciones de la Ley 21.719</li>
-                            <li>Derechos de los titulares</li>
-                            <li>Prácticas seguras (no compartir contraseñas, reconocer phishing)</li>
-                            <li>Procedimientos de seguridad internos</li>
-                            <li>Cómo responder a solicitudes de datos</li>
+                            <li><strong>Contenido:</strong> Obligaciones de Ley 21.719, derechos de titulares, prácticas seguras (no phishing, no compartir contraseñas), procedimientos internos, cómo responder solicitudes de datos</li>
+                            <li><strong>Frecuencia:</strong> Mínimo anual. Recomendado: trimestral o semestral con temas rotativos</li>
+                            <li><strong>Formato:</strong> Sesión presencial, video online, email educativo, test de phishing simulado</li>
+                            <li><strong>Documentación:</strong> Mantener registros de quién recibió qué capacitación y cuándo. Para auditoría de DGDP.</li>
                         </ul>
-                        <p><strong>Ejemplo:</strong> Una empresa realiza sesiones mensuales de 30 minutos para entrenar a empleados sobre seguridad. Un correo de phishing simulado prueba quién reconoce ataques.</p>
+                        <p><strong>Ejemplo Práctico:</strong> Empresa de seguros realiza: Enero: Sesión sobre DGDP y sanciones. Marzo: Test de phishing simulado. Junio: Capacitación sobre respuesta a solicitudes de derechos. Octubre: Test de cumplimiento de políticas.</p>
                     </div>
                     <div class="modulo-section">
-                        <h3>Paso 6: Monitoreo Continuo</h3>
-                        <p>Establecer un proceso de monitoreo y auditoría continuos:</p>
+                        <h3>Paso 6: Monitoreo y Auditoría Continua</h3>
+                        <p>Establecer ciclo permanente de revisión y mejora:</p>
                         <ul>
-                            <li>Auditorías internas regulares (mensuales o trimestrales)</li>
-                            <li>Evaluación de cumplimiento con la ley</li>
-                            <li>Revisión y actualización de políticas y procedimientos</li>
-                            <li>Análisis de incidentes de seguridad</li>
-                            <li>Actualización ante cambios normativos o nuevas amenazas</li>
+                            <li><strong>Auditorías Internas:</strong> Cada 3-6 meses. Revisar: ¿Quién accedió a qué datos? ¿Hay acceso innecesario? ¿Políticas se cumplen? ¿Hay vulnerabilidades nuevas?</li>
+                            <li><strong>Evaluación de Cumplimiento:</strong> Anualmente. Checklist: ¿Todas las solicitudes de derechos respondidas a tiempo? ¿Se notificaron brechas? ¿Se mantienen registros?</li>
+                            <li><strong>Revisión de Políticas:</strong> Anualmente o cuando cambien prácticas. Ej: Si comienza a usar nuevo proveedor, actualiza Política de Privacidad</li>
+                            <li><strong>Análisis de Incidentes:</strong> Si ocurre incidente, hacer post-mortem: ¿Qué falló? ¿Cómo prevenirlo?</li>
+                            <li><strong>Actualización ante Cambios Legales:</strong> Si DGDP publica nuevas orientaciones o jurisprudencia, evalúa impacto en tu organización</li>
                         </ul>
-                        <p><strong>Monitoreo en práctica:</strong> Cada mes, revisar quién accedió a datos sensibles, si hay intentos fallidos de acceso, si hay datos obsoletos que deberían eliminarse.</p>
+                        <p><strong>Herramientas:</strong> Mantener registro maestro de datos, log de accesos, registro de solicitudes de derechos, registro de incidentes, registro de capacitaciones. Todo documentado para demostrar cumplimiento.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Sistema de Reclamos - Cómo Presentar Denuncia ante DGDP</h3>
+                        <p><strong>¿Cuándo recurrir a DGDP?</strong> Si una organización no respeta derechos (no proporciona acceso, rechaza solicitud injustamente, no rectifica datos incorrectos, etc.)</p>
+                        <p><strong>Paso 1:</strong> Intentar resolver directamente con la organización. Enviar solicitud escrita clara, con plazo de 30 días.</p>
+                        <p><strong>Paso 2:</strong> Si no responden o respuesta es insatisfactoria, presentar reclamo ante DGDP. Reclamo debe incluir: (1) Identificación del titular y responsable, (2) Descripción del hecho, (3) Petición concreta, (4) Documentación que apoye (emails, cartas, screenshot de denegación)</p>
+                        <p><strong>Paso 3:</strong> DGDP abre investigación. Solicita al responsable que responda (plazo 15 días). DGDP evalúa.</p>
+                        <p><strong>Paso 4:</strong> DGDP puede: (1) Archivar si no hay infracción, (2) Acordar solución entre partes, (3) Sancionar al responsable</p>
+                        <p><strong>Plazo para presentar reclamo ante DGDP:</strong> Sin límite, pero mientras más pronto mejor (evidencia se preserva).</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Régimen de Sanciones - Multas y Consecuencias</h3>
+                        <p><strong>Tipos de Infracciones:</strong></p>
+                        <ul>
+                            <li><strong>LEVES:</strong> Multas hasta 150 UF (~$5 millones CLP). Ej: Demora en responder solicitud de acceso (aunque eventualmente responda). Política de privacidad poco clara.</li>
+                            <li><strong>GRAVES:</strong> Multas hasta 2.700 UF (~$100 millones CLP). Ej: No notificar brecha dentro de 72 horas. Procesar datos sin consentimiento válido. Ocultar información a DGDP.</li>
+                        </ul>
+                        <p><strong>Factores que Aumentan Sanción:</strong> (1) Reincidencia (violación anterior), (2) Gravedad (datos muy sensibles), (3) Alcance (muchas personas afectadas), (4) Intención (negligencia vs. deliberado)</p>
+                        <p><strong>Medidas Complementarias Además de Multa:</strong> DGDP puede ordenar: (1) Cesar tratamiento ilícito inmediatamente, (2) Eliminar datos recopilados sin consentimiento, (3) Implementar medidas correctivas (ej: encriptación), (4) Auditoría externa de cumplimiento pagada por empresa</p>
+                        <p><strong>Incumplimiento de Orden de DGDP:</strong> Si empresa no acata orden (ej: sigue procesando datos cuando se le prohibió), multa adicional de hasta 2.700 UF por cada mes de incumplimiento.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Ejemplos de Sanciones Reales Emitidas por DGDP</h3>
+                        <p><strong>Caso 1 (2023):</strong> Empresa de retail no permitió que cliente ejerciera derecho de acceso. Cliente presentó reclamo ante DGDP. DGDP encontró culpable. Sanción: 200 UF + orden de proporcionar acceso dentro de 10 días.</p>
+                        <p><strong>Caso 2 (2023):</strong> Proveedor de telecomunicaciones fue hackeado. 30.000 clientes afectados. No notificó a DGDP en 72 horas (notificó después de 10 días). Sanción: 1.500 UF por demora en notificación + 500 UF por falta de medidas de seguridad adecuadas.</p>
+                        <p><strong>Caso 3 (2024):</strong> Agencia de reclutamiento recopilaba datos de candidatos sin consentimiento explícito, vendía información a empresas de marketing. DGDP investigó, encontró violación grave de consentimiento. Sanción: 2.000 UF + orden de eliminar datos y cambiar prácticas.</p>
+                        <p><strong>Caso 4 (2024):</strong> Banco rechazó solicitud de rectificación de cliente (datos incorrectos). Cliente denunció ante DGDP. DGDP ordenó al banco rectificar datos dentro de 5 días. Banco no cumplió. Sanción adicional: 300 UF por incumplimiento de orden.</p>
+                    </div>
+                    <div class="modulo-section">
+                        <h3>Directrices para Evitar Sanciones</h3>
+                        <ul>
+                            <li><strong>Consentimiento claro:</strong> Obtén consentimiento explícito ANTES de procesar datos. Documenta cómo y cuándo.</li>
+                            <li><strong>Transparencia total:</strong> Publica política clara, accesible, en lenguaje simple en tu sitio web</li>
+                            <li><strong>Plazos:</strong> Responde solicitudes de derechos dentro de 30 días SIEMPRE. Notifica brechas en máximo 72 horas.</li>
+                            <li><strong>Seguridad:</strong> Implementa medidas mínimas: encriptación, backups, control de acceso, auditorías</li>
+                            <li><strong>Registros:</strong> Documenta TODO: consentimientos, solicitudes, respuestas, incidentes, capacitaciones. Esto es tu defensa ante DGDP.</li>
+                            <li><strong>Capacitación:</strong> Entrena a empleados regularmente. Personal capacitado comete menos errores.</li>
+                            <li><strong>Responsable designado:</strong> Ten persona clara responsable de privacidad. Para DGDP, punto de contacto único.</li>
+                            <li><strong>Proactividad:</strong> Si descubres brecha, notifica voluntariamente a DGDP. Bonus: DGDP suele ser más leniente con organización que se auto-reporta.</li>
+                        </ul>
                     </div>
                 `
             }
@@ -916,8 +1091,27 @@
             document.getElementById('progress-fill').style.width = pct + '%';
             document.getElementById('progress-text').textContent = completed.length + ' de ' + modules.length + ' módulos';
 
+            // Actualizar estado del botón de examen
+            const allCompleted = completed.length === modules.length;
+            const examBtn = document.getElementById('exam-btn');
+            const examMsg = document.getElementById('exam-msg');
+
+            if (allCompleted) {
+                examBtn.disabled = false;
+                examBtn.style.cursor = 'pointer';
+                examBtn.style.opacity = '1';
+                examMsg.style.display = 'none';
+            } else {
+                examBtn.disabled = true;
+                examBtn.style.cursor = 'not-allowed';
+                examBtn.style.opacity = '0.6';
+                examMsg.style.display = 'block';
+            }
+        }
+
+        function goToExam() {
             if (completed.length === modules.length) {
-                document.getElementById('exam-btn-container').classList.remove('hidden');
+                showPage('examen');
             }
         }
 
