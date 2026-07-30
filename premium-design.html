@@ -191,7 +191,7 @@
                 <li><button class="nav-btn active" data-page="inicio">Inicio</button></li>
                 <li><button class="nav-btn" data-page="cursos">Cursos</button></li>
                 <li><button class="nav-btn" data-page="examen">Examen</button></li>
-                <li><a href="mailto:contacto@afanmarketing.com" class="nav-btn" style="text-decoration: none; cursor: pointer;">📧 Contacto</a></li>
+                <li><a href="mailto:contacto@afanmarketing.com" class="nav-btn" style="text-decoration: none; cursor: pointer;">Contacto</a></li>
             </ul>
             <div class="navbar-actions">
                 <a href="#" onclick="showPage('inicio'); return false;" class="navbar-logo" title="AFAN Marketing">
@@ -219,10 +219,10 @@
                     <div class="hero-social"><span class="stars">★★★★★</span> Más de 3.000 profesionales capacitados</div>
                     <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e0e0e0;">
                         <p style="font-size: 13px; color: #666; margin-bottom: 12px;">¿Tienes preguntas sobre la capacitación?</p>
-                        <a href="mailto:contacto@afanmarketing.com" style="display: inline-block; padding: 10px 20px; background: #f0f0f0; color: #000; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s; border: 1px solid #e0e0e0;">📧 Contacta con AFAN Marketing</a>
+                        <a href="mailto:contacto@afanmarketing.com" style="display: inline-block; padding: 10px 20px; background: #f0f0f0; color: #000; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 13px; transition: all 0.2s; border: 1px solid #e0e0e0;">Contacta con AFAN Marketing</a>
                     </div>
                 </div>
-                <div class="hero-visual">📚</div>
+                <div class="hero-visual" style="color: #3b82f6; font-weight: 700;">APRENDE</div>
             </div>
         </div>
     </section>
@@ -257,11 +257,11 @@
                         <div>
                             <h2 class="modulo-title" id="modulo-title">Módulo</h2>
                         </div>
-                        <div class="modulo-icon" id="modulo-icon">📋</div>
+                        <div class="modulo-icon" id="modulo-icon">[MÓDULO]</div>
                     </div>
                     <div class="modulo-content" id="modulo-content"></div>
                     <div class="modulo-actions" id="modulo-actions">
-                        <button class="btn btn-secondary" onclick="startModuleQuiz(currentModuleId)">📝 Hacer Quiz del Módulo</button>
+                        <button class="btn btn-secondary" onclick="startModuleQuiz(currentModuleId)">Hacer Quiz del Módulo</button>
                         <button class="btn btn-back" onclick="showPage('cursos')">Volver a Cursos</button>
                         <button class="btn btn-primary" onclick="completeCurrentModule()">Marcar como Completado</button>
                     </div>
@@ -271,7 +271,7 @@
                         <div>
                             <h2 class="modulo-title" id="quiz-title">Quiz</h2>
                         </div>
-                        <div class="modulo-icon">📝</div>
+                        <div class="modulo-icon">[QUIZ]</div>
                     </div>
                     <div class="exam-container" id="quiz-container"></div>
                     <div class="btn-group">
@@ -286,7 +286,7 @@
     <section id="examen" class="page hidden">
         <div class="main">
             <h2 class="section-title">Examen Final</h2>
-            <p class="section-subtitle">Responde correctamente al menos 4 de 5 preguntas (80%)</p>
+            <p class="section-subtitle">Responde correctamente al menos 12 de 15 preguntas (80%)</p>
             <div class="exam-container" id="exam-container"></div>
             <div class="btn-group">
                 <button class="btn-back" data-page="cursos">Volver</button>
@@ -298,7 +298,7 @@
     <section id="resultado" class="page hidden">
         <div class="main">
             <div class="result-container">
-                <div class="result-icon" id="result-icon">🎉</div>
+                <div class="result-icon" id="result-icon">[RESULTADO]</div>
                 <h2 class="result-title" id="result-title">¡Aprobado!</h2>
                 <div class="result-score" id="result-score">5/5 correctas (100%)</div>
             </div>
@@ -338,17 +338,17 @@
 
     <script>
         const modules = [
-            { id: 1, title: 'Introducción a la Ley 21.719', time: '15 min', icon: '📋', desc: 'Fundamentos y objetivos de la Ley de Protección de Datos Personales.' },
-            { id: 2, title: 'Derechos de los Titulares', time: '20 min', icon: '👤', desc: 'Derechos fundamentales de las personas respecto a sus datos.' },
-            { id: 3, title: 'Obligaciones de Responsables', time: '25 min', icon: '⚖️', desc: 'Responsabilidades de quienes recopilan y procesan datos.' },
-            { id: 4, title: 'Seguridad y Privacidad', time: '20 min', icon: '🔒', desc: 'Medidas de protección y seguridad de datos personales.' },
-            { id: 5, title: 'Cumplimiento Normativo', time: '15 min', icon: '✅', desc: 'Cómo implementar medidas de cumplimiento en tu organización.' }
+            { id: 1, title: 'Introducción a la Ley 21.719', time: '15 min', icon: '[1]', desc: 'Fundamentos y objetivos de la Ley de Protección de Datos Personales.' },
+            { id: 2, title: 'Derechos de los Titulares', time: '20 min', icon: '[2]', desc: 'Derechos fundamentales de las personas respecto a sus datos.' },
+            { id: 3, title: 'Obligaciones de Responsables', time: '25 min', icon: '[3]', desc: 'Responsabilidades de quienes recopilan y procesan datos.' },
+            { id: 4, title: 'Seguridad y Privacidad', time: '20 min', icon: '[4]', desc: 'Medidas de protección y seguridad de datos personales.' },
+            { id: 5, title: 'Cumplimiento Normativo', time: '15 min', icon: '[5]', desc: 'Cómo implementar medidas de cumplimiento en tu organización.' }
         ];
 
         const modulesContent = {
             1: {
                 title: 'Introducción a la Ley 21.719',
-                icon: '📋',
+                icon: '[MÓDULO 1]',
                 content: `
                     <div class="modulo-section">
                         <h3>Qué es la Ley 21.719</h3>
@@ -401,7 +401,7 @@
             },
             2: {
                 title: 'Derechos de los Titulares',
-                icon: '👤',
+                icon: '[MÓDULO 2]',
                 content: `
                     <div class="modulo-section">
                         <h3>Los 6 Derechos Fundamentales</h3>
@@ -441,7 +441,7 @@
             },
             3: {
                 title: 'Obligaciones de Responsables',
-                icon: '⚖️',
+                icon: '[MÓDULO 3]',
                 content: `
                     <div class="modulo-section">
                         <h3>Obligaciones fundamentales de los Responsables</h3>
@@ -480,7 +480,7 @@
             },
             4: {
                 title: 'Seguridad y Privacidad',
-                icon: '🔒',
+                icon: '[MÓDULO 4]',
                 content: `
                     <div class="modulo-section">
                         <h3>Medidas de Seguridad para Proteger Datos</h3>
@@ -525,7 +525,7 @@
             },
             5: {
                 title: 'Cumplimiento Normativo',
-                icon: '✅',
+                icon: '[MÓDULO 5]',
                 content: `
                     <div class="modulo-section">
                         <h3>6 Pasos para Implementar Cumplimiento Normativo</h3>
@@ -612,15 +612,10 @@
                 title: 'Quiz Módulo 1: Introducción a la Ley 21.719',
                 questions: [
                     { id: 1, q: '¿En qué fecha entró en vigencia la Ley 21.719?', o: ['28 de septiembre de 2022', '28 de septiembre de 2023', '1 de enero de 2023', '15 de marzo de 2024'], c: 1, e: 'La Ley 21.719 fue publicada en el Diario Oficial el 28 de septiembre de 2022, pero entró en vigencia el 28 de septiembre de 2023, un año después de su publicación.' },
-                    { id: 2, q: '¿Cuál de las siguientes NO es una razón por la que existe la Ley 21.719?', o: ['Proteger derechos fundamentales', 'Equilibrar protección con libre circulación de información', 'Aumentar recolección de datos sin restricciones', 'Alinearse con estándares internacionales'], c: 2, e: 'La Ley 21.719 busca proteger derechos, no aumentar la recolección sin restricciones. Sus objetivos son equilibrar la protección con la circulación de información y alinearse con estándares internacionales como el GDPR.' },
-                    { id: 3, q: 'La Ley 21.719 se alinea con qué estándar internacional?', o: ['GDPR de la Unión Europea', 'CCPA de California', 'LGPD de Brasil', 'Todas las anteriores'], c: 0, e: 'Aunque existen otros estándares como CCPA y LGPD, la Ley 21.719 se alinea específicamente con el GDPR (Reglamento General de Protección de Datos) de la Unión Europea, que es el estándar más estricto y completo.' },
-                    { id: 4, q: '¿Quién es considerado "Titular" según la Ley 21.719?', o: ['Personas jurídicas que recopilan datos', 'Personas naturales cuyos datos son tratados', 'La DGDP', 'Terceros que procesan datos'], c: 1, e: 'El Titular es la persona natural cuya información personal es tratada. En cambio, el Responsable es quien recopila los datos y el Encargado es quien los procesa en nombre del Responsable.' },
-                    { id: 5, q: '¿Cuál es el organismo fiscalizador de la Ley 21.719?', o: ['Sernac', 'Dirección General de Protección de Datos (DGDP)', 'Superintendencia de Valores', 'Ministerio del Interior'], c: 1, e: 'La DGDP (Dirección General de Protección de Datos Personales) es el organismo encargado de fiscalizar el cumplimiento de la Ley 21.719, investigar denuncias y imponer sanciones.' },
-                    { id: 6, q: '¿Qué normativa anterior fue modernizada por la Ley 21.719?', o: ['Ley 19.496', 'Ley 19.628', 'Ley 19.912', 'Ninguna, fue la primera'], c: 1, e: 'La Ley 21.719 moderniza la Ley 19.628 sobre Protección de Datos, que databa de 1999 y necesitaba actualizarse para la era digital.' },
-                    { id: 7, q: 'Un hospital que maneja historiales médicos, ¿está obligado a cumplir con la Ley 21.719?', o: ['Solo si es privado', 'Solo si es público', 'Sí, siempre que trate datos personales', 'No, está exento por ser salud'], c: 2, e: 'Todos los responsables que traten datos personales, sin importar si son públicos, privados o el sector (salud, educación, finanzas), deben cumplir con la Ley 21.719.' },
-                    { id: 8, q: '¿Cuál de estos es un objetivo principal de la Ley 21.719?', o: ['Prohibir completamente la recolección de datos', 'Establecer derechos y obligaciones de titulares y responsables', 'Eliminar el uso de datos para investigación', 'Crear impuestos sobre datos'], c: 1, e: 'El objetivo es equilibrar derechos y obligaciones: proteger a los titulares mientras permite que las organizaciones usen datos lícitamente bajo condiciones claras y trasparentes.' },
-                    { id: 9, q: '¿Qué es un "Responsable" en el contexto de la Ley?', o: ['La persona cuya información es tratada', 'Quien recopila y procesa datos personales', 'El fiscalizador de la ley', 'Un tercero autorizado por la DGDP'], c: 1, e: 'El Responsable es la persona natural o jurídica que decide recopilar y procesar datos. Por ejemplo, Netflix es el Responsable de los datos de sus usuarios.' },
-                    { id: 10, q: '¿En qué contexto fue creada la Ley 21.719?', o: ['Reducción de tecnología', 'Transformación digital e internet', 'Emergencia sanitaria', 'Reforma tributaria'], c: 1, e: 'La Ley fue creada en el contexto de la transformación digital, donde cada vez más datos se recopilan, procesan y comparten en línea, necesitando protección.' }
+                    { id: 2, q: '¿Cuál es el organismo fiscalizador de la Ley 21.719?', o: ['Sernac', 'Dirección General de Protección de Datos (DGDP)', 'Superintendencia de Valores', 'Ministerio del Interior'], c: 1, e: 'La DGDP (Dirección General de Protección de Datos Personales) es el organismo encargado de fiscalizar el cumplimiento de la Ley 21.719, investigar denuncias e imponer sanciones.' },
+                    { id: 3, q: '¿Quién es considerado "Titular" según la Ley 21.719?', o: ['Personas jurídicas que recopilan datos', 'Personas naturales cuyos datos son tratados', 'La DGDP', 'Terceros que procesan datos'], c: 1, e: 'El Titular es la persona natural cuya información personal es tratada. En cambio, el Responsable es quien recopila los datos y el Encargado es quien los procesa en nombre del Responsable.' },
+                    { id: 4, q: '¿En qué contexto fue creada la Ley 21.719?', o: ['Reducción de tecnología', 'Transformación digital e internet', 'Emergencia sanitaria', 'Reforma tributaria'], c: 1, e: 'La Ley fue creada en el contexto de la transformación digital, donde cada vez más datos se recopilan, procesan y comparten en línea, necesitando protección.' },
+                    { id: 5, q: '¿La Ley 21.719 se alinea con qué estándar internacional?', o: ['GDPR de la Unión Europea', 'CCPA de California', 'LGPD de Brasil', 'Ninguno'], c: 0, e: 'La Ley 21.719 se alinea específicamente con el GDPR (Reglamento General de Protección de Datos) de la Unión Europea, que es el estándar más estricto y completo en protección de datos.' }
                 ]
             },
             2: {
@@ -629,28 +624,18 @@
                     { id: 1, q: '¿Cuántos derechos fundamentales reconoce la Ley 21.719?', o: ['3 derechos', '5 derechos', '6 derechos', '8 derechos'], c: 2, e: 'La Ley reconoce 6 derechos fundamentales: Acceso, Rectificación, Eliminación, Oposición, Portabilidad y No ser sometido a decisiones automatizadas.' },
                     { id: 2, q: '¿Cuál es el plazo máximo para responder una solicitud de acceso a datos?', o: ['7 días', '15 días', '30 días', '60 días'], c: 2, e: 'Las organizaciones tienen 30 días hábiles para responder a una solicitud de acceso. Este plazo es fundamental para garantizar que los titulares puedan ejercer eficientemente sus derechos.' },
                     { id: 3, q: 'El derecho de acceso, ¿tiene algún costo para la persona?', o: ['Sí, debe pagar por cada solicitud', 'Sí, pero es reducido (máximo UF1)', 'No, debe ser gratuito', 'Costo determinado por la empresa'], c: 2, e: 'El derecho de acceso es completamente gratuito. La Ley prohibe cobrar a los titulares por ejercer sus derechos, para garantizar que todos, sin importar recursos, puedan acceder.' },
-                    { id: 4, q: '¿Cuál es otro nombre para el "Derecho de Eliminación"?', o: ['Derecho de borrado', 'Derecho al olvido', 'Derecho de desaparición', 'Ambas opciones B y C'], c: 1, e: 'El "Derecho de Eliminación" se conoce comúnmente como "Derecho al Olvido", permitiendo que las personas soliciten que se borren sus datos cuando ya no son necesarios.' },
-                    { id: 5, q: '¿El Derecho de Rectificación permite corregir qué tipo de datos?', o: ['Solo datos erróneos', 'Solo datos incompletos', 'Datos inexactos, incompletos u obsoletos', 'Solo datos de edad'], c: 2, e: 'Este derecho permite corregir datos que sean inexactos (erróneos), incompletos (falta información) u obsoletos (antiguo). Por ejemplo, una dirección incorrecta, un teléfono incompleto o un trabajo antiguo.' },
-                    { id: 6, q: '¿Quién puede oponerse al tratamiento de sus datos?', o: ['Solo personas mayores de 18', 'Solo ciudadanos chilenos', 'Cualquier persona titular de datos', 'Solo empresas'], c: 2, e: 'Cualquier titular de datos, sin importar edad, nacionalidad o tipo de persona, puede oponerse al tratamiento de sus datos en ciertos casos (especialmente para marketing).' },
-                    { id: 7, q: '¿Qué permite el Derecho de Portabilidad?', o: ['Llevar datos impresos a otro lugar', 'Recibir datos en formato estructurado y transmitirlos a otro responsable', 'Acceder a datos desde cualquier dispositivo', 'Vender tus datos a otros'], c: 1, e: 'La Portabilidad permite recibir tus datos en un formato estructurado (como CSV o JSON) para trasladarlos a otro proveedor de servicios sin obstáculos técnicos.' },
-                    { id: 8, q: '¿El Derecho a No Ser Objeto de Decisiones Automatizadas permite qué?', o: ['Rechazar recomendaciones de algoritmos', 'No ser sometido a decisiones basadas únicamente en automatización', 'Pedir que todas las decisiones sean manuales', 'Bloquear toda tecnología'], c: 1, e: 'Este derecho protege contra decisiones puramente automatizadas que afecten derechos fundamentales. Por ejemplo, un banco no puede negar un préstamo solo por un algoritmo sin revisión humana.' },
-                    { id: 9, q: 'Si Netflix almacena tu historial de visualización, ¿puedes solicitar verlo?', o: ['No, es propiedad de Netflix', 'Sí, usando el Derecho de Acceso', 'Solo si eres suscriptor Premium', 'Solo en Chile'], c: 1, e: 'Sí, Netflix debe mostrarte todos tus datos (historial, preferencias, datos de pago) dentro de 30 días sin cobrar nada, usando el Derecho de Acceso.' },
-                    { id: 10, q: '¿Puede una empresa negar el Derecho de Acceso si el usuario es moroso?', o: ['Sí, puede negarlo', 'Solo si es deuda muy alta', 'No, los derechos son independientes de otras relaciones', 'Depende del tipo de empresa'], c: 2, e: 'No. Los derechos de protección de datos son independientes de otras relaciones comerciales. Un banco no puede negar el acceso a datos de un cliente solo porque deba dinero.' }
+                    { id: 4, q: '¿El Derecho a No Ser Objeto de Decisiones Automatizadas permite qué?', o: ['Rechazar recomendaciones de algoritmos', 'No ser sometido a decisiones basadas únicamente en automatización', 'Pedir que todas las decisiones sean manuales', 'Bloquear toda tecnología'], c: 1, e: 'Este derecho protege contra decisiones puramente automatizadas que afecten derechos fundamentales. Por ejemplo, un banco no puede negar un préstamo solo por un algoritmo sin revisión humana.' },
+                    { id: 5, q: '¿Puede una empresa negar el Derecho de Acceso si el usuario es moroso?', o: ['Sí, puede negarlo', 'Solo si es deuda muy alta', 'No, los derechos son independientes de otras relaciones', 'Depende del tipo de empresa'], c: 2, e: 'No. Los derechos de protección de datos son independientes de otras relaciones comerciales. Un banco no puede negar el acceso a datos de un cliente solo porque deba dinero.' }
                 ]
             },
             3: {
                 title: 'Quiz Módulo 3: Obligaciones de Responsables',
                 questions: [
                     { id: 1, q: '¿Cuándo debe obtenerse consentimiento para recopilar datos?', o: ['Después de recopilar los datos', 'Previo, informado, específico e inequívoco', 'Nunca es necesario', 'Solo para datos de contacto'], c: 1, e: 'El consentimiento DEBE obtenerse ANTES de recopilar datos, ser informado (saber qué se recopia), específico (para cada uso) e inequívoco (no ambiguo).' },
-                    { id: 2, q: '¿El consentimiento obtenido tácitamente (no responder = sí) es válido?', o: ['Sí, es válido', 'No, debe ser explícito', 'Solo para mensajes de marketing', 'Depende del tipo de datos'], c: 1, e: 'No. El silencio o la inacción no equivalen a consentimiento. Debe ser explícito, por ejemplo, marcar una casilla o hacer clic en "Acepto". La Ley prohíbe los opt-out presuntos.' },
-                    { id: 3, q: '¿Qué obligación tiene un responsable respecto a la TRANSPARENCIA?', o: ['Mantener secreto total de sus prácticas', 'Proporcionar información clara sobre identidad, fines, datos y derechos', 'Publicar solo en redes sociales', 'Nada, es opcional'], c: 1, e: 'Los responsables DEBEN ser transparentes: publicar política de privacidad clara, explicar qué datos recopilan, para qué, con quién comparten y qué derechos tienen los titulares.' },
-                    { id: 4, q: '¿Cuál es el plazo máximo para notificar una brecha de seguridad?', o: ['24 horas', '48 horas', '72 horas', '30 días'], c: 2, e: 'Las brechas de seguridad deben notificarse a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas desde que se descubra.' },
-                    { id: 5, q: '¿Un banco que sufre un ataque cibernético está obligado a notificar?', o: ['No, es privado', 'Solo si más de 100 clientes fueron afectados', 'Sí, debe notificar a DGDP y afectados', 'Solo si es información de tarjetas'], c: 2, e: 'Sí, cualquier organización, pública o privada, DEBE notificar de brechas que expongan datos personales, sin importar cuántos clientes se vean afectados.' },
-                    { id: 6, q: '¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UF', '500 UF', '2.700 UF', 'Sin límite'], c: 2, e: 'La multa máxima es de 2.700 Unidades de Fomento (UF), equivalente a aproximadamente $100 millones USD. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento.' },
-                    { id: 7, q: '¿Una empresa pequeña está obligada a cumplir con la Ley 21.719?', o: ['No, solo empresas grandes', 'Solo si tiene más de 50 empleados', 'Sí, todas las organizaciones que traten datos', 'Solo si tiene sitio web'], c: 2, e: 'Sí. Toda organización, sin importar tamaño (desde freelancers hasta corporaciones), que trate datos personales está obligada a cumplir la Ley 21.719.' },
-                    { id: 8, q: '¿Qué medidas organizacionales DEBE implementar un responsable?', o: ['Solo encriptación', 'Capacitación de personal, control de acceso, auditorías', 'Nada, solo son recomendaciones', 'Solo contraseñas'], c: 1, e: 'Las medidas organizacionales incluyen: capacitación continua de empleados, control de acceso según roles, auditorías regulares, designación de DPO, y políticas documentadas de seguridad.' },
-                    { id: 9, q: '¿Puede una empresa compartir datos con terceros sin consentimiento?', o: ['Sí, siempre', 'No, debe informar y obtener consentimiento', 'Solo en casos específicos con notificación', 'Opciones B y C'], c: 3, e: 'No sin consentimiento. La Ley permite compartir datos con terceros en algunos casos específicos (requisito legal, interés legítimo documentado) pero el titular debe ser informado de antemano.' },
-                    { id: 10, q: '¿Quién es responsable de cumplir con la Ley en una empresa?', o: ['Solo el Gerente de TI', 'El gerente general y toda la organización', 'Solo el abogado', 'La DGDP'], c: 1, e: 'Es responsabilidad de toda la organización, incluyendo gerencia, empleados y departamentos. No es solo del área de TI o legal. La Ley exige cumplimiento por diseño en toda la empresa.' }
+                    { id: 2, q: '¿Qué obligación tiene un responsable respecto a la TRANSPARENCIA?', o: ['Mantener secreto total de sus prácticas', 'Proporcionar información clara sobre identidad, fines, datos y derechos', 'Publicar solo en redes sociales', 'Nada, es opcional'], c: 1, e: 'Los responsables DEBEN ser transparentes: publicar política de privacidad clara, explicar qué datos recopilan, para qué, con quién comparten y qué derechos tienen los titulares.' },
+                    { id: 3, q: '¿Cuál es el plazo máximo para notificar una brecha de seguridad?', o: ['24 horas', '48 horas', '72 horas', '30 días'], c: 2, e: 'Las brechas de seguridad deben notificarse a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas desde que se descubra.' },
+                    { id: 4, q: '¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UF', '500 UF', '2.700 UF', 'Sin límite'], c: 2, e: 'La multa máxima es de 2.700 Unidades de Fomento (UF), equivalente a aproximadamente $100 millones USD. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento.' },
+                    { id: 5, q: '¿Una empresa pequeña está obligada a cumplir con la Ley 21.719?', o: ['No, solo empresas grandes', 'Solo si tiene más de 50 empleados', 'Sí, todas las organizaciones que traten datos', 'Solo si tiene sitio web'], c: 2, e: 'Sí. Toda organización, sin importar tamaño (desde freelancers hasta corporaciones), que trate datos personales está obligada a cumplir la Ley 21.719.' }
                 ]
             },
             4: {
@@ -659,13 +644,8 @@
                     { id: 1, q: '¿Qué es la encriptación end-to-end como usa WhatsApp?', o: ['Guardar datos en dos servidores', 'Codificar datos para que ni siquiera el proveedor pueda leerlos', 'Controlar acceso al teléfono', 'Borrar mensajes automáticamente'], c: 1, e: 'End-to-end significa que solo el remitente y el destinatario pueden leer los mensajes. Ni WhatsApp, ni hackers, ni gobiernos pueden interceptar y leer los datos sin la clave de desencriptación.' },
                     { id: 2, q: '¿Cuál es el propósito de la Autenticación Multifactor (MFA)?', o: ['Aumentar la complejidad innecesariamente', 'Requerir múltiples formas de verificación de identidad', 'Ralentizar el acceso a propósito', 'Solo es para hackers'], c: 1, e: 'MFA requiere 2+ formas de verificación (contraseña + código SMS + huella dactilar). Protege contra acceso no autorizado incluso si la contraseña se compromete.' },
                     { id: 3, q: '¿Un firewall protege contra qué?', o: ['Virus en archivos descargados', 'Tráfico no autorizado hacia sistemas', 'Errores de usuario', 'Nada, es obsoleto'], c: 1, e: 'Un firewall filtra el tráfico de red, bloqueando intentos de acceso no autorizados a sistemas internos. Es como un guardia que revisa quién puede entrar a una red corporativa.' },
-                    { id: 4, q: '¿Con qué frecuencia se RECOMIENDA realizar backups de datos?', o: ['Una vez al año', 'Diariamente o según criticidad', 'Nunca son necesarios', 'Solo cuando hay problemas'], c: 1, e: 'Se recomiendan backups diarios para datos críticos. La frecuencia depende de cuán rápido cambian los datos. Un hospital: diariamente. Un blog: semanalmente.' },
-                    { id: 5, q: '¿Qué significa "datos en tránsito"?', o: ['Datos borrados', 'Datos siendo transferidos entre sistemas', 'Datos en backup', 'Datos obsoletos'], c: 1, e: 'Datos en tránsito = datos siendo transferidos (email, navegación web, sincronización en la nube). Requieren encriptación diferente que los datos en reposo (almacenados).' },
-                    { id: 6, q: '¿Cuál es una medida ORGANIZACIONAL (no técnica) de seguridad?', o: ['Encriptación', 'Capacitación de personal', 'Firewalls', 'Backups automáticos'], c: 1, e: 'Medidas organizacionales: capacitación, políticas, roles, auditorías, procedimientos. Técnicas: encriptación, firewalls, backups. Las mejores defenses combinan ambas.' },
-                    { id: 7, q: '¿El control de acceso basado en roles significa qué?', o: ['Todos los empleados acceden a todos los datos', 'Solo el CEO accede a datos', 'Limitar acceso según responsabilidades de cada persona', 'Acceso mediante contraseña solamente'], c: 2, e: 'Acceso basado en roles (RBAC): un contador accede a datos de gastos, pero no a historiales médicos. Cada persona solo ve lo necesario para su trabajo (principio de menor privilegio).' },
-                    { id: 8, q: '¿Una auditoría interna de seguridad qué busca descubrir?', o: ['Errores gramaticales', 'Vulnerabilidades y cumplimiento de medidas de seguridad', 'Empleados perezosos', 'Costos de operación'], c: 1, e: 'Las auditorías internas descubren vulnerabilidades (acceso incorrecto, sistemas sin parches, backups fallidos) y evalúan si se cumplen políticas de seguridad documentadas.' },
-                    { id: 9, q: '¿Qué debe incluir un Plan de Respuesta a Incidentes?', o: ['Recetas de cocina', 'Detección, investigación, notificación, mitigación', 'Solo un número de teléfono', 'Nada formal'], c: 1, e: 'Plan de Respuesta completo: equipo de respuesta designado, procedimiento de detección, investigación forense, comunicación interna/externa, notificación a DGDP, medidas de mitigación y lecciones aprendidas.' },
-                    { id: 10, q: '¿Por qué son importantes las actualizaciones de software?', o: ['Para agregar nuevas funciones', 'Para corregir vulnerabilidades de seguridad', 'Es solo una molestia', 'No importan'], c: 1, e: 'Las actualizaciones corrigen vulnerabilidades (agujeros de seguridad) que los hackers explotan. Un parche sin aplicar = puerta abierta. Se debe aplicar en 24-48 horas para vulnerabilidades críticas.' }
+                    { id: 4, q: '¿El control de acceso basado en roles significa qué?', o: ['Todos los empleados acceden a todos los datos', 'Solo el CEO accede a datos', 'Limitar acceso según responsabilidades de cada persona', 'Acceso mediante contraseña solamente'], c: 2, e: 'Acceso basado en roles (RBAC): un contador accede a datos de gastos, pero no a historiales médicos. Cada persona solo ve lo necesario para su trabajo (principio de menor privilegio).' },
+                    { id: 5, q: '¿Por qué son importantes las actualizaciones de software?', o: ['Para agregar nuevas funciones', 'Para corregir vulnerabilidades de seguridad', 'Es solo una molestia', 'No importan'], c: 1, e: 'Las actualizaciones corrigen vulnerabilidades (agujeros de seguridad) que los hackers explotan. Un parche sin aplicar = puerta abierta. Se debe aplicar en 24-48 horas para vulnerabilidades críticas.' }
                 ]
             },
             5: {
@@ -674,18 +654,29 @@
                     { id: 1, q: '¿Cuál es el PRIMER paso para implementar cumplimiento normativo?', o: ['Comprar software de seguridad', 'Realizar una auditoría de datos', 'Contratar a un DPO', 'Publicar política de privacidad'], c: 1, e: 'La auditoría de datos es el primer paso: descubrir qué datos tienes, dónde están, quién los usa, cuánto tiempo se guardan, y qué riesgos existen. Sin esta información, no sabes qué proteger.' },
                     { id: 2, q: '¿Qué debe incluir una Política de Privacidad?', o: ['Solo el nombre de la empresa', 'Qué datos se recopilan, para qué, derechos del usuario', 'Precios de productos', 'Fotos del equipo'], c: 1, e: 'Debe explicar: identidad del responsable, qué datos se recopilan, para qué se usan, con quién se comparten, cuánto tiempo se guardan, y cómo ejercer los 6 derechos fundamentales.' },
                     { id: 3, q: '¿Un pequeño negocio necesita designar un DPO dedicado a tiempo completo?', o: ['Sí, es obligatorio', 'No, pueden designar a un responsable interno', 'Nunca es necesario', 'Solo si tiene 1000+ clientes'], c: 1, e: 'No es obligatorio un DPO dedicado. Pueden designar un empleado existente (dueño, gerente) como responsable de protección de datos con funciones claras documentadas.' },
-                    { id: 4, q: '¿Cuál es la responsabilidad del DPO?', o: ['Vender productos', 'Supervisar cumplimiento, atender solicitudes, auditorías', 'Hacer marketing', 'Contratar empleados'], c: 1, e: 'El DPO (o responsable de datos) supervisa cumplimiento diario, atiende solicitudes de derechos, gestiona relaciones con DGDP, coordina capacitación y realiza auditorías internas.' },
-                    { id: 5, q: '¿La encriptación es importante para cumplimiento normativo?', o: ['No, es opcional', 'Sí, es una medida técnica esencial', 'Solo para bancos', 'Solo para datos médicos'], c: 1, e: 'Sí, encriptación es una medida técnica fundamental. Protege datos en reposo y en tránsito, y es un requisito básico para cualquier organización que cumpla con la Ley 21.719.' },
-                    { id: 6, q: '¿Con qué frecuencia se recomienda capacitar a empleados?', o: ['Una sola vez', 'Continuamente (mensual, trimestral, etc)', 'Nunca es necesario', 'Solo los nuevos'], c: 1, e: 'Capacitación continua es esencial. Se recomienda: capacitación inicial para todos, refuerzo mensual sobre amenazas, entrenamiento trimestral de seguridad, y sesiones de inducción para nuevos empleados.' },
-                    { id: 7, q: '¿Qué es un "Política de Retención de Datos"?', o: ['Guardar datos eternamente', 'Especificar cuánto tiempo se guardan datos antes de eliminarlos', 'Copiar datos múltiples veces', 'Vender datos antiguos'], c: 1, e: 'Especifica cuánto tiempo se guardan datos según su tipo y propósito. Ej: emails de clientes = 3 años, registros de transacciones = 7 años según ley tributaria, datos de aplicantes rechazados = 6 meses.' },
-                    { id: 8, q: '¿Pasos concretos para pequeño negocio que guarda datos de clientes?', o: ['Ignorar la ley', 'Usar Google Workspace, contraseñas fuertes, backups regulares', 'Guardar en carpeta sin protección', 'Compartir datos públicamente'], c: 1, e: 'Pasos concretos: usar Google Workspace (encriptado), establecer contraseñas de 12+ caracteres, hacer backups semanales a nube, documentar política de privacidad, capacitar a empleados, auditar acceso cada trimestre.' },
-                    { id: 9, q: '¿Con qué frecuencia se recomienda revisar cumplimiento normativo?', o: ['Una vez cada 5 años', 'Nunca después de implementar', 'Mensual o trimestral', 'Solo cuando hay problemas'], c: 2, e: 'Revisión continua: auditorías mensuales de acceso, revisión trimestral de políticas, análisis anual de cumplimiento. Las leyes cambian y surgen nuevas amenazas regularmente.' },
-                    { id: 10, q: '¿Qué es el monitoreo continuo en cumplimiento normativo?', o: ['Espiar a empleados', 'Revisar accesos a datos, incidentes, actualizar políticas', 'Instalar cámaras', 'Nada importante'], c: 1, e: 'Monitoreo continuo: quién accedió a datos sensibles (logs), intentos fallidos de acceso, brechas de seguridad, cambios en políticas externas, nuevas vulnerabilidades. Es vigilancia de seguridad, no de empleados.' }
+                    { id: 4, q: '¿La encriptación es importante para cumplimiento normativo?', o: ['No, es opcional', 'Sí, es una medida técnica esencial', 'Solo para bancos', 'Solo para datos médicos'], c: 1, e: 'Sí, encriptación es una medida técnica fundamental. Protege datos en reposo y en tránsito, y es un requisito básico para cualquier organización que cumpla con la Ley 21.719.' },
+                    { id: 5, q: '¿Con qué frecuencia se recomienda revisar cumplimiento normativo?', o: ['Una vez cada 5 años', 'Nunca después de implementar', 'Mensual o trimestral', 'Solo cuando hay problemas'], c: 2, e: 'Revisión continua: auditorías mensuales de acceso, revisión trimestral de políticas, análisis anual de cumplimiento. Las leyes cambian y surgen nuevas amenazas regularmente.' }
                 ]
             }
         };
 
-        const questions = quizzes[5].questions;
+        const questions = [
+            { id: 1, q: '[Módulo 1] ¿En qué fecha entró en vigencia la Ley 21.719?', o: ['28 de septiembre de 2022', '28 de septiembre de 2023', '1 de enero de 2023', '15 de marzo de 2024'], c: 1, e: 'La Ley 21.719 fue publicada en el Diario Oficial el 28 de septiembre de 2022, pero entró en vigencia el 28 de septiembre de 2023, un año después de su publicación.' },
+            { id: 2, q: '[Módulo 1] ¿Cuál es el organismo fiscalizador de la Ley 21.719?', o: ['Sernac', 'Dirección General de Protección de Datos (DGDP)', 'Superintendencia de Valores', 'Ministerio del Interior'], c: 1, e: 'La DGDP (Dirección General de Protección de Datos Personales) es el organismo encargado de fiscalizar el cumplimiento de la Ley 21.719, investigar denuncias e imponer sanciones.' },
+            { id: 3, q: '[Módulo 1] ¿La Ley 21.719 se alinea con qué estándar internacional?', o: ['GDPR de la Unión Europea', 'CCPA de California', 'LGPD de Brasil', 'Ninguno'], c: 0, e: 'La Ley 21.719 se alinea específicamente con el GDPR (Reglamento General de Protección de Datos) de la Unión Europea, que es el estándar más estricto y completo en protección de datos.' },
+            { id: 4, q: '[Módulo 2] ¿Cuántos derechos fundamentales reconoce la Ley 21.719?', o: ['3 derechos', '5 derechos', '6 derechos', '8 derechos'], c: 2, e: 'La Ley reconoce 6 derechos fundamentales: Acceso, Rectificación, Eliminación, Oposición, Portabilidad y No ser sometido a decisiones automatizadas.' },
+            { id: 5, q: '[Módulo 2] ¿Cuál es el plazo máximo para responder una solicitud de acceso a datos?', o: ['7 días', '15 días', '30 días', '60 días'], c: 2, e: 'Las organizaciones tienen 30 días hábiles para responder a una solicitud de acceso. Este plazo es fundamental para garantizar que los titulares puedan ejercer eficientemente sus derechos.' },
+            { id: 6, q: '[Módulo 2] El derecho de acceso, ¿tiene algún costo para la persona?', o: ['Sí, debe pagar por cada solicitud', 'Sí, pero es reducido (máximo UF1)', 'No, debe ser gratuito', 'Costo determinado por la empresa'], c: 2, e: 'El derecho de acceso es completamente gratuito. La Ley prohibe cobrar a los titulares por ejercer sus derechos, para garantizar que todos, sin importar recursos, puedan acceder.' },
+            { id: 7, q: '[Módulo 3] ¿Cuándo debe obtenerse consentimiento para recopilar datos?', o: ['Después de recopilar los datos', 'Previo, informado, específico e inequívoco', 'Nunca es necesario', 'Solo para datos de contacto'], c: 1, e: 'El consentimiento DEBE obtenerse ANTES de recopilar datos, ser informado (saber qué se recopia), específico (para cada uso) e inequívoco (no ambiguo).' },
+            { id: 8, q: '[Módulo 3] ¿Cuál es el plazo máximo para notificar una brecha de seguridad?', o: ['24 horas', '48 horas', '72 horas', '30 días'], c: 2, e: 'Las brechas de seguridad deben notificarse a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas desde que se descubra.' },
+            { id: 9, q: '[Módulo 3] ¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UF', '500 UF', '2.700 UF', 'Sin límite'], c: 2, e: 'La multa máxima es de 2.700 Unidades de Fomento (UF), equivalente a aproximadamente $100 millones USD. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento.' },
+            { id: 10, q: '[Módulo 4] ¿Qué es la encriptación end-to-end?', o: ['Guardar datos en dos servidores', 'Codificar datos para que ni siquiera el proveedor pueda leerlos', 'Controlar acceso al teléfono', 'Borrar mensajes automáticamente'], c: 1, e: 'End-to-end significa que solo el remitente y el destinatario pueden leer los mensajes. Ni WhatsApp, ni hackers, ni gobiernos pueden interceptar y leer los datos sin la clave de desencriptación.' },
+            { id: 11, q: '[Módulo 4] ¿Cuál es el propósito de la Autenticación Multifactor (MFA)?', o: ['Aumentar la complejidad innecesariamente', 'Requerir múltiples formas de verificación de identidad', 'Ralentizar el acceso a propósito', 'Solo es para hackers'], c: 1, e: 'MFA requiere 2+ formas de verificación (contraseña + código SMS + huella dactilar). Protege contra acceso no autorizado incluso si la contraseña se compromete.' },
+            { id: 12, q: '[Módulo 4] ¿Un firewall protege contra qué?', o: ['Virus en archivos descargados', 'Tráfico no autorizado hacia sistemas', 'Errores de usuario', 'Nada, es obsoleto'], c: 1, e: 'Un firewall filtra el tráfico de red, bloqueando intentos de acceso no autorizados a sistemas internos. Es como un guardia que revisa quién puede entrar a una red corporativa.' },
+            { id: 13, q: '[Módulo 5] ¿Cuál es el PRIMER paso para implementar cumplimiento normativo?', o: ['Comprar software de seguridad', 'Realizar una auditoría de datos', 'Contratar a un DPO', 'Publicar política de privacidad'], c: 1, e: 'La auditoría de datos es el primer paso: descubrir qué datos tienes, dónde están, quién los usa, cuánto tiempo se guardan, y qué riesgos existen. Sin esta información, no sabes qué proteger.' },
+            { id: 14, q: '[Módulo 5] ¿La encriptación es importante para cumplimiento normativo?', o: ['No, es opcional', 'Sí, es una medida técnica esencial', 'Solo para bancos', 'Solo para datos médicos'], c: 1, e: 'Sí, encriptación es una medida técnica fundamental. Protege datos en reposo y en tránsito, y es un requisito básico para cualquier organización que cumpla con la Ley 21.719.' },
+            { id: 15, q: '[Módulo 5] ¿Con qué frecuencia se recomienda revisar cumplimiento normativo?', o: ['Una vez cada 5 años', 'Nunca después de implementar', 'Mensual o trimestral', 'Solo cuando hay problemas'], c: 2, e: 'Revisión continua: auditorías mensuales de acceso, revisión trimestral de políticas, análisis anual de cumplimiento. Las leyes cambian y surgen nuevas amenazas regularmente.' }
+        ];
 
         let completed = [];
         let answers = {};
@@ -826,13 +817,13 @@
                     if (isCorrect) {
                         questionHTML += `
                             <div class="feedback-message feedback-correct">
-                                ✓ ¡Correcto!
+                                Correcto
                             </div>
                         `;
                     } else {
                         questionHTML += `
                             <div class="feedback-message feedback-incorrect">
-                                ✗ Respuesta incorrecta
+                                Respuesta incorrecta
                             </div>
                         `;
                     }
@@ -840,7 +831,7 @@
                     // Mostrar explicación
                     questionHTML += `
                         <div class="explanation">
-                            <div class="explanation-label">📚 Explicación:</div>
+                            <div class="explanation-label">Explicación:</div>
                             ${q.e}
                         </div>
                     `;
@@ -905,7 +896,7 @@
             const summary = document.createElement('div');
             summary.style.cssText = 'background: ' + (passed ? '#dcfce7' : '#fee2e2') + '; border: 1px solid ' + (passed ? '#86efac' : '#fca5a5') + '; border-radius: 8px; padding: 24px; margin-bottom: 24px; text-align: center;';
             summary.innerHTML = `
-                <div style="font-size: 32px; margin-bottom: 12px;">${passed ? '🎉' : '📋'}</div>
+                <div style="font-size: 32px; margin-bottom: 12px;">${passed ? '[APROBADO]' : '[REVISA]'}</div>
                 <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: ${passed ? '#166534' : '#991b1b'};">
                     ${passed ? 'Excelente' : 'Necesitas mejorar'}
                 </h3>
@@ -936,11 +927,11 @@
                 <div class="card ${completed.includes(m.id) ? 'completed' : ''}">
                     <div class="card-icon">${m.icon}</div>
                     <div class="card-title">${m.title}</div>
-                    <div class="card-time">⏱️ ${m.time}</div>
+                    <div class="card-time">${m.time}</div>
                     <div class="card-desc">${m.desc}</div>
                     <div class="card-footer">
                         ${completed.includes(m.id) ?
-                            '<span class="card-check">✓ Completado</span>' :
+                            '<span class="card-check">[COMPLETADO]</span>' :
                             `<span class="card-action" onclick="viewModule(${m.id})">Ver Módulo</span>`
                         }
                     </div>
@@ -966,13 +957,13 @@
                 // Si hay progreso, mostrar opción de continuar primero
                 const continueBtn = document.createElement('button');
                 continueBtn.className = 'btn btn-primary';
-                continueBtn.textContent = '📝 Continuar Quiz';
+                continueBtn.textContent = 'Continuar Quiz';
                 continueBtn.onclick = () => startModuleQuiz(id);
                 actionsDiv.appendChild(continueBtn);
 
                 const reiniciarBtn = document.createElement('button');
                 reiniciarBtn.className = 'btn btn-secondary';
-                reiniciarBtn.textContent = '🔄 Reiniciar Quiz';
+                reiniciarBtn.textContent = 'Reiniciar Quiz';
                 reiniciarBtn.onclick = () => {
                     if (confirm('¿Estás seguro de que deseas reiniciar el quiz? Se perderán todas las respuestas anteriores.')) {
                         clearQuizProgress(id);
@@ -984,7 +975,7 @@
                 // Sin progreso, mostrar opción de hacer quiz
                 const quizBtn = document.createElement('button');
                 quizBtn.className = 'btn btn-secondary';
-                quizBtn.textContent = '📝 Hacer Quiz del Módulo';
+                quizBtn.textContent = 'Hacer Quiz del Módulo';
                 quizBtn.onclick = () => startModuleQuiz(id);
                 actionsDiv.appendChild(quizBtn);
             }
@@ -998,7 +989,7 @@
 
             const completeBtn = document.createElement('button');
             completeBtn.className = 'btn btn-primary';
-            completeBtn.textContent = 'Marcar como Completado';
+            completeBtn.textContent = 'Marcar Módulo Completado';
             completeBtn.onclick = () => completeCurrentModule();
             actionsDiv.appendChild(completeBtn);
 
@@ -1037,18 +1028,18 @@
                 if (answers[q.id] === q.c) score++;
             });
 
-            const passed = score >= 4;
-            const pct = Math.round((score / 5) * 100);
+            const passed = score >= 12;
+            const pct = Math.round((score / 15) * 100);
 
-            document.getElementById('result-icon').textContent = passed ? '🎉' : '📋';
-            document.getElementById('result-title').textContent = passed ? '¡Aprobado!' : 'No Aprobado';
-            document.getElementById('result-score').textContent = score + '/5 correctas (' + pct + '%)';
+            document.getElementById('result-icon').textContent = passed ? '[APROBADO]' : '[NO APROBADO]';
+            document.getElementById('result-title').textContent = passed ? 'Aprobado' : 'No Aprobado';
+            document.getElementById('result-score').textContent = score + '/15 correctas (' + pct + '%)';
 
             if (passed) {
                 const today = new Date().toLocaleDateString('es-CL');
                 document.getElementById('cert-container').innerHTML = `
                     <div class="certificate">
-                        <div class="cert-icon">🏆</div>
+                        <div class="cert-icon">[CERTIFICADO]</div>
                         <h3 class="cert-title">Certificado de Aprobación</h3>
                         <p class="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
                         <div class="cert-content">
@@ -1062,7 +1053,7 @@
                                 <p>Emitido: ${today}</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary" style="width: 100%;">📥 Descargar Certificado</button>
+                        <button class="btn btn-primary" style="width: 100%;">Descargar Certificado</button>
                     </div>
                 `;
             } else {
