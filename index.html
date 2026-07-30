@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capacitación Ley 21.719 - Protección de Datos</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -118,15 +119,25 @@
         #quiz-view { display: block; }
         #quiz-view.hidden { display: none; }
 
-        .certificate { background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); border: none; border-radius: 12px; padding: 40px; margin-bottom: 32px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-        .cert-icon { font-size: 56px; margin-bottom: 16px; }
-        .cert-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #000; }
-        .cert-subtitle { font-size: 13px; color: #666; margin-bottom: 20px; }
-        .cert-content { background: white; padding: 24px; border-radius: 8px; margin-bottom: 20px; border: 2px solid #fcd34d; }
-        .cert-name { font-weight: 700; margin-bottom: 4px; color: #000; }
-        .cert-email { font-size: 12px; color: #888; margin-bottom: 16px; }
-        .cert-text { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 12px; }
-        .cert-date { font-size: 11px; color: #888; padding-top: 12px; border-top: 1px solid #e5e7eb; margin-top: 12px; }
+        .certificate { background: linear-gradient(135deg, #f0f4f8 0%, #e8f1ff 100%); border: 2px solid #2563eb; border-radius: 16px; padding: 48px; margin-bottom: 32px; text-align: center; box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15); }
+        .cert-icon { font-size: 64px; margin-bottom: 24px; }
+        .cert-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #000; letter-spacing: -0.5px; }
+        .cert-subtitle { font-size: 15px; color: #2563eb; margin-bottom: 32px; font-weight: 600; }
+        .cert-content { background: white; padding: 32px; border-radius: 12px; margin-bottom: 32px; border: 2px dashed #2563eb; box-shadow: inset 0 2px 8px rgba(37, 99, 235, 0.05); }
+        .cert-name { font-weight: 800; margin-bottom: 6px; color: #000; font-size: 18px; }
+        .cert-email { font-size: 13px; color: #2563eb; margin-bottom: 20px; font-weight: 500; }
+        .cert-text { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 20px; }
+        .cert-text p { margin: 4px 0; }
+        .cert-text strong { color: #000; }
+        .cert-date { font-size: 12px; color: #666; padding-top: 16px; border-top: 1px solid #e5e7eb; margin-top: 16px; font-weight: 500; }
+        .cert-buttons { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
+        .cert-buttons button { flex: 1; min-width: 200px; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .cert-btn-pdf { background: #2563eb; color: white; }
+        .cert-btn-pdf:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2); }
+        .cert-btn-linkedin { background: #0077b5; color: white; }
+        .cert-btn-linkedin:hover { background: #006399; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 119, 181, 0.2); }
+        .cert-btn-back { background: #f3f4f6; color: #000; border: 2px solid #e5e7eb; }
+        .cert-btn-back:hover { background: #e8f1ff; border-color: #2563eb; color: #2563eb; }
 
         .btn-group { display: flex; gap: 12px; margin-top: 40px; }
         .btn-group button { flex: 1; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
@@ -283,6 +294,12 @@
             .modulo-image { height: 200px; }
             .sidebar-index { width: 100%; position: relative; top: 0; height: auto; border-right: none; border-bottom: 1px solid #e5e7eb; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
             .sidebar-index.active { max-height: 500px; }
+            .certificate { padding: 24px; }
+            .cert-icon { font-size: 48px; margin-bottom: 16px; }
+            .cert-title { font-size: 22px; }
+            .cert-content { padding: 20px; }
+            .cert-buttons { flex-direction: column; }
+            .cert-buttons button { min-width: 100%; }
         }
     </style>
 </head>
@@ -2149,23 +2166,38 @@
 
             if (passed) {
                 const today = new Date().toLocaleDateString('es-CL');
+                const userName = 'Felipe Aldunate';
+                const userEmail = 'faldunate@gmail.com';
+                const examDate = new Date();
+
                 document.getElementById('cert-container').innerHTML = `
-                    <div class="certificate">
-                        <div class="cert-icon">[CERTIFICADO]</div>
+                    <div class="certificate" id="certificate-content">
+                        <div class="cert-icon">🏆</div>
                         <h3 class="cert-title">Certificado de Aprobación</h3>
                         <p class="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
                         <div class="cert-content">
-                            <div class="cert-name">Felipe Aldunate</div>
-                            <div class="cert-email">faldunate@gmail.com</div>
+                            <div class="cert-name">${userName}</div>
+                            <div class="cert-email">${userEmail}</div>
                             <div class="cert-text">
-                                <p>Ha completado exitosamente el curso de</p>
+                                <p>Ha completado exitosamente el curso de capacitación en</p>
                                 <p><strong>Ley de Protección de Datos Personales - Ley 21.719</strong></p>
+                                <p>Puntuación: <strong>${score} de 15 correctas (${pct}%)</strong></p>
                             </div>
                             <div class="cert-date">
-                                <p>Emitido: ${today}</p>
+                                <p>Emitido en: ${today}</p>
                             </div>
                         </div>
-                        <button class="btn btn-primary" style="width: 100%;">Descargar Certificado</button>
+                        <div class="cert-buttons">
+                            <button class="cert-btn-pdf" onclick="downloadPDF('${userName}', '${userEmail}', '${today}', ${score}, ${pct})">
+                                📥 Descargar PDF
+                            </button>
+                            <button class="cert-btn-linkedin" onclick="downloadLinkedInImage('${userName}', ${pct})">
+                                💼 Descargar para LinkedIn
+                            </button>
+                            <button class="cert-btn-back" onclick="showPage('cursos')">
+                                ← Volver a Cursos
+                            </button>
+                        </div>
                     </div>
                 `;
             } else {
@@ -2173,6 +2205,120 @@
             }
 
             showPage('resultado');
+        }
+
+        // ========== FUNCIONES DE DESCARGA DE CERTIFICADOS ==========
+
+        function downloadPDF(userName, userEmail, certDate, score, percentage) {
+            const element = document.getElementById('certificate-content');
+
+            if (!element) {
+                alert('Error: No se puede encontrar el certificado');
+                return;
+            }
+
+            // Crear una copia del certificado para el PDF (sin botones)
+            const certClone = element.cloneNode(true);
+            certClone.querySelector('.cert-buttons').remove();
+
+            const opt = {
+                margin: [10, 10, 10, 10],
+                filename: `Certificado_Ley21719_${new Date().getTime()}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, logging: false, useCORS: true },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
+                pagebreak: { mode: 'css' }
+            };
+
+            // Crear elemento temporal para HTML2PDF
+            const tempDiv = document.createElement('div');
+            tempDiv.style.padding = '20px';
+            tempDiv.style.backgroundColor = '#ffffff';
+            tempDiv.appendChild(certClone);
+
+            html2pdf().set(opt).from(tempDiv).save();
+
+            console.log('✓ PDF descargado:', opt.filename);
+        }
+
+        function downloadLinkedInImage(userName, percentage) {
+            // Crear Canvas para LinkedIn (1200x630px)
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+
+            // Fondo degradado azul profesional
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#0077b5');
+            gradient.addColorStop(1, '#00d4ff');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // Logo/Badge superior
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.fillRect(50, 40, 1100, 550);
+
+            // Borde decorativo
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(60, 50, 1080, 530);
+
+            // Título principal
+            ctx.font = 'bold 48px Arial, sans-serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.textAlign = 'center';
+            ctx.fillText('CERTIFICADO', 600, 120);
+
+            // Subtítulo
+            ctx.font = '24px Arial, sans-serif';
+            ctx.fillStyle = '#e0f7ff';
+            ctx.fillText('Ley de Protección de Datos Personales', 600, 170);
+            ctx.fillText('Ley 21.719 - Chile', 600, 210);
+
+            // Nombre del estudiante
+            ctx.font = 'bold 32px Arial, sans-serif';
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(userName, 600, 310);
+
+            // Línea decorativa
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(300, 340);
+            ctx.lineTo(900, 340);
+            ctx.stroke();
+
+            // Información de aprobación
+            ctx.font = '18px Arial, sans-serif';
+            ctx.fillStyle = '#e0f7ff';
+            ctx.fillText(`Aprobado con ${percentage}% de puntuación`, 600, 410);
+
+            ctx.font = '16px Arial, sans-serif';
+            ctx.fillText(`Emitido: ${new Date().toLocaleDateString('es-CL')}`, 600, 455);
+
+            // Logo/Marca inferior
+            ctx.font = 'bold 14px Arial, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.textAlign = 'center';
+            ctx.fillText('Plataforma de Capacitación - Ley 21.719', 600, 550);
+
+            // Descargar como PNG
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `LinkedIn_Credencial_Ley21719_${new Date().getTime()}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                console.log('✓ Imagen LinkedIn descargada');
+
+                // Mostrar mensaje de éxito
+                alert('Credencial descargada. Puedes usarla en tu perfil de LinkedIn.');
+            });
         }
 
         // Event Listeners
