@@ -517,7 +517,9 @@
 
             <div id="exam-btn-container" style="text-align: center;">
                 <button id="exam-btn" class="btn btn-primary" onclick="goToExam()" disabled style="cursor: not-allowed; opacity: 0.6;">Realizar Examen Final</button>
-                <div id="exam-msg" style="margin-top: 12px; font-size: 13px; color: #666; display: none;">Completa todos los módulos para desbloquear el examen</div>
+                <div id="exam-msg" style="margin-top: 16px; padding: 12px 16px; background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; font-size: 13px; color: #92400e; font-weight: 500; display: none;">
+                    <strong>⚠️ Módulos pendientes:</strong> Completa todos los 5 módulos antes de realizar el examen final.
+                </div>
             </div>
         </div>
     </section>
@@ -965,7 +967,7 @@
                             <li><strong>Consentimiento explícito:</strong> Requiere consentimiento informado previo (no consentimiento tácito)</li>
                             <li><strong>Notificación de brechas:</strong> Obligación de notificar a DGDP en 72 horas ante brechas de seguridad</li>
                             <li><strong>Fiscalización más fuerte:</strong> Creación de la Dirección General de Protección de Datos Personales (DGDP) como organismo autónomo</li>
-                            <li><strong>Multas aumentadas:</strong> Multas de hasta 2.700 UF por infracciones graves</li>
+                            <li><strong>Multas aumentadas:</strong> Multas de hasta 20.000 UTM por infracciones graves</li>
                         </ul>
                     </div>
                     <div class="modulo-section">
@@ -1202,7 +1204,7 @@
                         <h3 id="mod3-brechas">Notificación de Brechas de Seguridad - Protocolo de Urgencia</h3>
                         <p><strong>Definición:</strong> Si ocurre una violación de seguridad que afecte datos personales (hackeo, robo físico, error de empleado, etc.), el responsable DEBE notificar: (1) A la DGDP, (2) A los titulares afectados. Plazo: "sin demora injustificada" (máximo 72 horas) desde descubrimiento.</p>
                         <p><strong>¿Qué incluye la notificación?</strong> (1) Descripción del incidente, (2) Datos que se comprometieron, (3) Número de personas afectadas, (4) Consecuencias potenciales, (5) Medidas tomadas para contener, (6) Pasos que personas deben tomar (cambiar contraseña, monitorear crédito), (7) Contacto para más info.</p>
-                        <p><strong>Caso Práctico Chileno:</strong> Un banco chileno descubre que un servidor fue hackeado y se expusieron nombres, RUTs, números de cuenta y últimas transacciones de 50.000 clientes. DEBE: (1) Notificar a DGDP dentro de 72 horas, (2) Notificar a los 50.000 clientes, (3) Ofrecer servicio de monitoreo de fraude, (4) Investigar cómo fue el hackeo, (5) Implementar medidas adicionales de seguridad, (6) Publicar comunicado transparente. Si NO notifica a tiempo, DGDP impondrá multa de hasta 2.700 UF.</p>
+                        <p><strong>Caso Práctico Chileno:</strong> Un banco chileno descubre que un servidor fue hackeado y se expusieron nombres, RUTs, números de cuenta y últimas transacciones de 50.000 clientes. DEBE: (1) Notificar a DGDP dentro de 72 horas, (2) Notificar a los 50.000 clientes, (3) Ofrecer servicio de monitoreo de fraude, (4) Investigar cómo fue el hackeo, (5) Implementar medidas adicionales de seguridad, (6) Publicar comunicado transparente. Si NO notifica a tiempo, DGDP impondrá multa de hasta 20.000 UTM.</p>
                         <p><strong>Procedimiento:</strong> Día 1 - Descubren brecha: Inician plan de respuesta, contienen el daño. Día 2-3: Investigan extensión. Día 3-4: Preparan notificación. Día 5 (máximo): Notifican a DGDP y titulares. Día 7-30: Investigación completa y reporte a DGDP.</p>
                     </div>
                     <div class="modulo-section">
@@ -1221,7 +1223,7 @@
                     <div class="modulo-section">
                         <h3 id="mod3-sanciones">Consecuencias del Incumplimiento - Régimen de Sanciones</h3>
                         <p><strong>Infracciones Leves:</strong> Multas hasta 150 UF. Ej: Demora en respuesta de solicitud, falta menor de información en política de privacidad.</p>
-                        <p><strong>Infracciones Graves:</strong> Multas hasta 2.700 UF (aprox. $100 millones CLP). Ej: No notificar brecha dentro de 72 horas, procesar datos sin consentimiento, ocultar información de DGDP.</p>
+                        <p><strong>Infracciones Graves:</strong> Multas hasta 20.000 UTM. Ej: No notificar brecha dentro de 72 horas, procesar datos sin consentimiento, ocultar información de DGDP.</p>
                         <p><strong>Ejemplos de Sanciones DGDP en Chile:</strong> (1) 2023: Empresa de retail multada por no permitir ejercicio de derechos de acceso. (2) 2023: Compañía telefónica multada por no notificar brecha a tiempo. (3) 2024: Banco multado por consentimiento insuficiente en marketing.</p>
                         <p><strong>Además de multa:</strong> DGDP puede ordenar: (1) Cesar tratamiento ilícito, (2) Eliminar datos ilícitamente recopilados, (3) Rectificar información, (4) Implementar medidas correctivas. Si no cumple orden de DGDP, multa adicional.</p>
                     </div>
@@ -1427,11 +1429,11 @@
                         <p><strong>Tipos de Infracciones:</strong></p>
                         <ul>
                             <li><strong>LEVES:</strong> Multas hasta 150 UF ($5 millones CLP). Ej: Demora en responder solicitud de acceso (aunque eventualmente responda). Política de privacidad poco clara.</li>
-                            <li><strong>GRAVES:</strong> Multas hasta 2.700 UF ($100 millones CLP). Ej: No notificar brecha dentro de 72 horas. Procesar datos sin consentimiento válido. Ocultar información a DGDP.</li>
+                            <li><strong>GRAVES:</strong> Multas hasta 20.000 UTM. Ej: No notificar brecha dentro de 72 horas. Procesar datos sin consentimiento válido. Ocultar información a DGDP.</li>
                         </ul>
                         <p><strong>Factores que Aumentan Sanción:</strong> (1) Reincidencia (violación anterior), (2) Gravedad (datos muy sensibles), (3) Alcance (muchas personas afectadas), (4) Intención (negligencia vs. deliberado)</p>
                         <p><strong>Medidas Complementarias Además de Multa:</strong> DGDP puede ordenar: (1) Cesar tratamiento ilícito inmediatamente, (2) Eliminar datos recopilados sin consentimiento, (3) Implementar medidas correctivas (ej: encriptación), (4) Auditoría externa de cumplimiento pagada por empresa</p>
-                        <p><strong>Incumplimiento de Orden de DGDP:</strong> Si empresa no acata orden (ej: sigue procesando datos cuando se le prohibió), multa adicional de hasta 2.700 UF por cada mes de incumplimiento.</p>
+                        <p><strong>Incumplimiento de Orden de DGDP:</strong> Si empresa no acata orden (ej: sigue procesando datos cuando se le prohibió), multa adicional de hasta 20.000 UTM por cada mes de incumplimiento.</p>
                     </div>
                     <div class="modulo-section">
                         <h3 id="mod5-ejemplos">Ejemplos de Sanciones Reales Emitidas por DGDP</h3>
@@ -1507,7 +1509,7 @@
                     { id: 1, q: '¿Cuándo debe obtenerse consentimiento para recopilar datos?', o: ['Después de recopilar los datos', 'Previo, informado, específico e inequívoco', 'Nunca es necesario', 'Solo para datos de contacto'], c: 1, e: 'El consentimiento DEBE obtenerse ANTES de recopilar datos, ser informado (saber qué se recopia), específico (para cada uso) e inequívoco (no ambiguo).' },
                     { id: 2, q: '¿Qué obligación tiene un responsable respecto a la TRANSPARENCIA?', o: ['Mantener secreto total de sus prácticas', 'Proporcionar información clara sobre identidad, fines, datos y derechos', 'Publicar solo en redes sociales', 'Nada, es opcional'], c: 1, e: 'Los responsables DEBEN ser transparentes: publicar política de privacidad clara, explicar qué datos recopilan, para qué, con quién comparten y qué derechos tienen los titulares.' },
                     { id: 3, q: '¿Cuál es el plazo máximo para notificar una brecha de seguridad?', o: ['24 horas', '48 horas', '72 horas', '30 días'], c: 2, e: 'Las brechas de seguridad deben notificarse a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas desde que se descubra.' },
-                    { id: 4, q: '¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UF', '500 UF', '2.700 UF', 'Sin límite'], c: 2, e: 'La multa máxima es de 2.700 Unidades de Fomento (UF), equivalente a aproximadamente $100 millones USD. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento.' },
+                    { id: 4, q: '¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UTM', '500 UTM', '20.000 UTM', 'Sin límite'], c: 2, e: 'La multa máxima es de 20.000 Unidades Tributarias Mensuales (UTM) según Ley 21.719. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento. UTM se ajusta mensualmente y es diferente a UF (Unidad de Fomento).' },
                     { id: 5, q: '¿Una empresa pequeña está obligada a cumplir con la Ley 21.719?', o: ['No, solo empresas grandes', 'Solo si tiene más de 50 empleados', 'Sí, todas las organizaciones que traten datos', 'Solo si tiene sitio web'], c: 2, e: 'Sí. Toda organización, sin importar tamaño (desde freelancers hasta corporaciones), que trate datos personales está obligada a cumplir la Ley 21.719.' }
                 ]
             },
@@ -1542,7 +1544,7 @@
             { id: 6, q: '[Módulo 2] El derecho de acceso, ¿tiene algún costo para la persona?', o: ['Sí, debe pagar por cada solicitud', 'Sí, pero es reducido (máximo UF1)', 'No, debe ser gratuito', 'Costo determinado por la empresa'], c: 2, e: 'El derecho de acceso es completamente gratuito. La Ley prohibe cobrar a los titulares por ejercer sus derechos, para garantizar que todos, sin importar recursos, puedan acceder.' },
             { id: 7, q: '[Módulo 3] ¿Cuándo debe obtenerse consentimiento para recopilar datos?', o: ['Después de recopilar los datos', 'Previo, informado, específico e inequívoco', 'Nunca es necesario', 'Solo para datos de contacto'], c: 1, e: 'El consentimiento DEBE obtenerse ANTES de recopilar datos, ser informado (saber qué se recopia), específico (para cada uso) e inequívoco (no ambiguo).' },
             { id: 8, q: '[Módulo 3] ¿Cuál es el plazo máximo para notificar una brecha de seguridad?', o: ['24 horas', '48 horas', '72 horas', '30 días'], c: 2, e: 'Las brechas de seguridad deben notificarse a la DGDP y a los titulares afectados sin demora injustificada, preferiblemente dentro de 72 horas desde que se descubra.' },
-            { id: 9, q: '[Módulo 3] ¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UF', '500 UF', '2.700 UF', 'Sin límite'], c: 2, e: 'La multa máxima es de 2.700 Unidades de Fomento (UF), equivalente a aproximadamente $100 millones USD. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento.' },
+            { id: 9, q: '[Módulo 3] ¿Cuál es la multa máxima que puede imponer la DGDP?', o: ['100 UTM', '500 UTM', '20.000 UTM', 'Sin límite'], c: 2, e: 'La multa máxima es de 20.000 Unidades Tributarias Mensuales (UTM) según Ley 21.719. Se aplica a infracciones graves como no notificar brechas o procesar datos sin consentimiento. UTM se ajusta mensualmente y es diferente a UF (Unidad de Fomento).' },
             { id: 10, q: '[Módulo 4] ¿Qué es la encriptación end-to-end?', o: ['Guardar datos en dos servidores', 'Codificar datos para que ni siquiera el proveedor pueda leerlos', 'Controlar acceso al teléfono', 'Borrar mensajes automáticamente'], c: 1, e: 'End-to-end significa que solo el remitente y el destinatario pueden leer los mensajes. Ni WhatsApp, ni hackers, ni gobiernos pueden interceptar y leer los datos sin la clave de desencriptación.' },
             { id: 11, q: '[Módulo 4] ¿Cuál es el propósito de la Autenticación Multifactor (MFA)?', o: ['Aumentar la complejidad innecesariamente', 'Requerir múltiples formas de verificación de identidad', 'Ralentizar el acceso a propósito', 'Solo es para hackers'], c: 1, e: 'MFA requiere 2+ formas de verificación (contraseña + código SMS + huella dactilar). Protege contra acceso no autorizado incluso si la contraseña se compromete.' },
             { id: 12, q: '[Módulo 4] ¿Un firewall protege contra qué?', o: ['Virus en archivos descargados', 'Tráfico no autorizado hacia sistemas', 'Errores de usuario', 'Nada, es obsoleto'], c: 1, e: 'Un firewall filtra el tráfico de red, bloqueando intentos de acceso no autorizados a sistemas internos. Es como un guardia que revisa quién puede entrar a una red corporativa.' },
@@ -1564,6 +1566,37 @@
         let moduleSections = [];
 
         // ========== FUNCIONES DE LOCALSTORAGE ==========
+
+        // ---- Funciones para persistencia de módulos completados ----
+        function saveCompletedModules(completedArray) {
+            localStorage.setItem('quizProgress', JSON.stringify({
+                completed: completedArray,
+                timestamp: new Date().toISOString()
+            }));
+        }
+
+        function loadCompletedModules() {
+            const saved = localStorage.getItem('quizProgress');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    return data.completed || [];
+                } catch (e) {
+                    return [];
+                }
+            }
+            return [];
+        }
+
+        function clearAllProgress() {
+            localStorage.removeItem('quizProgress');
+            // También limpiar todos los quiz progress
+            for (let i = 1; i <= 5; i++) {
+                localStorage.removeItem(`quiz-progress-${i}`);
+            }
+        }
+
+        // ---- Funciones para progreso de quizzes individuales ----
         function saveQuizProgress(quizId, answers) {
             const progress = {
                 quizId: quizId,
@@ -1592,6 +1625,14 @@
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`[data-page="${pageName}"]`) ? document.querySelector(`[data-page="${pageName}"]`).classList.add('active') : null;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Actualizar vistas específicas cuando se abran
+            if (pageName === 'cursos') {
+                renderModules();
+                updateProgress();
+            } else if (pageName === 'examen') {
+                renderExam();
+            }
         }
 
         function startModuleQuiz(moduleId) {
@@ -1617,6 +1658,9 @@
             document.getElementById('modulo-view').classList.remove('hidden');
             currentQuizId = null;
             quizSubmitted = false;
+            // Actualizar el progreso general al volver
+            updateProgress();
+            renderModules();
         }
 
         function renderModuleQuiz(quizId) {
@@ -1767,6 +1811,13 @@
             const pct = Math.round((score / total) * 100);
             const passed = pct >= 70;
 
+            // AUTO-COMPLETAR MÓDULO si pasó el quiz
+            if (passed && !completed.includes(quizId)) {
+                completed.push(quizId);
+                saveCompletedModules(completed);
+                console.log(`✓ Módulo ${quizId} completado automáticamente (Quiz aprobado con ${pct}%)`);
+            }
+
             // Re-renderizar con resultados
             renderModuleQuiz(quizId);
 
@@ -1775,15 +1826,15 @@
             const summary = document.createElement('div');
             summary.style.cssText = 'background: ' + (passed ? '#dcfce7' : '#fee2e2') + '; border: 1px solid ' + (passed ? '#86efac' : '#fca5a5') + '; border-radius: 8px; padding: 24px; margin-bottom: 24px; text-align: center;';
             summary.innerHTML = `
-                <div style="font-size: 32px; margin-bottom: 12px;">${passed ? '[APROBADO]' : '[REVISA]'}</div>
+                <div style="font-size: 32px; margin-bottom: 12px;">${passed ? '✓' : '↻'}</div>
                 <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: ${passed ? '#166534' : '#991b1b'};">
-                    ${passed ? 'Excelente' : 'Necesitas mejorar'}
+                    ${passed ? 'Excelente - Módulo Completado' : 'Necesitas mejorar'}
                 </h3>
                 <div style="font-size: 24px; font-weight: 700; color: ${passed ? '#166534' : '#991b1b'}; margin-bottom: 8px;">
                     ${score}/${total} correctas (${pct}%)
                 </div>
                 <div style="font-size: 13px; color: ${passed ? '#166534' : '#991b1b'};">
-                    ${passed ? 'Felicidades, aprobaste el quiz' : 'Te recomendamos revisar el módulo nuevamente'}
+                    ${passed ? 'Felicidades, completaste este módulo' : 'Te recomendamos revisar el módulo nuevamente'}
                 </div>
             `;
             container.insertBefore(summary, container.firstChild);
@@ -1805,17 +1856,26 @@
                 examBtn.style.cursor = 'pointer';
                 examBtn.style.opacity = '1';
                 examMsg.style.display = 'none';
+                console.log('✓ Examen desbloqueado - Todos los módulos completados');
             } else {
+                const remaining = modules.length - completed.length;
                 examBtn.disabled = true;
                 examBtn.style.cursor = 'not-allowed';
                 examBtn.style.opacity = '0.6';
                 examMsg.style.display = 'block';
+                examMsg.innerHTML = `<strong>⚠️ Módulos pendientes:</strong> Completa ${remaining} módulo${remaining > 1 ? 's' : ''} (${completed.length}/${modules.length}) antes de realizar el examen final.`;
+                console.log(`Módulos completados: ${completed.length}/${modules.length}`);
             }
         }
 
         function goToExam() {
+            // Verificar que todos los módulos están completados
             if (completed.length === modules.length) {
                 showPage('examen');
+            } else {
+                // Mostrar alerta si no están todos completados
+                const remaining = modules.length - completed.length;
+                alert(`Debes completar ${remaining} módulo(s) antes de realizar el examen.`);
             }
         }
 
@@ -1921,6 +1981,8 @@
         function completeCurrentModule() {
             if (currentModuleId && !completed.includes(currentModuleId)) {
                 completed.push(currentModuleId);
+                // Guardar en localStorage
+                saveCompletedModules(completed);
                 renderModules();
                 updateProgress();
                 showPage('cursos');
@@ -2033,6 +2095,26 @@
 
         function renderExam() {
             const container = document.getElementById('exam-container');
+
+            // Validación: Verificar que todos los módulos están completados
+            if (completed.length !== modules.length) {
+                const remaining = modules.length - completed.length;
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 60px 40px; background: #fee2e2; border: 2px solid #fca5a5; border-radius: 12px;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">🔒</div>
+                        <h3 style="font-size: 20px; font-weight: 700; color: #991b1b; margin-bottom: 12px;">Examen Bloqueado</h3>
+                        <p style="font-size: 14px; color: #7f1d1d; margin-bottom: 24px; line-height: 1.6;">
+                            Debes completar todos los 5 módulos antes de realizar el examen final.<br>
+                            <strong>Progreso: ${completed.length} de ${modules.length} módulos completados</strong><br>
+                            Te faltan ${remaining} módulo${remaining > 1 ? 's' : ''}
+                        </p>
+                        <button class="btn btn-primary" onclick="showPage('cursos')">Ir a Módulos Pendientes</button>
+                    </div>
+                `;
+                return;
+            }
+
+            // Si todos los módulos están completados, mostrar el examen
             container.innerHTML = questions.map((q, i) => `
                 <div class="question">
                     <div class="question-text">${i + 1}. ${q.q}</div>
@@ -2105,6 +2187,9 @@
                 showPage(link.dataset.page);
             });
         });
+
+        // Cargar el estado de módulos completados desde localStorage
+        completed = loadCompletedModules();
 
         renderModules();
         updateProgress();
