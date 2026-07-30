@@ -1438,7 +1438,7 @@
             // Calcular progreso
             const answeredCount = Object.keys(quizAnswers).length;
             const totalCount = quiz.questions.length;
-            const progress = Math.round((answeredCount / totalCount) * 100);
+            const progress = Math.min(100, Math.round((answeredCount / totalCount) * 100));
 
             // Header con progreso
             let html = `
