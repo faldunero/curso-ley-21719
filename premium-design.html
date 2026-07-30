@@ -229,6 +229,10 @@
         .modulo-actions { display: flex; gap: 12px; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb; flex-wrap: wrap; }
         .modulo-actions button { flex: 1; min-width: 150px; }
 
+        .back-to-courses { margin-top: 16px; margin-bottom: 24px; }
+        .back-to-courses a { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; color: #2563eb; text-decoration: none; font-weight: 500; font-size: 13px; border-radius: 6px; transition: all 0.2s; border: 1px solid transparent; }
+        .back-to-courses a:hover { background: #f0f4f8; border-color: #2563eb; }
+
         @media (max-width: 1400px) {
             .main { padding: 60px 30px; }
             .navbar-content { padding: 0 30px; }
@@ -538,6 +542,9 @@
                         </div>
                         <div class="modulo-icon" id="modulo-icon">[MÓDULO]</div>
                     </div>
+                    <div class="back-to-courses">
+                        <a href="#cursos" onclick="showPage('cursos'); return false;">← Volver a Mis cursos</a>
+                    </div>
                     <img id="modulo-image" class="module-image" src="" alt="Módulo" style="display:none;">
                     <div class="modulo-content" id="modulo-content"></div>
                     <div class="modulo-pagination" id="modulo-pagination">
@@ -559,6 +566,9 @@
                             <h2 class="modulo-title" id="quiz-title">Quiz</h2>
                         </div>
                         <div class="modulo-icon">[QUIZ]</div>
+                    </div>
+                    <div class="back-to-courses">
+                        <a href="#cursos" onclick="showPage('cursos'); return false;">← Volver a Mis cursos</a>
                     </div>
                     <div class="exam-container" id="quiz-container"></div>
                     <div class="btn-group">
