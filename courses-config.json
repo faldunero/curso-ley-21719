@@ -1,0 +1,251 @@
+{
+  "courses": [
+    {
+      "id": "21719",
+      "title": "Ley de Protección de Datos Personales",
+      "description": "Conoce el marco legal chileno de protección de datos personales. Aprende sobre derechos de los titulares, obligaciones de responsables y medidas de seguridad.",
+      "shortDescription": "Ley 21.719 - Protección de Datos",
+      "icon": "🔒",
+      "url": "ley-21719.html",
+      "duration": "95 minutos",
+      "modules": 5,
+      "questions": 5,
+      "passingScore": 80,
+      "status": "published",
+      "createdDate": "2024-01-15",
+      "updatedDate": "2024-01-15",
+      "author": "AFAN Learning",
+      "categories": [
+        "Protección de Datos",
+        "Privacidad",
+        "Legislación"
+      ],
+      "modulesList": [
+        {
+          "id": 1,
+          "title": "Introducción a la Ley 21.719",
+          "duration": "15 min",
+          "icon": "📋",
+          "description": "Conoce los fundamentos y objetivos de la Ley de Protección de Datos Personales en Chile."
+        },
+        {
+          "id": 2,
+          "title": "Derechos de los Titulares",
+          "duration": "20 min",
+          "icon": "👤",
+          "description": "Explora los derechos fundamentales de las personas respecto a sus datos personales."
+        },
+        {
+          "id": 3,
+          "title": "Obligaciones de Responsables",
+          "duration": "25 min",
+          "icon": "⚖️",
+          "description": "Comprende las responsabilidades de quienes recopilan y procesan datos personales."
+        },
+        {
+          "id": 4,
+          "title": "Seguridad y Privacidad",
+          "duration": "20 min",
+          "icon": "🔒",
+          "description": "Aprende sobre medidas de protección y seguridad de datos personales."
+        },
+        {
+          "id": 5,
+          "title": "Cumplimiento Normativo",
+          "duration": "15 min",
+          "icon": "✅",
+          "description": "Descubre cómo implementar medidas de cumplimiento en tu organización."
+        }
+      ]
+    },
+    {
+      "id": "karin",
+      "title": "Ley Karin",
+      "description": "Comprende la ley de protección contra acoso y violencia laboral. Identifica situaciones de acoso, conoce procedimientos de denuncia y responsabilidades empresariales.",
+      "shortDescription": "Ley 21.643 - Acoso y Violencia Laboral",
+      "icon": "⚖️",
+      "url": "ley-karin.html",
+      "duration": "90 minutos",
+      "modules": 6,
+      "questions": 8,
+      "passingScore": 75,
+      "status": "published",
+      "createdDate": "2024-02-01",
+      "updatedDate": "2024-02-01",
+      "author": "AFAN Learning",
+      "categories": [
+        "Bienestar Laboral",
+        "Acoso",
+        "Derechos"
+      ],
+      "modulesList": [
+        {
+          "id": 1,
+          "title": "Introducción a la Ley Karin",
+          "duration": "15 min",
+          "icon": "📚",
+          "description": "Conoce los fundamentos de la Ley 21.643 sobre acoso y violencia laboral, su historia y objetivos principales."
+        },
+        {
+          "id": 2,
+          "title": "Derechos y Protecciones",
+          "duration": "18 min",
+          "icon": "🛡️",
+          "description": "Explora los derechos fundamentales de los trabajadores contra el acoso y violencia laboral."
+        },
+        {
+          "id": 3,
+          "title": "Identificación del Acoso",
+          "duration": "20 min",
+          "icon": "🔍",
+          "description": "Aprende a identificar las diferentes formas de acoso, violencia laboral y sus señales de alerta."
+        },
+        {
+          "id": 4,
+          "title": "Procedimientos de Denuncia",
+          "duration": "18 min",
+          "icon": "📋",
+          "description": "Conoce los pasos para hacer una denuncia interna o externa ante instituciones competentes."
+        },
+        {
+          "id": 5,
+          "title": "Responsabilidades Empresariales",
+          "duration": "17 min",
+          "icon": "⚙️",
+          "description": "Entiende las obligaciones de las empresas en prevención y atención del acoso laboral."
+        },
+        {
+          "id": 6,
+          "title": "Sanciones y Consecuencias",
+          "duration": "15 min",
+          "icon": "⚖️",
+          "description": "Descubre las sanciones legales y consecuencias por violación de la Ley Karin."
+        }
+      ]
+    }
+  ],
+  "userRoles": [
+    {
+      "id": "estudiante",
+      "name": "Estudiante",
+      "permissions": [
+        "view_courses",
+        "take_exam",
+        "download_certificate"
+      ],
+      "coursesAccess": "filtered_by_admin"
+    },
+    {
+      "id": "instructor",
+      "name": "Instructor",
+      "permissions": [
+        "view_courses",
+        "create_course",
+        "edit_course",
+        "view_analytics"
+      ],
+      "coursesAccess": "own_courses"
+    },
+    {
+      "id": "admin",
+      "name": "Administrador",
+      "permissions": [
+        "view_all",
+        "create_course",
+        "edit_course",
+        "delete_course",
+        "manage_users",
+        "view_analytics"
+      ],
+      "coursesAccess": "all_courses"
+    }
+  ],
+  "databaseSchema": {
+    "users": {
+      "id": "UUID PRIMARY KEY",
+      "email": "VARCHAR(255) UNIQUE NOT NULL",
+      "password": "VARCHAR(255) NOT NULL (hashed)",
+      "name": "VARCHAR(255) NOT NULL",
+      "role": "ENUM(estudiante, instructor, admin)",
+      "coursesAvailable": "JSON ARRAY",
+      "createdAt": "TIMESTAMP DEFAULT NOW()",
+      "updatedAt": "TIMESTAMP DEFAULT NOW()",
+      "lastLogin": "TIMESTAMP NULL"
+    },
+    "courses": {
+      "id": "VARCHAR(50) PRIMARY KEY",
+      "title": "VARCHAR(255) NOT NULL",
+      "description": "TEXT NOT NULL",
+      "icon": "VARCHAR(10)",
+      "url": "VARCHAR(255)",
+      "duration": "VARCHAR(50)",
+      "modules": "INTEGER",
+      "questions": "INTEGER",
+      "passingScore": "INTEGER",
+      "status": "ENUM(published, draft, archived)",
+      "createdBy": "UUID FOREIGN KEY",
+      "createdAt": "TIMESTAMP DEFAULT NOW()",
+      "updatedAt": "TIMESTAMP DEFAULT NOW()"
+    },
+    "progress": {
+      "id": "UUID PRIMARY KEY",
+      "userId": "UUID FOREIGN KEY",
+      "courseId": "VARCHAR(50) FOREIGN KEY",
+      "modulesCompleted": "JSON ARRAY",
+      "score": "INTEGER NULL",
+      "passed": "BOOLEAN DEFAULT FALSE",
+      "certificateId": "VARCHAR(50) NULL",
+      "certificateDownloaded": "BOOLEAN DEFAULT FALSE",
+      "startedAt": "TIMESTAMP DEFAULT NOW()",
+      "completedAt": "TIMESTAMP NULL",
+      "updatedAt": "TIMESTAMP DEFAULT NOW()"
+    },
+    "certificates": {
+      "id": "VARCHAR(50) PRIMARY KEY",
+      "userId": "UUID FOREIGN KEY",
+      "courseId": "VARCHAR(50) FOREIGN KEY",
+      "score": "INTEGER NOT NULL",
+      "issuedAt": "TIMESTAMP DEFAULT NOW()",
+      "expiresAt": "TIMESTAMP NULL",
+      "verificationCode": "VARCHAR(50) UNIQUE",
+      "pdfUrl": "VARCHAR(255) NULL"
+    }
+  },
+  "futureFeatures": {
+    "authentication": {
+      "description": "Sistema de login/registro con email",
+      "priority": "high",
+      "estimatedDate": "Q2 2024"
+    },
+    "database": {
+      "description": "Integración con Supabase o Firebase",
+      "priority": "high",
+      "estimatedDate": "Q2 2024"
+    },
+    "adminPanel": {
+      "description": "Dashboard completo de administración",
+      "priority": "high",
+      "estimatedDate": "Q3 2024"
+    },
+    "emailNotifications": {
+      "description": "Sistema de notificaciones por email",
+      "priority": "medium",
+      "estimatedDate": "Q3 2024"
+    },
+    "certificateVerification": {
+      "description": "Sistema de verificación de certificados",
+      "priority": "medium",
+      "estimatedDate": "Q3 2024"
+    },
+    "analyticsReports": {
+      "description": "Reportes y estadísticas detalladas",
+      "priority": "medium",
+      "estimatedDate": "Q4 2024"
+    },
+    "mobileLearning": {
+      "description": "Aplicación móvil (React Native)",
+      "priority": "low",
+      "estimatedDate": "Q1 2025"
+    }
+  }
+}

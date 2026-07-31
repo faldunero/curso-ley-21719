@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - AFAN Learning</title>
+    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-text h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1e293b;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fef3c7;
+            color: #d97706;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-badge.complete {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 16px;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function AdminPanel() {
+            // AUTENTICACIÓN FUTURA: Verificar rol de administrador
+            // const currentUser = { role: 'admin', ... };
+            // if (currentUser.role !== 'admin') redirect to login;
+
+            return (
+                <>
+                    <header className="header">
+                        <div className="container">
+                            <div className="header-content">
+                                <div className="logo">
+                                    <div className="logo-icon">A</div>
+                                    <div className="logo-text">
+                                        <h2>AFAN Learning</h2>
+                                        <p>Panel de Administración</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main>
+                        <div className="container">
+                            <div className="section">
+                                <h2>Panel de Administración - En Desarrollo</h2>
+                                <p>Este panel está en construcción y pronto estará disponible con las siguientes funcionalidades:</p>
+
+                                <ul className="feature-list">
+                                    <li>
+                                        <div className="feature-icon">👥</div>
+                                        <div className="feature-text">
+                                            <h4>Gestión de Usuarios</h4>
+                                            <p>Crear, editar y gestionar usuarios, roles y permisos de acceso a cursos</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">📚</div>
+                                        <div className="feature-text">
+                                            <h4>Gestión de Cursos</h4>
+                                            <p>Crear, editar, publicar y archivar cursos. Gestionar módulos y contenido</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">📊</div>
+                                        <div className="feature-text">
+                                            <h4>Reportes y Estadísticas</h4>
+                                            <p>Ver progreso de estudiantes, tasas de aprobación y desempeño general</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">🔐</div>
+                                        <div className="feature-text">
+                                            <h4>Gestión de Acceso</h4>
+                                            <p>Controlar qué cursos pueden ver y acceder los usuarios según su rol</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">📝</div>
+                                        <div className="feature-text">
+                                            <h4>Gestión de Certificados</h4>
+                                            <p>Generar, verificar y revocar certificados de los estudiantes</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="section">
+                                <h2>Próximas Integraciones</h2>
+                                <ul className="feature-list">
+                                    <li>
+                                        <div className="feature-icon">🗄️</div>
+                                        <div className="feature-text">
+                                            <h4>Base de Datos - Supabase/Firebase</h4>
+                                            <p>Almacenamiento de usuarios, progreso y certificados</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">🔑</div>
+                                        <div className="feature-text">
+                                            <h4>Autenticación</h4>
+                                            <p>Sistema de login, registro y gestión de sesiones</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">📧</div>
+                                        <div className="feature-text">
+                                            <h4>Notificaciones por Email</h4>
+                                            <p>Confirmación de certificados, recordatorios de cursos pendientes</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="feature-icon">🎓</div>
+                                        <div className="feature-text">
+                                            <h4>Sistema de Certificados PDF</h4>
+                                            <p>Generación automática de certificados descargables</p>
+                                            <span className="status-badge">Planificado</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="section">
+                                <h2>Estructura de Base de Datos Preparada</h2>
+                                <p>Las siguientes tablas están listas para ser implementadas con Supabase o Firebase:</p>
+
+                                <h3 style={{marginTop: '24px', marginBottom: '12px'}}>Usuarios</h3>
+                                <div className="code-block">
+{`{
+  id: 'uuid',
+  email: 'usuario@example.com',
+  name: 'Nombre Completo',
+  role: 'estudiante|admin|instructor',
+  coursesAvailable: ['21719', 'karin'],
+  createdAt: 'timestamp',
+  updatedAt: 'timestamp'
+}`}
+                                </div>
+
+                                <h3 style={{marginTop: '24px', marginBottom: '12px'}}>Cursos</h3>
+                                <div className="code-block">
+{`{
+  id: '21719',
+  title: 'Ley de Protección de Datos',
+  description: '...',
+  modules: 5,
+  status: 'published|draft',
+  createdBy: 'admin-id',
+  createdAt: 'timestamp'
+}`}
+                                </div>
+
+                                <h3 style={{marginTop: '24px', marginBottom: '12px'}}>Progreso</h3>
+                                <div className="code-block">
+{`{
+  userId: 'uuid',
+  courseId: '21719',
+  modulesCompleted: ['mod1', 'mod2'],
+  score: 86,
+  certificateDownloaded: true,
+  updatedAt: 'timestamp'
+}`}
+                                </div>
+                            </div>
+
+                            <div className="section">
+                                <h2>Navegación Rápida</h2>
+                                <a href="landing.html" className="btn">↩️ Volver a Landing Page</a>
+                                <a href="ley-21719.html" className="btn" style={{marginLeft: '12px'}}>📚 Ver Ley 21.719</a>
+                                <a href="ley-karin.html" className="btn" style={{marginLeft: '12px'}}>⚖️ Ver Ley Karin</a>
+                            </div>
+                        </div>
+                    </main>
+                </>
+            );
+        }
+
+        ReactDOM.render(<AdminPanel />, document.getElementById('root'));
+    </script>
+</body>
+</html>
