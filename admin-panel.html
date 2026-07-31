@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - AFAN Learning</title>
-    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -166,174 +163,147 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState } = React;
+    <script>
+        // Admin Panel - Vanilla JS
+        // TODO: Add authentication and database integration
 
-        function AdminPanel() {
-            // AUTENTICACIÓN FUTURA: Verificar rol de administrador
-            // const currentUser = { role: 'admin', ... };
-            // if (currentUser.role !== 'admin') redirect to login;
+        function initAdminPanel() {
+            const root = document.getElementById('root');
 
-            return (
-                <>
-                    <header className="header">
-                        <div className="container">
-                            <div className="header-content">
-                                <div className="logo">
-                                    <div className="logo-icon">A</div>
-                                    <div className="logo-text">
-                                        <h2>AFAN Learning</h2>
-                                        <p>Panel de Administración</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
+            let html = '';
 
-                    <main>
-                        <div className="container">
-                            <div className="section">
-                                <h2>Panel de Administración - En Desarrollo</h2>
-                                <p>Este panel está en construcción y pronto estará disponible con las siguientes funcionalidades:</p>
+            // Header
+            html += '<header class="header">';
+            html += '<div class="container">';
+            html += '<div class="header-content">';
+            html += '<div class="logo">';
+            html += '<div class="logo-icon">A</div>';
+            html += '<div class="logo-text">';
+            html += '<h2>AFAN Learning</h2>';
+            html += '<p>Panel de Administración</p>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</header>';
 
-                                <ul className="feature-list">
-                                    <li>
-                                        <div className="feature-icon">👥</div>
-                                        <div className="feature-text">
-                                            <h4>Gestión de Usuarios</h4>
-                                            <p>Crear, editar y gestionar usuarios, roles y permisos de acceso a cursos</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">📚</div>
-                                        <div className="feature-text">
-                                            <h4>Gestión de Cursos</h4>
-                                            <p>Crear, editar, publicar y archivar cursos. Gestionar módulos y contenido</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">📊</div>
-                                        <div className="feature-text">
-                                            <h4>Reportes y Estadísticas</h4>
-                                            <p>Ver progreso de estudiantes, tasas de aprobación y desempeño general</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">🔐</div>
-                                        <div className="feature-text">
-                                            <h4>Gestión de Acceso</h4>
-                                            <p>Controlar qué cursos pueden ver y acceder los usuarios según su rol</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">📝</div>
-                                        <div className="feature-text">
-                                            <h4>Gestión de Certificados</h4>
-                                            <p>Generar, verificar y revocar certificados de los estudiantes</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+            // Main content
+            html += '<main>';
+            html += '<div class="container">';
 
-                            <div className="section">
-                                <h2>Próximas Integraciones</h2>
-                                <ul className="feature-list">
-                                    <li>
-                                        <div className="feature-icon">🗄️</div>
-                                        <div className="feature-text">
-                                            <h4>Base de Datos - Supabase/Firebase</h4>
-                                            <p>Almacenamiento de usuarios, progreso y certificados</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">🔑</div>
-                                        <div className="feature-text">
-                                            <h4>Autenticación</h4>
-                                            <p>Sistema de login, registro y gestión de sesiones</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">📧</div>
-                                        <div className="feature-text">
-                                            <h4>Notificaciones por Email</h4>
-                                            <p>Confirmación de certificados, recordatorios de cursos pendientes</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="feature-icon">🎓</div>
-                                        <div className="feature-text">
-                                            <h4>Sistema de Certificados PDF</h4>
-                                            <p>Generación automática de certificados descargables</p>
-                                            <span className="status-badge">Planificado</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+            // Section 1: Panel status
+            html += '<div class="section">';
+            html += '<h2>Panel de Administración - En Desarrollo</h2>';
+            html += '<p>Este panel está en construcción y pronto estará disponible con las siguientes funcionalidades:</p>';
+            html += '<ul class="feature-list">';
 
-                            <div className="section">
-                                <h2>Estructura de Base de Datos Preparada</h2>
-                                <p>Las siguientes tablas están listas para ser implementadas con Supabase o Firebase:</p>
+            const features = [
+                { icon: '👥', title: 'Gestión de Usuarios', desc: 'Crear, editar y gestionar usuarios, roles y permisos de acceso a cursos' },
+                { icon: '📚', title: 'Gestión de Cursos', desc: 'Crear, editar, publicar y archivar cursos. Gestionar módulos y contenido' },
+                { icon: '📊', title: 'Reportes y Estadísticas', desc: 'Ver progreso de estudiantes, tasas de aprobación y desempeño general' },
+                { icon: '🔐', title: 'Gestión de Acceso', desc: 'Controlar qué cursos pueden ver y acceder los usuarios según su rol' },
+                { icon: '📝', title: 'Gestión de Certificados', desc: 'Generar, verificar y revocar certificados de los estudiantes' }
+            ];
 
-                                <h3 style={{marginTop: '24px', marginBottom: '12px'}}>Usuarios</h3>
-                                <div className="code-block">
-{`{
-  id: 'uuid',
-  email: 'usuario@example.com',
-  name: 'Nombre Completo',
-  role: 'estudiante|admin|instructor',
-  coursesAvailable: ['21719', 'karin'],
-  createdAt: 'timestamp',
-  updatedAt: 'timestamp'
-}`}
-                                </div>
+            features.forEach(feature => {
+                html += '<li>';
+                html += '<div class="feature-icon">' + feature.icon + '</div>';
+                html += '<div class="feature-text">';
+                html += '<h4>' + feature.title + '</h4>';
+                html += '<p>' + feature.desc + '</p>';
+                html += '<span class="status-badge">Planificado</span>';
+                html += '</div>';
+                html += '</li>';
+            });
 
-                                <h3 style={{marginTop: '24px', marginBottom: '12px'}}>Cursos</h3>
-                                <div className="code-block">
-{`{
-  id: '21719',
-  title: 'Ley de Protección de Datos',
-  description: '...',
-  modules: 5,
-  status: 'published|draft',
-  createdBy: 'admin-id',
-  createdAt: 'timestamp'
-}`}
-                                </div>
+            html += '</ul>';
+            html += '</div>';
 
-                                <h3 style={{marginTop: '24px', marginBottom: '12px'}}>Progreso</h3>
-                                <div className="code-block">
-{`{
-  userId: 'uuid',
-  courseId: '21719',
-  modulesCompleted: ['mod1', 'mod2'],
-  score: 86,
-  certificateDownloaded: true,
-  updatedAt: 'timestamp'
-}`}
-                                </div>
-                            </div>
+            // Section 2: Integrations
+            html += '<div class="section">';
+            html += '<h2>Próximas Integraciones</h2>';
+            html += '<ul class="feature-list">';
 
-                            <div className="section">
-                                <h2>Navegación Rápida</h2>
-                                <a href="landing.html" className="btn">↩️ Volver a Landing Page</a>
-                                <a href="ley-21719.html" className="btn" style={{marginLeft: '12px'}}>📚 Ver Ley 21.719</a>
-                                <a href="ley-karin.html" className="btn" style={{marginLeft: '12px'}}>⚖️ Ver Ley Karin</a>
-                            </div>
-                        </div>
-                    </main>
-                </>
-            );
+            const integrations = [
+                { icon: '🗄️', title: 'Base de Datos - Supabase/Firebase', desc: 'Almacenamiento de usuarios, progreso y certificados' },
+                { icon: '🔑', title: 'Autenticación', desc: 'Sistema de login, registro y gestión de sesiones' },
+                { icon: '📧', title: 'Notificaciones por Email', desc: 'Confirmación de certificados, recordatorios de cursos pendientes' },
+                { icon: '🎓', title: 'Sistema de Certificados PDF', desc: 'Generación automática de certificados descargables' }
+            ];
+
+            integrations.forEach(item => {
+                html += '<li>';
+                html += '<div class="feature-icon">' + item.icon + '</div>';
+                html += '<div class="feature-text">';
+                html += '<h4>' + item.title + '</h4>';
+                html += '<p>' + item.desc + '</p>';
+                html += '<span class="status-badge">Planificado</span>';
+                html += '</div>';
+                html += '</li>';
+            });
+
+            html += '</ul>';
+            html += '</div>';
+
+            // Section 3: Database structure
+            html += '<div class="section">';
+            html += '<h2>Estructura de Base de Datos Preparada</h2>';
+            html += '<p>Las siguientes tablas están listas para ser implementadas con Supabase o Firebase:</p>';
+
+            html += '<h3 style="margin-top: 24px; margin-bottom: 12px;">Usuarios</h3>';
+            html += '<div class="code-block">{<br>';
+            html += '  id: \'uuid\',<br>';
+            html += '  email: \'usuario@example.com\',<br>';
+            html += '  name: \'Nombre Completo\',<br>';
+            html += '  role: \'estudiante|admin|instructor\',<br>';
+            html += '  coursesAvailable: [\'21719\', \'karin\'],<br>';
+            html += '  createdAt: \'timestamp\',<br>';
+            html += '  updatedAt: \'timestamp\'<br>';
+            html += '}</div>';
+
+            html += '<h3 style="margin-top: 24px; margin-bottom: 12px;">Cursos</h3>';
+            html += '<div class="code-block">{<br>';
+            html += '  id: \'21719\',<br>';
+            html += '  title: \'Ley de Protección de Datos\',<br>';
+            html += '  description: \'...\',<br>';
+            html += '  modules: 5,<br>';
+            html += '  status: \'published|draft\',<br>';
+            html += '  createdBy: \'admin-id\',<br>';
+            html += '  createdAt: \'timestamp\'<br>';
+            html += '}</div>';
+
+            html += '<h3 style="margin-top: 24px; margin-bottom: 12px;">Progreso</h3>';
+            html += '<div class="code-block">{<br>';
+            html += '  userId: \'uuid\',<br>';
+            html += '  courseId: \'21719\',<br>';
+            html += '  modulesCompleted: [\'mod1\', \'mod2\'],<br>';
+            html += '  score: 86,<br>';
+            html += '  certificateDownloaded: true,<br>';
+            html += '  updatedAt: \'timestamp\'<br>';
+            html += '}</div>';
+
+            html += '</div>';
+
+            // Section 4: Navigation
+            html += '<div class="section">';
+            html += '<h2>Navegación Rápida</h2>';
+            html += '<a href="index.html" class="btn">↩️ Volver al Curso</a>';
+            html += '<a href="ley-21719.html" class="btn" style="margin-left: 12px;">📚 Ver Ley 21.719</a>';
+            html += '<a href="ley-karin.html" class="btn" style="margin-left: 12px;">⚖️ Ver Ley Karin</a>';
+            html += '</div>';
+
+            html += '</div>';
+            html += '</main>';
+
+            root.innerHTML = html;
         }
 
-        ReactDOM.render(<AdminPanel />, document.getElementById('root'));
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAdminPanel);
+        } else {
+            initAdminPanel();
+        }
     </script>
 </body>
 </html>
