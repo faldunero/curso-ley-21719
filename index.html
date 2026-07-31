@@ -568,6 +568,7 @@
                     <div class="back-to-courses">
                         <a href="#cursos" onclick="showPage('cursos'); return false;">← Volver a Mis cursos</a>
                     </div>
+                    <div class="modulo-page-indicator" id="modulo-page-indicator" style="text-align: center; margin-bottom: 20px; font-size: 12px; color: #888; font-weight: 500;">Página 1 de 1</div>
                     <img id="modulo-image" class="module-image" src="" alt="Módulo" style="display:none;">
                     <div class="modulo-content" id="modulo-content"></div>
                     <div class="modulo-pagination" id="modulo-pagination">
@@ -2021,6 +2022,12 @@
             });
 
             document.getElementById('modulo-content').innerHTML = html;
+
+            // Actualizar indicador de página en la parte superior
+            const pageIndicator = document.getElementById('modulo-page-indicator');
+            if (pageIndicator) {
+                pageIndicator.textContent = `Página ${page} de ${totalPages}`;
+            }
 
             // Actualizar controles de paginación
             document.getElementById('pagination-info').textContent = `Página ${page} de ${totalPages}`;
