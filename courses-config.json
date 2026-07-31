@@ -6,7 +6,7 @@
       "description": "Conoce el marco legal chileno de protección de datos personales. Aprende sobre derechos de los titulares, obligaciones de responsables y medidas de seguridad.",
       "shortDescription": "Ley 21.719 - Protección de Datos",
       "icon": "🔒",
-      "url": "index-standalone.html",
+      "url": "ley-21719.html",
       "duration": "95 minutos",
       "modules": 5,
       "questions": 5,
@@ -15,7 +15,11 @@
       "createdDate": "2024-01-15",
       "updatedDate": "2024-01-15",
       "author": "AFAN Learning",
-      "categories": ["Protección de Datos", "Privacidad", "Legislación"],
+      "categories": [
+        "Protección de Datos",
+        "Privacidad",
+        "Legislación"
+      ],
       "modulesList": [
         {
           "id": 1,
@@ -69,7 +73,11 @@
       "createdDate": "2024-02-01",
       "updatedDate": "2024-02-01",
       "author": "AFAN Learning",
-      "categories": ["Bienestar Laboral", "Acoso", "Derechos"],
+      "categories": [
+        "Bienestar Laboral",
+        "Acoso",
+        "Derechos"
+      ],
       "modulesList": [
         {
           "id": 1,
@@ -120,19 +128,35 @@
     {
       "id": "estudiante",
       "name": "Estudiante",
-      "permissions": ["view_courses", "take_exam", "download_certificate"],
+      "permissions": [
+        "view_courses",
+        "take_exam",
+        "download_certificate"
+      ],
       "coursesAccess": "filtered_by_admin"
     },
     {
       "id": "instructor",
       "name": "Instructor",
-      "permissions": ["view_courses", "create_course", "edit_course", "view_analytics"],
+      "permissions": [
+        "view_courses",
+        "create_course",
+        "edit_course",
+        "view_analytics"
+      ],
       "coursesAccess": "own_courses"
     },
     {
       "id": "admin",
       "name": "Administrador",
-      "permissions": ["view_all", "create_course", "edit_course", "delete_course", "manage_users", "view_analytics"],
+      "permissions": [
+        "view_all",
+        "create_course",
+        "edit_course",
+        "delete_course",
+        "manage_users",
+        "view_analytics"
+      ],
       "coursesAccess": "all_courses"
     }
   ],
