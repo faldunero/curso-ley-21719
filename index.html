@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capacitación en Leyes Chilenas - AFAN Learning</title>
-    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -491,259 +488,242 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState } = React;
+    <script>
+        const currentUser = {
+            id: 'user-123',
+            name: 'Felipe Aldunate',
+            email: 'faldunate@gmail.com',
+            role: 'estudiante',
+            coursesAvailable: ['21719', 'karin']
+        };
 
-        function App() {
-            // AUTENTICACIÓN FUTURA: Descomentar cuando se implemente login
-            // const currentUser = {
-            //     id: 'user-123',
-            //     name: 'Felipe Aldunate',
-            //     email: 'faldunate@gmail.com',
-            //     role: 'estudiante',
-            //     coursesAvailable: ['21719', 'karin'] // IDs de cursos disponibles
-            // };
+        const courses = [
+            {
+                id: '21719',
+                title: 'Ley de Protección de Datos',
+                description: 'Conoce el marco legal chileno de protección de datos personales. Aprende sobre derechos de los titulares, obligaciones de responsables y medidas de seguridad.',
+                icon: '🔒',
+                duration: '95 minutos',
+                modules: 5,
+                status: 'published',
+                badge: 'Disponible',
+                badgeClass: '',
+                url: 'ley-21719.html'
+            },
+            {
+                id: 'karin',
+                title: 'Ley Karin',
+                description: 'Comprende la ley de protección contra acoso y violencia laboral. Identifica situaciones de acoso, conoce procedimientos de denuncia y responsabilidades empresariales.',
+                icon: '⚖️',
+                duration: '90 minutos',
+                modules: 6,
+                status: 'published',
+                badge: 'Disponible',
+                badgeClass: '',
+                url: 'ley-karin.html'
+            },
+            {
+                id: 'future',
+                title: 'Próximo Curso',
+                description: 'Estamos desarrollando nuevos cursos sobre legislación laboral chilena. Próximamente disponible.',
+                icon: '🚀',
+                duration: 'Próximamente',
+                modules: 0,
+                status: 'draft',
+                badge: 'Próximamente',
+                badgeClass: 'upcoming',
+                url: '#'
+            }
+        ];
 
-            // Por ahora, mostrar todos los cursos sin restricción
-            const currentUser = {
-                id: 'user-123',
-                name: 'Felipe Aldunate',
-                email: 'faldunate@gmail.com',
-                role: 'estudiante',
-                coursesAvailable: ['21719', 'karin']
-            };
+        function init() {
+            // Header
+            const header = document.createElement('header');
+            header.className = 'header';
+            header.innerHTML = `
+                <div class="container">
+                    <div class="header-content">
+                        <div class="logo">
+                            <div class="logo-icon">A</div>
+                            <div class="logo-text">
+                                <h2>AFAN Learning</h2>
+                                <p>Capacitación Integral</p>
+                            </div>
+                        </div>
+                        <div class="nav">
+                            <button class="nav-btn active">Inicio</button>
+                            <button class="nav-btn">Mi Progreso</button>
+                            <button class="nav-btn">Certificados</button>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar">FA</div>
+                            <div class="user-info">
+                                <h3>${currentUser.name}</h3>
+                                <p>${currentUser.email}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(header, document.body.firstChild);
 
-            const courses = [
-                {
-                    id: '21719',
-                    title: 'Ley de Protección de Datos',
-                    description: 'Conoce el marco legal chileno de protección de datos personales. Aprende sobre derechos de los titulares, obligaciones de responsables y medidas de seguridad.',
-                    icon: '🔒',
-                    duration: '95 minutos',
-                    modules: 5,
-                    status: 'published',
-                    badge: 'Disponible',
-                    badgeClass: '',
-                    url: 'ley-21719.html',
-                    features: [
-                        '5 módulos interactivos',
-                        'Examen final certificado',
-                        'Certificado digital'
-                    ]
-                },
-                {
-                    id: 'karin',
-                    title: 'Ley Karin',
-                    description: 'Comprende la ley de protección contra acoso y violencia laboral. Identifica situaciones de acoso, conoce procedimientos de denuncia y responsabilidades empresariales.',
-                    icon: '⚖️',
-                    duration: '90 minutos',
-                    modules: 6,
-                    status: 'published',
-                    badge: 'Disponible',
-                    badgeClass: '',
-                    url: 'ley-karin.html',
-                    features: [
-                        '6 módulos estructurados',
-                        'Casos prácticos chilenos',
-                        'Certificado digital'
-                    ]
-                },
-                {
-                    id: 'future',
-                    title: 'Próximo Curso',
-                    description: 'Estamos desarrollando nuevos cursos sobre legislación laboral chilena. Próximamente disponible.',
-                    icon: '🚀',
-                    duration: 'Próximamente',
-                    modules: 0,
-                    status: 'draft',
-                    badge: 'Próximamente',
-                    badgeClass: 'upcoming',
-                    url: '#',
-                    features: [
-                        'Contenido en desarrollo',
-                        'Disponible pronto',
-                        'Certificado digital'
-                    ]
+            // Hero Section
+            const hero = document.createElement('section');
+            hero.className = 'hero';
+            hero.innerHTML = `
+                <div class="container">
+                    <div class="hero-content">
+                        <div>
+                            <h1>Capacitación en Leyes Chilenas</h1>
+                            <p>Plataforma de educación legal profesional</p>
+                            <p>Accede a cursos certificados sobre las principales leyes de protección y bienestar laboral en Chile. Aprende a tu ritmo, 100% online.</p>
+                            <div class="hero-features">
+                                <div class="feature">
+                                    <div class="feature-icon">🎓</div>
+                                    <div>
+                                        <h4>Certificados Reconocidos</h4>
+                                        <p>Obtén certificados digitales verificables</p>
+                                    </div>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature-icon">⏰</div>
+                                    <div>
+                                        <h4>Acceso 24/7</h4>
+                                        <p>Estudia cuando quieras, donde quieras</p>
+                                    </div>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature-icon">✅</div>
+                                    <div>
+                                        <h4>Contenido Verificado</h4>
+                                        <p>Material actualizado según legislación</p>
+                                    </div>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature-icon">📱</div>
+                                    <div>
+                                        <h4>Responsive Design</h4>
+                                        <p>Accede desde cualquier dispositivo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(hero, document.getElementById('root').nextSibling);
+
+            // Main content
+            const root = document.getElementById('root');
+            root.innerHTML = `
+                <main class="main-content">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>Cursos Disponibles</h2>
+                            <p>Selecciona el curso que deseas realizar y comienza tu capacitación hoy</p>
+                        </div>
+                        <div class="courses-grid" id="courses-grid"></div>
+                        <div class="info-section">
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <div class="info-icon">👥</div>
+                                    <h3>Comunidad Activa</h3>
+                                    <p>Únete a miles de profesionales capacitándose en leyes chilenas</p>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-icon">📊</div>
+                                    <h3>Seguimiento</h3>
+                                    <p>Monitorea tu progreso y desempeño en cada curso</p>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-icon">🏆</div>
+                                    <h3>Reconocimiento</h3>
+                                    <p>Obtén certificados que validen tu aprendizaje</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="footer">
+                    <div class="container">
+                        <div class="footer-content">
+                            <div class="footer-section">
+                                <h3>Sobre AFAN Learning</h3>
+                                <ul>
+                                    <li><a href="#">Acerca de nosotros</a></li>
+                                    <li><a href="#">Nuestra misión</a></li>
+                                    <li><a href="#">Contacto</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-section">
+                                <h3>Cursos</h3>
+                                <ul>
+                                    <li><a href="#">Ley 21.719</a></li>
+                                    <li><a href="#">Ley Karin</a></li>
+                                    <li><a href="#">Próximamente</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-section">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="#">Términos de servicio</a></li>
+                                    <li><a href="#">Política de privacidad</a></li>
+                                    <li><a href="#">Ayuda</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-bottom">
+                            <p>© 2024 AFAN Learning. Todos los derechos reservados. | Capacitación en Legislación Chilena</p>
+                        </div>
+                    </div>
+                </footer>
+            `;
+
+            // Render courses
+            const coursesGrid = document.getElementById('courses-grid');
+            courses.forEach(course => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <div class="course-header">
+                        <div class="course-icon">${course.icon}</div>
+                        <div class="course-badge" style="background: ${course.badgeClass === 'upcoming' ? '#fef3c7' : '#ecfdf5'}; color: ${course.badgeClass === 'upcoming' ? '#d97706' : '#059669'};">
+                            ${course.badge}
+                        </div>
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <div class="course-meta">
+                            <div class="meta-item">⏱️ ${course.duration}</div>
+                            <div class="meta-item">📚 ${course.modules} módulos</div>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        ${course.status === 'published' ?
+                            `<button class="btn-primary" data-url="${course.url}">Acceder al Curso →</button>` :
+                            `<button class="btn-secondary" disabled>Próximamente</button>`
+                        }
+                    </div>
+                `;
+
+                if (course.status === 'published') {
+                    card.querySelector('button').onclick = () => {
+                        if (course.url !== '#') {
+                            window.location.href = course.url;
+                        }
+                    };
                 }
-            ];
 
-            // AUTENTICACIÓN FUTURA: Filtrar cursos según permisos del usuario
-            // const availableCourses = courses.filter(course => currentUser.coursesAvailable.includes(course.id));
-            const availableCourses = courses;
-
-            const handleAccessCourse = (courseUrl) => {
-                if (courseUrl !== '#') {
-                    window.location.href = courseUrl;
-                }
-            };
-
-            return (
-                <>
-                    <header className="header">
-                        <div className="container">
-                            <div className="header-content">
-                                <div className="logo">
-                                    <div className="logo-icon">A</div>
-                                    <div className="logo-text">
-                                        <h2>AFAN Learning</h2>
-                                        <p>Capacitación Integral</p>
-                                    </div>
-                                </div>
-                                <div className="nav">
-                                    <button className="nav-btn active">Inicio</button>
-                                    <button className="nav-btn">Mi Progreso</button>
-                                    <button className="nav-btn">Certificados</button>
-                                </div>
-                                <div className="user-profile">
-                                    <div className="user-avatar">FA</div>
-                                    <div className="user-info">
-                                        <h3>{currentUser.name}</h3>
-                                        <p>{currentUser.email}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
-
-                    <section className="hero">
-                        <div className="container">
-                            <div className="hero-content">
-                                <div>
-                                    <h1>Capacitación en Leyes Chilenas</h1>
-                                    <p>Plataforma de educación legal profesional</p>
-                                    <p>Accede a cursos certificados sobre las principales leyes de protección y bienestar laboral en Chile. Aprende a tu ritmo, 100% online.</p>
-                                    <div className="hero-features">
-                                        <div className="feature">
-                                            <div className="feature-icon">🎓</div>
-                                            <div>
-                                                <h4>Certificados Reconocidos</h4>
-                                                <p>Obtén certificados digitales verificables</p>
-                                            </div>
-                                        </div>
-                                        <div className="feature">
-                                            <div className="feature-icon">⏰</div>
-                                            <div>
-                                                <h4>Acceso 24/7</h4>
-                                                <p>Estudia cuando quieras, donde quieras</p>
-                                            </div>
-                                        </div>
-                                        <div className="feature">
-                                            <div className="feature-icon">✅</div>
-                                            <div>
-                                                <h4>Contenido Verificado</h4>
-                                                <p>Material actualizado según legislación</p>
-                                            </div>
-                                        </div>
-                                        <div className="feature">
-                                            <div className="feature-icon">📱</div>
-                                            <div>
-                                                <h4>Responsive Design</h4>
-                                                <p>Accede desde cualquier dispositivo</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <main className="main-content">
-                        <div className="container">
-                            <div className="section-header">
-                                <h2>Cursos Disponibles</h2>
-                                <p>Selecciona el curso que deseas realizar y comienza tu capacitación hoy</p>
-                            </div>
-
-                            <div className="courses-grid">
-                                {availableCourses.map(course => (
-                                    <div key={course.id} className="course-card">
-                                        <div className="course-header">
-                                            <div className="course-icon">{course.icon}</div>
-                                            <div className="course-badge" style={{background: course.badgeClass === 'upcoming' ? '#fef3c7' : '#ecfdf5', color: course.badgeClass === 'upcoming' ? '#d97706' : '#059669'}}>
-                                                {course.badge}
-                                            </div>
-                                            <h3>{course.title}</h3>
-                                            <p>{course.description}</p>
-                                            <div className="course-meta">
-                                                <div className="meta-item">⏱️ {course.duration}</div>
-                                                <div className="meta-item">📚 {course.modules} módulos</div>
-                                            </div>
-                                        </div>
-                                        <div className="course-footer">
-                                            {course.status === 'published' ? (
-                                                <button className="btn-primary" onClick={() => handleAccessCourse(course.url)}>
-                                                    Acceder al Curso →
-                                                </button>
-                                            ) : (
-                                                <button className="btn-secondary" disabled>
-                                                    Próximamente
-                                                </button>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className="info-section">
-                                <div className="info-grid">
-                                    <div className="info-card">
-                                        <div className="info-icon">👥</div>
-                                        <h3>Comunidad Activa</h3>
-                                        <p>Únete a miles de profesionales capacitándose en leyes chilenas</p>
-                                    </div>
-                                    <div className="info-card">
-                                        <div className="info-icon">📊</div>
-                                        <h3>Seguimiento</h3>
-                                        <p>Monitorea tu progreso y desempeño en cada curso</p>
-                                    </div>
-                                    <div className="info-card">
-                                        <div className="info-icon">🏆</div>
-                                        <h3>Reconocimiento</h3>
-                                        <p>Obtén certificados que validen tu aprendizaje</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
-
-                    <footer className="footer">
-                        <div className="container">
-                            <div className="footer-content">
-                                <div className="footer-section">
-                                    <h3>Sobre AFAN Learning</h3>
-                                    <ul>
-                                        <li><a href="#">Acerca de nosotros</a></li>
-                                        <li><a href="#">Nuestra misión</a></li>
-                                        <li><a href="#">Contacto</a></li>
-                                    </ul>
-                                </div>
-                                <div className="footer-section">
-                                    <h3>Cursos</h3>
-                                    <ul>
-                                        <li><a href="#">Ley 21.719</a></li>
-                                        <li><a href="#">Ley Karin</a></li>
-                                        <li><a href="#">Próximamente</a></li>
-                                    </ul>
-                                </div>
-                                <div className="footer-section">
-                                    <h3>Legal</h3>
-                                    <ul>
-                                        <li><a href="#">Términos de servicio</a></li>
-                                        <li><a href="#">Política de privacidad</a></li>
-                                        <li><a href="#">Ayuda</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="footer-bottom">
-                                <p>© 2024 AFAN Learning. Todos los derechos reservados. | Capacitación en Legislación Chilena</p>
-                            </div>
-                        </div>
-                    </footer>
-                </>
-            );
+                coursesGrid.appendChild(card);
+            });
         }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
     </script>
 </body>
 </html>

@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ley 21.719 - Capacitación en Protección de Datos</title>
-    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
             margin: 0;
@@ -648,306 +644,353 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState } = React;
+    <script>
+        // State management
+        let state = {
+            currentPage: 'inicio',
+            viewMode: 'desktop',
+            completedModules: [],
+            examAnswers: {},
+            examSubmitted: false,
+            examScore: 0
+        };
 
-        function App() {
-            const [currentPage, setCurrentPage] = useState('inicio');
-            const [viewMode, setViewMode] = useState('desktop');
-            const [completedModules, setCompletedModules] = useState([]);
-            const [examAnswers, setExamAnswers] = useState({});
-            const [examSubmitted, setExamSubmitted] = useState(false);
-            const [examScore, setExamScore] = useState(0);
+        const modules = [
+            {
+                id: 1,
+                title: 'Introducción a la Ley 21.719',
+                duration: '15 min',
+                icon: '📋',
+                content: 'Conoce los fundamentos y objetivos de la Ley de Protección de Datos Personales en Chile.'
+            },
+            {
+                id: 2,
+                title: 'Derechos de los Titulares',
+                duration: '20 min',
+                icon: '👤',
+                content: 'Explora los derechos fundamentales de las personas respecto a sus datos personales.'
+            },
+            {
+                id: 3,
+                title: 'Obligaciones de Responsables',
+                duration: '25 min',
+                icon: '⚖️',
+                content: 'Comprende las responsabilidades de quienes recopilan y procesan datos personales.'
+            },
+            {
+                id: 4,
+                title: 'Seguridad y Privacidad',
+                duration: '20 min',
+                icon: '🔒',
+                content: 'Aprende sobre medidas de protección y seguridad de datos personales.'
+            },
+            {
+                id: 5,
+                title: 'Cumplimiento Normativo',
+                duration: '15 min',
+                icon: '✅',
+                content: 'Descubre cómo implementar medidas de cumplimiento en tu organización.'
+            }
+        ];
 
-            const modules = [
-                {
-                    id: 1,
-                    title: 'Introducción a la Ley 21.719',
-                    duration: '15 min',
-                    icon: '📋',
-                    content: 'Conoce los fundamentos y objetivos de la Ley de Protección de Datos Personales en Chile.'
-                },
-                {
-                    id: 2,
-                    title: 'Derechos de los Titulares',
-                    duration: '20 min',
-                    icon: '👤',
-                    content: 'Explora los derechos fundamentales de las personas respecto a sus datos personales.'
-                },
-                {
-                    id: 3,
-                    title: 'Obligaciones de Responsables',
-                    duration: '25 min',
-                    icon: '⚖️',
-                    content: 'Comprende las responsabilidades de quienes recopilan y procesan datos personales.'
-                },
-                {
-                    id: 4,
-                    title: 'Seguridad y Privacidad',
-                    duration: '20 min',
-                    icon: '🔒',
-                    content: 'Aprende sobre medidas de protección y seguridad de datos personales.'
-                },
-                {
-                    id: 5,
-                    title: 'Cumplimiento Normativo',
-                    duration: '15 min',
-                    icon: '✅',
-                    content: 'Descubre cómo implementar medidas de cumplimiento en tu organización.'
-                }
-            ];
+        const examQuestions = [
+            {
+                id: 1,
+                question: '¿Cuál es el objetivo principal de la Ley 21.719?',
+                options: ['Proteger los datos personales de los ciudadanos', 'Aumentar la recolección de datos', 'Eliminar la privacidad', 'Ninguna de las anteriores'],
+                correct: 0
+            },
+            {
+                id: 2,
+                question: '¿Cuál es uno de los derechos fundamentales de los titulares?',
+                options: ['El derecho de opresión', 'El derecho de acceso a sus datos', 'El derecho de destrucción', 'Ninguno'],
+                correct: 1
+            },
+            {
+                id: 3,
+                question: '¿Quién es responsable de la seguridad?',
+                options: ['Solo el gobierno', 'El responsable del tratamiento', 'Nadie', 'Solo los empleados'],
+                correct: 1
+            },
+            {
+                id: 4,
+                question: '¿Qué hacer ante una brecha de datos?',
+                options: ['Ocultar', 'Notificar a afectados', 'Eliminar registros', 'Seguir operando'],
+                correct: 1
+            },
+            {
+                id: 5,
+                question: '¿Cuál es el fiscalizador?',
+                options: ['Sernac', 'Sernanp', 'Dirección General de Protección', 'Superintendencia de Seguros'],
+                correct: 2
+            }
+        ];
 
-            const examQuestions = [
-                {
-                    id: 1,
-                    question: '¿Cuál es el objetivo principal de la Ley 21.719?',
-                    options: ['Proteger los datos personales de los ciudadanos', 'Aumentar la recolección de datos', 'Eliminar la privacidad', 'Ninguna de las anteriores'],
-                    correct: 0
-                },
-                {
-                    id: 2,
-                    question: '¿Cuál es uno de los derechos fundamentales de los titulares?',
-                    options: ['El derecho de opresión', 'El derecho de acceso a sus datos', 'El derecho de destrucción', 'Ninguno'],
-                    correct: 1
-                },
-                {
-                    id: 3,
-                    question: '¿Quién es responsable de la seguridad?',
-                    options: ['Solo el gobierno', 'El responsable del tratamiento', 'Nadie', 'Solo los empleados'],
-                    correct: 1
-                },
-                {
-                    id: 4,
-                    question: '¿Qué hacer ante una brecha de datos?',
-                    options: ['Ocultar', 'Notificar a afectados', 'Eliminar registros', 'Seguir operando'],
-                    correct: 1
-                },
-                {
-                    id: 5,
-                    question: '¿Cuál es el fiscalizador?',
-                    options: ['Sernac', 'Sernanp', 'Dirección General de Protección', 'Superintendencia de Seguros'],
-                    correct: 2
-                }
-            ];
+        function handleCompleteModule(moduleId) {
+            if (!state.completedModules.includes(moduleId)) {
+                state.completedModules.push(moduleId);
+            }
+            render();
+        }
 
-            const handleCompleteModule = (moduleId) => {
-                if (!completedModules.includes(moduleId)) {
-                    setCompletedModules([...completedModules, moduleId]);
-                }
-            };
+        function handleExamAnswer(questionId, answerIndex) {
+            state.examAnswers[questionId] = answerIndex;
+            render();
+        }
 
-            const handleExamAnswer = (questionId, answerIndex) => {
-                setExamAnswers({ ...examAnswers, [questionId]: answerIndex });
-            };
+        function handleSubmitExam() {
+            let score = 0;
+            examQuestions.forEach(q => {
+                if (state.examAnswers[q.id] === q.correct) score++;
+            });
+            state.examScore = score;
+            state.examSubmitted = true;
+            render();
+        }
 
-            const handleSubmitExam = () => {
-                let score = 0;
-                examQuestions.forEach(q => {
-                    if (examAnswers[q.id] === q.correct) score++;
-                });
-                setExamScore(score);
-                setExamSubmitted(true);
-            };
+        function render() {
+            const root = document.getElementById('root');
+            const progressPercentage = (state.completedModules.length / modules.length) * 100;
+            const isPassed = state.examScore >= 4;
+            const answeredCount = Object.keys(state.examAnswers).length;
 
-            const progressPercentage = (completedModules.length / modules.length) * 100;
-            const isPassed = examScore >= 4;
+            // Clear root
+            root.innerHTML = '';
 
-            return (
-                <>
-                    <div className="view-toggle">
-                        <button className={`toggle-btn ${viewMode === 'desktop' ? 'active' : ''}`} onClick={() => setViewMode('desktop')}>💻 Desktop</button>
-                        <button className={`toggle-btn ${viewMode === 'mobile' ? 'active' : ''}`} onClick={() => setViewMode('mobile')}>📱 Mobile</button>
+            // View toggle
+            const toggle = document.createElement('div');
+            toggle.className = 'view-toggle';
+            toggle.innerHTML = `
+                <button class="toggle-btn ${state.viewMode === 'desktop' ? 'active' : ''}">💻 Desktop</button>
+                <button class="toggle-btn ${state.viewMode === 'mobile' ? 'active' : ''}">📱 Mobile</button>
+            `;
+            toggle.querySelectorAll('button')[0].onclick = () => { state.viewMode = 'desktop'; render(); };
+            toggle.querySelectorAll('button')[1].onclick = () => { state.viewMode = 'mobile'; render(); };
+            root.appendChild(toggle);
+
+            // Header
+            const header = document.createElement('header');
+            header.className = 'header';
+            header.innerHTML = `
+                <div class="container">
+                    <div class="header-content">
+                        <div class="logo">
+                            <div class="logo-icon">A</div>
+                            <div class="logo-text">
+                                <h2>AFAN Learning</h2>
+                                <p>Protección de Datos</p>
+                            </div>
+                        </div>
+                        <div class="nav">
+                            <button class="nav-btn ${state.currentPage === 'inicio' ? 'active' : ''}">Inicio</button>
+                            <button class="nav-btn ${state.currentPage === 'cursos' ? 'active' : ''}">Mis Cursos</button>
+                            <button class="nav-btn ${state.currentPage === 'examen' ? 'active' : ''}">Examen</button>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar">FA</div>
+                            <div class="user-info">
+                                <h3>Felipe Aldunate</h3>
+                                <p>faldunate@gmail.com</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            `;
+            header.querySelectorAll('.nav-btn')[0].onclick = () => { state.currentPage = 'inicio'; render(); };
+            header.querySelectorAll('.nav-btn')[1].onclick = () => { state.currentPage = 'cursos'; render(); };
+            header.querySelectorAll('.nav-btn')[2].onclick = () => { state.currentPage = 'examen'; render(); };
+            root.appendChild(header);
 
-                    <header className="header">
-                        <div className="container">
-                            <div className="header-content">
-                                <div className="logo">
-                                    <div className="logo-icon">A</div>
-                                    <div className="logo-text">
-                                        <h2>AFAN Learning</h2>
-                                        <p>Protección de Datos</p>
-                                    </div>
+            // Main content
+            const main = document.createElement('main');
+            main.className = 'main-content';
+            const container = document.createElement('div');
+            container.className = 'container';
+
+            if (state.currentPage === 'inicio') {
+                container.innerHTML = `
+                    <div class="hero">
+                        <div class="hero-content">
+                            <div>
+                                <h1>Ley de Protección de Datos Personales</h1>
+                                <p>Ley 21.719</p>
+                                <p>Domina el marco legal chileno de protección de datos con nuestro programa de capacitación certificado</p>
+                                <button class="btn-primary">Comenzar Ahora →</button>
+                            </div>
+                            <div class="hero-grid">
+                                <div class="hero-card">
+                                    <div class="hero-card-icon">⏱️</div>
+                                    <h3>95 minutos</h3>
+                                    <p>de contenido</p>
                                 </div>
-                                <div className="nav">
-                                    <button className={`nav-btn ${currentPage === 'inicio' ? 'active' : ''}`} onClick={() => setCurrentPage('inicio')}>Inicio</button>
-                                    <button className={`nav-btn ${currentPage === 'cursos' ? 'active' : ''}`} onClick={() => setCurrentPage('cursos')}>Mis Cursos</button>
-                                    <button className={`nav-btn ${currentPage === 'examen' ? 'active' : ''}`} onClick={() => setCurrentPage('examen')}>Examen</button>
+                                <div class="hero-card">
+                                    <div class="hero-card-icon">🏆</div>
+                                    <h3>Certificado</h3>
+                                    <p>digital</p>
                                 </div>
-                                <div className="user-profile">
-                                    <div className="user-avatar">FA</div>
-                                    <div className="user-info">
-                                        <h3>Felipe Aldunate</h3>
-                                        <p>faldunate@gmail.com</p>
-                                    </div>
+                                <div class="hero-card">
+                                    <div class="hero-card-icon">✓</div>
+                                    <h3>5 Módulos</h3>
+                                    <p>estructurados</p>
+                                </div>
+                                <div class="hero-card">
+                                    <div class="hero-card-icon">🌐</div>
+                                    <h3>100% Online</h3>
+                                    <p>a tu ritmo</p>
                                 </div>
                             </div>
                         </div>
-                    </header>
+                    </div>
+                `;
+                container.querySelector('.btn-primary').onclick = () => { state.currentPage = 'cursos'; render(); };
+            } else if (state.currentPage === 'cursos') {
+                container.innerHTML = `
+                    <h2 style="font-size: 28px; margin-bottom: 8px;">Mis Cursos</h2>
+                    <p style="color: #64748b; margin-bottom: 32px;">Completa todos los módulos para acceder al examen final</p>
 
-                    <main className="main-content">
-                        <div className="container">
-                            {currentPage === 'inicio' && (
-                                <>
-                                    <div className="hero">
-                                        <div className="hero-content">
-                                            <div>
-                                                <h1>Ley de Protección de Datos Personales</h1>
-                                                <p>Ley 21.719</p>
-                                                <p>Domina el marco legal chileno de protección de datos con nuestro programa de capacitación certificado</p>
-                                                <button className="btn-primary" onClick={() => setCurrentPage('cursos')}>Comenzar Ahora →</button>
-                                            </div>
-                                            <div className="hero-grid">
-                                                <div className="hero-card">
-                                                    <div className="hero-card-icon">⏱️</div>
-                                                    <h3>95 minutos</h3>
-                                                    <p>de contenido</p>
-                                                </div>
-                                                <div className="hero-card">
-                                                    <div className="hero-card-icon">🏆</div>
-                                                    <h3>Certificado</h3>
-                                                    <p>digital</p>
-                                                </div>
-                                                <div className="hero-card">
-                                                    <div className="hero-card-icon">✓</div>
-                                                    <h3>5 Módulos</h3>
-                                                    <p>estructurados</p>
-                                                </div>
-                                                <div className="hero-card">
-                                                    <div className="hero-card-icon">🌐</div>
-                                                    <h3>100% Online</h3>
-                                                    <p>a tu ritmo</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
-
-                            {currentPage === 'cursos' && (
-                                <>
-                                    <h2 style={{fontSize: '28px', marginBottom: '8px'}}>Mis Cursos</h2>
-                                    <p style={{color: '#64748b', marginBottom: '32px'}}>Completa todos los módulos para acceder al examen final</p>
-
-                                    <div className="progress-card">
-                                        <div className="progress-header">
-                                            <span>Progreso General</span>
-                                            <span className="progress-percent">{Math.round(progressPercentage)}%</span>
-                                        </div>
-                                        <div className="progress-bar">
-                                            <div className="progress-fill" style={{width: `${progressPercentage}%`}}></div>
-                                        </div>
-                                        <div className="progress-text">{completedModules.length} de {modules.length} módulos completados</div>
-                                    </div>
-
-                                    <div className="modules-grid">
-                                        {modules.map(module => (
-                                            <div key={module.id} className={`module-card ${completedModules.includes(module.id) ? 'completed' : ''}`}>
-                                                <div className="module-header">
-                                                    <div className="module-icon-title">
-                                                        <div className="module-icon">{module.icon}</div>
-                                                        <div className="module-title-section">
-                                                            <h3>{module.title}</h3>
-                                                            <div className="module-time">⏱️ {module.duration}</div>
-                                                        </div>
-                                                    </div>
-                                                    {completedModules.includes(module.id) && <div className="checkmark">✓</div>}
-                                                </div>
-                                                <div className="module-desc">{module.content}</div>
-                                                <div className="module-action">
-                                                    {!completedModules.includes(module.id) ? (
-                                                        <button className="btn-secondary" onClick={() => handleCompleteModule(module.id)}>Ver Módulo →</button>
-                                                    ) : (
-                                                        <span className="completed-badge">✓ Completado</span>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {completedModules.length === modules.length && (
-                                        <div style={{background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: 'white', padding: '32px', borderRadius: '16px', textAlign: 'center', marginTop: '40px'}}>
-                                            <p style={{marginBottom: '16px', fontSize: '16px'}}>¡Felicidades! Has completado todos los módulos</p>
-                                            <button className="btn-primary" style={{background: 'white', color: '#10b981'}} onClick={() => setCurrentPage('examen')}>Realizar Examen Final →</button>
-                                        </div>
-                                    )}
-                                </>
-                            )}
-
-                            {currentPage === 'examen' && !examSubmitted && (
-                                <>
-                                    <div className="progress-card">
-                                        <h2 style={{marginBottom: '8px'}}>Examen Final</h2>
-                                        <p>Responde correctamente al menos 4 de 5 preguntas (80%) para aprobar</p>
-                                    </div>
-
-                                    <div style={{marginBottom: '32px'}}>
-                                        {examQuestions.map((q, idx) => (
-                                            <div key={q.id} className={`exam-card ${Object.keys(examAnswers).includes(String(q.id)) ? 'active' : ''}`}>
-                                                <div className="exam-question">{idx + 1}. {q.question}</div>
-                                                <div className="exam-options">
-                                                    {q.options.map((option, optIdx) => (
-                                                        <label key={optIdx} className={`option-label ${examAnswers[q.id] === optIdx ? 'selected' : ''}`}>
-                                                            <input type="radio" name={`q${q.id}`} value={optIdx} checked={examAnswers[q.id] === optIdx} onChange={() => handleExamAnswer(q.id, optIdx)} />
-                                                            <span>{option}</span>
-                                                        </label>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="btn-group">
-                                        <button className="btn-gray" onClick={() => setCurrentPage('cursos')}>← Volver</button>
-                                        <button className="btn-secondary" onClick={handleSubmitExam} disabled={Object.keys(examAnswers).length < 5} style={{opacity: Object.keys(examAnswers).length < 5 ? 0.5 : 1}}>Enviar Examen →</button>
-                                    </div>
-                                </>
-                            )}
-
-                            {currentPage === 'examen' && examSubmitted && (
-                                <>
-                                    <div className={`result-container ${isPassed ? 'result-passed' : 'result-failed'}`} style={{borderRadius: '16px', marginBottom: '40px'}}>
-                                        <div className="result-icon">{isPassed ? '🎉' : '📋'}</div>
-                                        <h1 className="result-title">{isPassed ? '¡Aprobado!' : 'No Aprobado'}</h1>
-                                        <div className="result-score">{examScore} de 5 preguntas correctas ({Math.round((examScore/5)*100)}%)</div>
-                                    </div>
-
-                                    {isPassed && (
-                                        <>
-                                            <div className="certificate">
-                                                <div className="cert-icon">🏆</div>
-                                                <h2 className="cert-title">Certificado de Aprobación</h2>
-                                                <p className="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
-                                                <div className="cert-content">
-                                                    <div className="cert-name">Felipe Aldunate</div>
-                                                    <div className="cert-email">faldunate@gmail.com</div>
-                                                    <div className="cert-achievement">
-                                                        <p>Ha completado exitosamente el curso de</p>
-                                                        <p style={{fontWeight: '600'}}>Ley de Protección de Datos Personales - Ley 21.719</p>
-                                                    </div>
-                                                    <div className="cert-date">
-                                                        <p>Emitido: {new Date().toLocaleDateString('es-CL')}</p>
-                                                        <p style={{fontSize: '11px', marginTop: '4px'}}>ID: CERT-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, '0')}{String(new Date().getDate()).padStart(2, '0')}-001</p>
-                                                    </div>
-                                                </div>
-                                                <button className="btn-secondary" style={{width: '100%', marginBottom: '16px'}}>📥 Descargar Certificado PDF</button>
-                                            </div>
-                                        </>
-                                    )}
-
-                                    <div className="btn-group">
-                                        <button className="btn-gray" style={{flex: 1}} onClick={() => { setCurrentPage('inicio'); setCompletedModules([]); setExamAnswers({}); setExamSubmitted(false); }}>← Volver al Inicio</button>
-                                        <button className="btn-gray" style={{flex: 1}} onClick={() => window.location.href = 'landing.html'}>↩️ Volver a Cursos</button>
-                                    </div>
-                                </>
-                            )}
+                    <div class="progress-card">
+                        <div class="progress-header">
+                            <span>Progreso General</span>
+                            <span class="progress-percent">${Math.round(progressPercentage)}%</span>
                         </div>
-                    </main>
-                </>
-            );
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                        </div>
+                        <div class="progress-text">${state.completedModules.length} de ${modules.length} módulos completados</div>
+                    </div>
+
+                    <div class="modules-grid" id="modules-grid"></div>
+
+                    ${state.completedModules.length === modules.length ? `
+                        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 32px; border-radius: 16px; text-align: center; margin-top: 40px;">
+                            <p style="margin-bottom: 16px; font-size: 16px;">¡Felicidades! Has completado todos los módulos</p>
+                            <button class="btn-primary" style="background: white; color: #10b981; width: auto;">Realizar Examen Final →</button>
+                        </div>
+                    ` : ''}
+                `;
+
+                const modulesGrid = container.querySelector('#modules-grid');
+                modules.forEach(module => {
+                    const card = document.createElement('div');
+                    card.className = `module-card ${state.completedModules.includes(module.id) ? 'completed' : ''}`;
+                    card.innerHTML = `
+                        <div class="module-header">
+                            <div class="module-icon-title">
+                                <div class="module-icon">${module.icon}</div>
+                                <div class="module-title-section">
+                                    <h3>${module.title}</h3>
+                                    <div class="module-time">⏱️ ${module.duration}</div>
+                                </div>
+                            </div>
+                            ${state.completedModules.includes(module.id) ? '<div class="checkmark">✓</div>' : ''}
+                        </div>
+                        <div class="module-desc">${module.content}</div>
+                        <div class="module-action">
+                            ${!state.completedModules.includes(module.id) ?
+                                `<button class="btn-secondary">Ver Módulo →</button>` :
+                                `<span class="completed-badge">✓ Completado</span>`
+                            }
+                        </div>
+                    `;
+                    if (!state.completedModules.includes(module.id)) {
+                        card.querySelector('.btn-secondary').onclick = () => handleCompleteModule(module.id);
+                    }
+                    modulesGrid.appendChild(card);
+                });
+
+                if (state.completedModules.length === modules.length) {
+                    container.querySelector('button[style*="white"]').onclick = () => { state.currentPage = 'examen'; render(); };
+                }
+            } else if (state.currentPage === 'examen' && !state.examSubmitted) {
+                container.innerHTML = `
+                    <div class="progress-card">
+                        <h2 style="margin-bottom: 8px;">Examen Final</h2>
+                        <p>Responde correctamente al menos 4 de 5 preguntas (80%) para aprobar</p>
+                    </div>
+                    <div style="margin-bottom: 32px;" id="exam-questions"></div>
+                    <div class="btn-group">
+                        <button class="btn-gray">← Volver</button>
+                        <button class="btn-secondary" ${answeredCount < 5 ? 'disabled' : ''} style="opacity: ${answeredCount < 5 ? 0.5 : 1}">Enviar Examen →</button>
+                    </div>
+                `;
+
+                const examQuestionsDiv = container.querySelector('#exam-questions');
+                examQuestions.forEach((q, idx) => {
+                    const card = document.createElement('div');
+                    card.className = `exam-card ${Object.keys(state.examAnswers).includes(String(q.id)) ? 'active' : ''}`;
+                    card.innerHTML = `
+                        <div class="exam-question">${idx + 1}. ${q.question}</div>
+                        <div class="exam-options" id="options-${q.id}"></div>
+                    `;
+                    const optionsDiv = card.querySelector(`#options-${q.id}`);
+                    q.options.forEach((option, optIdx) => {
+                        const label = document.createElement('label');
+                        label.className = `option-label ${state.examAnswers[q.id] === optIdx ? 'selected' : ''}`;
+                        label.innerHTML = `
+                            <input type="radio" name="q${q.id}" value="${optIdx}" ${state.examAnswers[q.id] === optIdx ? 'checked' : ''}>
+                            <span>${option}</span>
+                        `;
+                        label.querySelector('input').onchange = () => { handleExamAnswer(q.id, optIdx); };
+                        optionsDiv.appendChild(label);
+                    });
+                    examQuestionsDiv.appendChild(card);
+                });
+
+                container.querySelector('.btn-gray').onclick = () => { state.currentPage = 'cursos'; render(); };
+                container.querySelector('.btn-secondary').onclick = () => handleSubmitExam();
+            } else if (state.currentPage === 'examen' && state.examSubmitted) {
+                container.innerHTML = `
+                    <div class="result-container ${isPassed ? 'result-passed' : 'result-failed'}" style="border-radius: 16px; margin-bottom: 40px;">
+                        <div class="result-icon">${isPassed ? '🎉' : '📋'}</div>
+                        <h1 class="result-title">${isPassed ? '¡Aprobado!' : 'No Aprobado'}</h1>
+                        <div class="result-score">${state.examScore} de 5 preguntas correctas (${Math.round((state.examScore/5)*100)}%)</div>
+                    </div>
+
+                    ${isPassed ? `
+                        <div class="certificate">
+                            <div class="cert-icon">🏆</div>
+                            <h2 class="cert-title">Certificado de Aprobación</h2>
+                            <p class="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
+                            <div class="cert-content">
+                                <div class="cert-name">Felipe Aldunate</div>
+                                <div class="cert-email">faldunate@gmail.com</div>
+                                <div class="cert-achievement">
+                                    <p>Ha completado exitosamente el curso de</p>
+                                    <p style="font-weight: 600;">Ley de Protección de Datos Personales - Ley 21.719</p>
+                                </div>
+                                <div class="cert-date">
+                                    <p>Emitido: ${new Date().toLocaleDateString('es-CL')}</p>
+                                    <p style="font-size: 11px; margin-top: 4px;">ID: CERT-${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}${String(new Date().getDate()).padStart(2, '0')}-001</p>
+                                </div>
+                            </div>
+                            <button class="btn-secondary" style="width: 100%; margin-bottom: 16px;">📥 Descargar Certificado PDF</button>
+                        </div>
+                    ` : ''}
+
+                    <div class="btn-group">
+                        <button class="btn-gray" style="flex: 1;">← Volver al Inicio</button>
+                        <button class="btn-gray" style="flex: 1;">↩️ Volver a Cursos</button>
+                    </div>
+                `;
+
+                container.querySelectorAll('.btn-gray')[0].onclick = () => {
+                    state.currentPage = 'inicio';
+                    state.completedModules = [];
+                    state.examAnswers = {};
+                    state.examSubmitted = false;
+                    render();
+                };
+                container.querySelectorAll('.btn-gray')[1].onclick = () => {
+                    window.location.href = 'index.html';
+                };
+            }
+
+            main.appendChild(container);
+            root.appendChild(main);
         }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        // Initial render when page loads
+        document.addEventListener('DOMContentLoaded', render);
     </script>
 </body>
 </html>
