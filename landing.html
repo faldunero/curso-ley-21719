@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación en Leyes Chilenas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 16px 0; }
+        .navbar-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 700; color: #000; cursor: pointer; letter-spacing: -0.5px; }
+        .logo span { color: #999; font-weight: 400; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links button, .nav-links a { background: none; border: none; font-size: 14px; font-weight: 500; color: #666; cursor: pointer; transition: all 0.2s; padding: 8px 0; text-decoration: none; }
+        .nav-links button:hover, .nav-links button.active, .nav-links a:hover { color: #000; font-weight: 600; }
+
+        .hero { padding: 120px 40px; background: linear-gradient(135deg, #f0f4f8 0%, #e8f1ff 100%); }
+        .hero-content { max-width: 1400px; margin: 0 auto; text-align: center; }
+        .hero-text h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; color: #000; }
+        .hero-text p { font-size: 18px; color: #555; margin-bottom: 48px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 12px; justify-content: center; margin-bottom: 32px; }
+        .btn { padding: 12px 28px; border-radius: 8px; border: none; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-block; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 12px 32px rgba(37, 99, 235, 0.2); }
+        .btn-secondary { background: #fff; color: #2563eb; border: 2px solid #2563eb; }
+        .btn-secondary:hover { background: #f0f4f8; border-color: #1d4ed8; }
+
+        .main { max-width: 1400px; margin: 0 auto; padding: 80px 40px; }
+        .section-title { font-size: 28px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; color: #000; text-align: center; }
+        .section-subtitle { font-size: 15px; color: #888; margin-bottom: 48px; text-align: center; }
+
+        .courses-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-bottom: 60px; }
+        .course-card { background: white; border-radius: 12px; padding: 40px; transition: all 0.3s; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .course-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); transform: translateY(-4px); }
+        .course-header { margin-bottom: 24px; }
+        .course-tag { display: inline-block; font-size: 12px; font-weight: 600; color: #2563eb; background: #e8f1ff; padding: 6px 12px; border-radius: 6px; margin-bottom: 12px; }
+        .course-title { font-size: 24px; font-weight: 700; color: #000; margin-bottom: 12px; letter-spacing: -0.3px; }
+        .course-desc { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .course-details { display: flex; gap: 24px; font-size: 13px; color: #888; margin-bottom: 32px; }
+        .detail-item { display: flex; align-items: center; gap: 6px; }
+        .course-cta { display: inline-block; padding: 12px 24px; background: #2563eb; color: white; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s; }
+        .course-cta:hover { background: #1d4ed8; }
+        .course-card.coming-soon .course-cta { background: #d1d5db; cursor: not-allowed; pointer-events: none; }
+
+        .footer { background: #f3f4f6; border-top: 1px solid #e5e7eb; padding: 40px; margin-top: 60px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; text-align: center; }
+        .footer-text { font-size: 13px; color: #666; }
+
+        @media (max-width: 1024px) {
+            .courses-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 40px; }
+            .navbar-content { padding: 0 20px; }
+            .main { padding: 60px 20px; }
+            .hero { padding: 80px 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 16px; font-size: 13px; }
+            .hero-text h1 { font-size: 32px; }
+            .hero-text p { font-size: 16px; }
+            .course-card { padding: 24px; }
+            .course-title { font-size: 20px; }
+            .courses-grid { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Ley 21.719 y Karin</div>
+            <ul class="nav-links">
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Capacitación en Leyes Chilenas</h1>
+                <p>Aprende sobre protección de datos y seguridad laboral con cursos certificados, diseñados para profesionales que quieren cumplir con la normativa chilena.</p>
+                <div class="hero-buttons">
+                    <a href="#cursos" class="btn btn-primary">Ver Cursos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main">
+        <h2 class="section-title" id="cursos">Cursos Disponibles</h2>
+        <p class="section-subtitle">Elige el curso que deseas tomar</p>
+
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-tag">DISPONIBLE</div>
+                    <h3 class="course-title">Ley 21.719</h3>
+                    <p class="course-desc">Protección de Datos Personales. Aprende tus derechos y las obligaciones de las empresas en materia de privacidad y seguridad de datos.</p>
+                </div>
+                <div class="course-details">
+                    <div class="detail-item">
+                        <span>5 módulos</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>240 minutos</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Certificado</span>
+                    </div>
+                </div>
+                <a href="ley-21719.html" class="course-cta">Acceder al Curso</a>
+            </div>
+
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-tag">DISPONIBLE</div>
+                    <h3 class="course-title">Ley Karin</h3>
+                    <p class="course-desc">Acoso Laboral y Violencia en el Trabajo. Conoce tus derechos y cómo denunciar situaciones de acoso en el ambiente laboral.</p>
+                </div>
+                <div class="course-details">
+                    <div class="detail-item">
+                        <span>6 módulos</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>300 minutos</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Certificado</span>
+                    </div>
+                </div>
+                <a href="ley-karin.html" class="course-cta">Acceder al Curso</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contacto">
+        <div class="footer-content">
+            <p class="footer-text">Capacitación en Leyes Chilenas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

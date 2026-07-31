@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - 8 Elementos Interactivos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.6; }
+
+        .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 16px 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 700; color: #2563eb; }
+
+        .main { max-width: 1200px; margin: 0 auto; padding: 60px 40px; }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+        .section-subtitle { font-size: 16px; color: #666; margin-bottom: 40px; }
+
+        .demo-section { background: white; border-radius: 12px; padding: 40px; margin-bottom: 40px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .demo-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; color: #000; display: flex; align-items: center; gap: 12px; }
+        .demo-section h2::before { content: ''; display: inline-block; width: 6px; height: 24px; background: #2563eb; border-radius: 3px; }
+        .demo-desc { font-size: 14px; color: #666; margin-bottom: 24px; padding: 12px; background: #f0f4f8; border-left: 3px solid #2563eb; border-radius: 6px; }
+
+        /* ======== ACORDEONES ======== */
+        .accordion-item { background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; }
+        .accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; background: white; border: none; width: 100%; font-size: 14px; font-weight: 600; color: #000; transition: all 0.2s; }
+        .accordion-header:hover { background: #f8f9fa; }
+        .accordion-header.active { background: #f0f4f8; color: #2563eb; }
+        .accordion-toggle { font-size: 20px; font-weight: 300; width: 24px; text-align: center; }
+        .accordion-header.active .accordion-toggle::after { content: '−'; }
+        .accordion-header .accordion-toggle::after { content: '+'; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; }
+        .accordion-content.active { max-height: 500px; padding: 0 20px 16px 20px; }
+
+        /* ======== TABS ======== */
+        .tabs-container { margin: 20px 0; }
+        .tabs-header { display: flex; gap: 4px; border-bottom: 2px solid #e5e7eb; margin-bottom: 20px; }
+        .tab-btn { background: none; border: none; padding: 12px 16px; font-size: 13px; font-weight: 600; color: #666; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab-btn:hover { color: #2563eb; }
+        .tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; }
+        .tab-content { display: none; padding: 12px 0; }
+        .tab-content.active { display: block; }
+
+        /* ======== HIGHLIGHT ======== */
+        .text-highlighted { background-color: #fef08a; padding: 2px 4px; border-radius: 3px; }
+
+        /* ======== FAVORITOS ======== */
+        .favorite-btn { background: none; border: none; font-size: 18px; cursor: pointer; transition: all 0.2s; padding: 4px 8px; }
+        .favorite-btn.unfavorited { color: #ccc; }
+        .favorite-btn.favorited { color: #2563eb; }
+
+        .favorites-list { background: #f8f9fa; border-radius: 8px; padding: 16px; margin: 20px 0; border-left: 4px solid #2563eb; }
+        .favorites-list h4 { font-size: 13px; font-weight: 700; color: #000; margin-bottom: 12px; text-transform: uppercase; }
+        .favorites-list ul { list-style: none; padding: 0; margin: 0; }
+        .favorites-list li { padding: 8px 0; font-size: 13px; color: #555; }
+
+        /* ======== IMÁGENES ZOOMABLES ======== */
+        .zoomable-image { cursor: zoom-in; transition: all 0.2s; max-width: 300px; }
+        .zoomable-image:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+        .image-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 2500; opacity: 0; transition: opacity 0.3s ease; }
+        .image-modal-overlay.active { display: flex; opacity: 1; align-items: center; justify-content: center; }
+        .image-modal-content { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; animation: zoomIn 0.3s ease; }
+        .image-modal-content img { width: 100%; height: auto; border-radius: 8px; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .image-modal-close { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.2); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 24px; transition: all 0.2s; }
+        .image-modal-close:hover { background: rgba(255,255,255,0.4); }
+
+        /* ======== TOOLTIPS ======== */
+        .tooltip-text { position: relative; cursor: help; border-bottom: 1px dotted #2563eb; color: #2563eb; font-weight: 500; }
+        .tooltip-text:hover::after { content: attr(data-tooltip); position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background: #1a1a1a; color: white; padding: 8px 12px; border-radius: 6px; white-space: nowrap; font-size: 12px; font-weight: 400; z-index: 2000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .tooltip-text:hover::before { content: ''; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #1a1a1a; z-index: 2000; }
+
+        /* ======== NOTAS PERSONALES ======== */
+        .note-btn { background: none; border: none; font-size: 13px; font-weight: 600; color: #2563eb; cursor: pointer; padding: 4px 8px; transition: all 0.2s; }
+        .note-btn:hover { text-decoration: underline; }
+        .notes-container { margin-top: 12px; padding: 12px; background: #eff6ff; border-left: 3px solid #2563eb; border-radius: 6px; }
+        .note-item { margin-bottom: 12px; padding: 8px; background: white; border-radius: 4px; font-size: 12px; color: #555; border-left: 3px solid #fbbf24; }
+        .note-input { width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 4px; font-size: 12px; font-family: 'Inter', sans-serif; margin-bottom: 8px; }
+        .note-actions { display: flex; gap: 6px; }
+        .note-actions button { padding: 4px 10px; font-size: 11px; border: none; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+        .note-save { background: #2563eb; color: white; }
+        .note-save:hover { background: #1d4ed8; }
+        .note-cancel { background: #e5e7eb; color: #666; }
+
+        /* ======== PROGRESO ======== */
+        .progress-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 13px; }
+        .progress-label { font-weight: 600; color: #000; }
+        .progress-percent { font-weight: 700; color: #2563eb; }
+        .progress-bar { width: 100%; height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%); animation: fillProgress 1s ease-in-out forwards; }
+        @keyframes fillProgress { from { width: 0; } }
+        .progress-text { font-size: 13px; color: #888; }
+
+        .footer { background: white; border-top: 1px solid #e5e7eb; padding: 40px; margin-top: 80px; text-align: center; }
+        .footer p { color: #666; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .main { padding: 40px 20px; }
+            .demo-section { padding: 24px; }
+            .navbar-content { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Demo - 8 Elementos Interactivos</div>
+        </div>
+    </nav>
+
+    <section class="main">
+        <h1 class="section-title">Elementos Interactivos Premium</h1>
+        <p class="section-subtitle">Demostración completa de los 8 elementos interactivos implementados</p>
+
+        <!-- ELEMENTO 1: ACORDEONES -->
+        <div class="demo-section">
+            <h2>1. Acordeones Colapsibles</h2>
+            <div class="demo-desc">Click para expandir/contraer secciones. El símbolo + cambia a − cuando está abierto.</div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Principios de Protección de Datos</span>
+                    <span class="accordion-toggle"></span>
+                </button>
+                <div class="accordion-content">
+                    <p>La Ley 21.719 establece los siguientes principios fundamentales:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;">Principio de Finalidad</li>
+                        <li style="margin-bottom: 8px;">Principio de Proporcionalidad</li>
+                        <li style="margin-bottom: 8px;">Principio de Minimización de Datos</li>
+                        <li style="margin-bottom: 8px;">Principio de Responsabilidad Proactiva</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Derechos de los Titulares</span>
+                    <span class="accordion-toggle"></span>
+                </button>
+                <div class="accordion-content">
+                    <p>Los titulares de datos tienen derecho a:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;">Acceso a sus datos personales</li>
+                        <li style="margin-bottom: 8px;">Rectificación de datos inexactos</li>
+                        <li style="margin-bottom: 8px;">Eliminación o "derecho al olvido"</li>
+                        <li style="margin-bottom: 8px;">Portabilidad de datos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ELEMENTO 2: TABS -->
+        <div class="demo-section">
+            <h2>2. Tabs (Pestañas)</h2>
+            <div class="demo-desc">Haz click en las pestañas para cambiar entre contenidos. Usa subrayado azul para indicar activo.</div>
+
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active">Conceptos Básicos</button>
+                    <button class="tab-btn">Implementación</button>
+                    <button class="tab-btn">Casos de Uso</button>
+                </div>
+
+                <div class="tab-content active">
+                    <p>La protección de datos es un derecho fundamental que busca garantizar la privacidad de las personas. Los datos personales son cualquier información que puede identificar directa o indirectamente a una persona física.</p>
+                </div>
+
+                <div class="tab-content">
+                    <p>Para implementar un sistema de protección de datos, tu organización debe:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;">Realizar una evaluación de impacto</li>
+                        <li style="margin-bottom: 8px;">Documentar todos los tratamientos de datos</li>
+                        <li style="margin-bottom: 8px;">Implementar medidas de seguridad técnicas y organizacionales</li>
+                        <li style="margin-bottom: 8px;">Capacitar al personal sobre privacidad</li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <p>Ejemplos de casos de uso comunes:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;">Gestión de clientes y CRM</li>
+                        <li style="margin-bottom: 8px;">Nómina y recursos humanos</li>
+                        <li style="margin-bottom: 8px;">Análisis de marketing</li>
+                        <li style="margin-bottom: 8px;">Auditoría y cumplimiento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ELEMENTO 3: HIGHLIGHT -->
+        <div class="demo-section">
+            <h2>3. Resaltado de Texto</h2>
+            <div class="demo-desc">Selecciona texto (doble-click o arrastra) para resaltarlo con color amarillo suave.</div>
+
+            <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; line-height: 1.8;">
+                <p>La Ley 21.719 de Protección de Datos Personales es una normativa fundamental en Chile. Establece derechos para los titulares de datos y obligaciones para quienes los tratan. Esta ley es aplicable a personas naturales y jurídicas que efectúen tratamiento de datos personales.</p>
+                <p style="margin-top: 12px;">El consentimiento es <span class="text-highlighted">explícito y específico para cada finalidad</span>, no puede ser genérico ni tácito. Los responsables deben informar claramente sobre el uso de los datos.</p>
+            </div>
+        </div>
+
+        <!-- ELEMENTO 4: FAVORITOS -->
+        <div class="demo-section">
+            <h2>4. Botón Favoritos</h2>
+            <div class="demo-desc">Haz click en el ícono para marcar secciones como favoritas. Se guardan en tu navegador.</div>
+
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 20px;">
+                <span>Marcar como favorito:</span>
+                <button class="favorite-btn unfavorited" data-section-id="fav-1">☆</button>
+                <span>Medidas de Seguridad Requeridas</span>
+            </div>
+
+            <div id="fav-demo-list"></div>
+        </div>
+
+        <!-- ELEMENTO 5: ZOOM DE IMÁGENES -->
+        <div class="demo-section">
+            <h2>5. Zoom de Imágenes</h2>
+            <div class="demo-desc">Haz click en cualquier imagen para ampliarla. Click fuera cierra el zoom.</div>
+
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&h=200&fit=crop" alt="Ejemplo" class="zoomable-image" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+
+        <!-- ELEMENTO 6: PROGRESO ANIMADO -->
+        <div class="demo-section">
+            <h2>6. Barra de Progreso Animada</h2>
+            <div class="demo-desc">Animación suave que se rellena al cargar. Mejora visual con degradado azul.</div>
+
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="progress-label">Ley 21.719</span>
+                    <span class="progress-percent"><span id="demo-progress-pct">65</span>%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 65%;"></div></div>
+                <div class="progress-text">3 de 5 módulos completados</div>
+            </div>
+        </div>
+
+        <!-- ELEMENTO 7: TOOLTIPS -->
+        <div class="demo-section">
+            <h2>7. Tooltips (Información Emergente)</h2>
+            <div class="demo-desc">Posiciona el mouse sobre términos técnicos para ver explicaciones breves.</div>
+
+            <p style="line-height: 2;">
+                La <span class="tooltip-text" data-tooltip="Encriptación de datos en movimiento">encriptación HTTPS</span> es obligatoria para transmisión de datos. Los responsables deben implementar <span class="tooltip-text" data-tooltip="Medidas para proteger contra acceso no autorizado">medidas de control de acceso</span> y realizar <span class="tooltip-text" data-tooltip="Revisión sistemática de seguridad">auditorías periódicas</span> de seguridad.
+            </p>
+        </div>
+
+        <!-- ELEMENTO 8: NOTAS PERSONALES -->
+        <div class="demo-section">
+            <h2>8. Notas Personales</h2>
+            <div class="demo-desc">Agrega notas privadas en cada sección. Se guardan automáticamente en tu navegador.</div>
+
+            <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+                <button class="note-btn" data-note-demo="true" style="background: #2563eb; color: white; padding: 6px 12px; border-radius: 4px;">+ Agregar nota</button>
+                <span style="color: #666;">Sobre Obligaciones de Responsables</span>
+            </div>
+
+            <div id="demo-notes-container"></div>
+        </div>
+
+        <div class="footer">
+            <p>Todos estos elementos están integrados en el HTML principal. Cada uno funciona de forma independiente y se guarda en localStorage.</p>
+            <p style="margin-top: 16px; color: #999; font-size: 12px;">Vuelve a premium-design.html para usar los elementos en el curso completo.</p>
+        </div>
+    </section>
+
+    <script>
+        // IMPLEMENTACIÓN DE LOS ELEMENTOS INTERACTIVOS
+
+        // 1. ACORDEONES
+        function initAccordions() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+
+                    document.querySelectorAll('.accordion-header.active').forEach(h => {
+                        h.classList.remove('active');
+                        h.nextElementSibling.classList.remove('active');
+                    });
+
+                    if (!isActive) {
+                        this.classList.add('active');
+                        content.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // 2. TABS
+        function initTabs() {
+            const tabContainers = document.querySelectorAll('.tabs-container');
+            tabContainers.forEach(container => {
+                const buttons = container.querySelectorAll('.tab-btn');
+                const contents = container.querySelectorAll('.tab-content');
+
+                buttons.forEach((btn, idx) => {
+                    btn.addEventListener('click', () => {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        contents.forEach(c => c.classList.remove('active'));
+                        btn.classList.add('active');
+                        contents[idx].classList.add('active');
+                    });
+                });
+            });
+        }
+
+        // 3. HIGHLIGHT
+        function initHighlight() {
+            document.addEventListener('mouseup', function() {
+                const selectedText = window.getSelection().toString().trim();
+                if (selectedText.length > 0) {
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement('span');
+                    span.className = 'text-highlighted';
+                    span.textContent = selectedText;
+                    range.deleteContents();
+                    range.insertNode(span);
+                }
+            });
+        }
+
+        // 4. FAVORITOS
+        function initFavorites() {
+            const favBtns = document.querySelectorAll('.favorite-btn');
+            const savedFavs = JSON.parse(localStorage.getItem('favorites_demo') || '[]');
+
+            favBtns.forEach(btn => {
+                const sectionId = btn.dataset.sectionId;
+                if (savedFavs.includes(sectionId)) {
+                    btn.classList.remove('unfavorited');
+                    btn.classList.add('favorited');
+                    btn.textContent = '★';
+                } else {
+                    btn.classList.add('unfavorited');
+                    btn.classList.remove('favorited');
+                    btn.textContent = '☆';
+                }
+
+                btn.addEventListener('click', function() {
+                    const favs = JSON.parse(localStorage.getItem('favorites_demo') || '[]');
+                    const idx = favs.indexOf(sectionId);
+
+                    if (idx > -1) {
+                        favs.splice(idx, 1);
+                        this.classList.remove('favorited');
+                        this.classList.add('unfavorited');
+                        this.textContent = '☆';
+                    } else {
+                        favs.push(sectionId);
+                        this.classList.add('favorited');
+                        this.classList.remove('unfavorited');
+                        this.textContent = '★';
+                    }
+                    localStorage.setItem('favorites_demo', JSON.stringify(favs));
+                    renderFavoritesList();
+                });
+            });
+        }
+
+        function renderFavoritesList() {
+            const favs = JSON.parse(localStorage.getItem('favorites_demo') || '[]');
+            const html = favs.length > 0 ? `
+                <div class="favorites-list">
+                    <h4>Favoritos</h4>
+                    <ul>
+                        ${favs.map(id => {
+                            const texts = {'fav-1': 'Medidas de Seguridad Requeridas'};
+                            return `<li>${texts[id] || id}</li>`;
+                        }).join('')}
+                    </ul>
+                </div>
+            ` : '';
+            document.getElementById('fav-demo-list').innerHTML = html;
+        }
+
+        // 5. ZOOM DE IMÁGENES
+        function initImageZoom() {
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('zoomable-image')) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'image-modal-overlay active';
+                    const img = e.target.cloneNode();
+                    const content = document.createElement('div');
+                    content.className = 'image-modal-content';
+
+                    const closeBtn = document.createElement('button');
+                    closeBtn.className = 'image-modal-close';
+                    closeBtn.textContent = '×';
+                    closeBtn.onclick = () => overlay.remove();
+
+                    content.appendChild(img);
+                    content.appendChild(closeBtn);
+                    overlay.appendChild(content);
+                    document.body.appendChild(overlay);
+
+                    overlay.addEventListener('click', (evt) => {
+                        if (evt.target === overlay) overlay.remove();
+                    });
+                }
+            });
+        }
+
+        // 7. TOOLTIPS (Ya funciona con CSS)
+
+        // 8. NOTAS PERSONALES
+        function initNotes() {
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('note-btn') && e.target.dataset.noteDemo) {
+                    const container = document.getElementById('demo-notes-container');
+                    const notesDiv = container.querySelector('.notes-container') || document.createElement('div');
+
+                    if (!notesDiv.className) {
+                        notesDiv.className = 'notes-container';
+                        container.appendChild(notesDiv);
+                    }
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'note-input';
+                    input.placeholder = 'Escribe tu nota aquí...';
+
+                    const actions = document.createElement('div');
+                    actions.className = 'note-actions';
+
+                    const saveBtn = document.createElement('button');
+                    saveBtn.className = 'note-save';
+                    saveBtn.textContent = 'Guardar';
+
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.className = 'note-cancel';
+                    cancelBtn.textContent = 'Cancelar';
+
+                    actions.appendChild(saveBtn);
+                    actions.appendChild(cancelBtn);
+
+                    notesDiv.appendChild(input);
+                    notesDiv.appendChild(actions);
+                    input.focus();
+
+                    saveBtn.onclick = () => {
+                        const text = input.value.trim();
+                        if (text) {
+                            const notes = JSON.parse(localStorage.getItem('demo_notes') || '[]');
+                            notes.push({text, date: new Date().toLocaleString()});
+                            localStorage.setItem('demo_notes', JSON.stringify(notes));
+                            renderNotesList();
+                        }
+                    };
+
+                    cancelBtn.onclick = () => {
+                        notesDiv.innerHTML = '';
+                    };
+                }
+            });
+        }
+
+        function renderNotesList() {
+            const notes = JSON.parse(localStorage.getItem('demo_notes') || '[]');
+            const container = document.getElementById('demo-notes-container');
+
+            if (notes.length > 0) {
+                let html = '<div class="notes-container">';
+                notes.forEach((note, idx) => {
+                    html += `
+                        <div class="note-item">
+                            ${note.text}
+                            <div style="font-size: 10px; color: #888; margin-top: 4px;">${note.date}</div>
+                            <button class="note-delete" style="margin-top: 4px; padding: 2px 6px; background: #fee2e2; color: #dc2626; border: none; border-radius: 4px; cursor: pointer; font-size: 11px;" onclick="deleteNote(${idx})">Eliminar</button>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                container.innerHTML = html;
+            }
+        }
+
+        function deleteNote(idx) {
+            const notes = JSON.parse(localStorage.getItem('demo_notes') || '[]');
+            notes.splice(idx, 1);
+            localStorage.setItem('demo_notes', JSON.stringify(notes));
+            renderNotesList();
+        }
+
+        // Inicializar
+        window.addEventListener('load', () => {
+            initAccordions();
+            initTabs();
+            initHighlight();
+            initFavorites();
+            initImageZoom();
+            renderFavoritesList();
+            renderNotesList();
+            initNotes();
+        });
+    </script>
+</body>
+</html>

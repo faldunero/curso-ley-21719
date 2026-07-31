@@ -267,6 +267,82 @@
             .programa-grid-2 { grid-template-columns: 1fr; }
         }
 
+        /* ======== 1. ACORDEONES COLAPSIBLES ======== */
+        .accordion-item { background: white; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden; }
+        .accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; background: white; border: none; width: 100%; font-size: 14px; font-weight: 600; color: #000; transition: all 0.2s; }
+        .accordion-header:hover { background: #f8f9fa; }
+        .accordion-header.active { background: #f0f4f8; color: #2563eb; }
+        .accordion-toggle { font-size: 18px; font-weight: 300; width: 24px; text-align: center; transition: transform 0.3s ease; }
+        .accordion-header.active .accordion-toggle { transform: rotate(0deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; }
+        .accordion-content.active { max-height: 1000px; padding: 0 20px 16px 20px; }
+
+        /* ======== 2. TABS ======== */
+        .tabs-container { margin: 20px 0; }
+        .tabs-header { display: flex; gap: 4px; border-bottom: 2px solid #e5e7eb; margin-bottom: 20px; }
+        .tab-btn { background: none; border: none; padding: 12px 16px; font-size: 13px; font-weight: 600; color: #666; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab-btn:hover { color: #2563eb; }
+        .tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ======== 3. HIGHLIGHT/RESALTADO ======== */
+        .highlight-btn { display: inline-block; padding: 4px 8px; background: #2563eb; color: white; border: none; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 4px; transition: all 0.2s; }
+        .highlight-btn:hover { background: #1d4ed8; }
+        .text-highlighted { background-color: #fef08a; padding: 2px 4px; border-radius: 3px; }
+        .highlight-toolbar { position: fixed; background: white; border: 1px solid #ddd; border-radius: 6px; padding: 8px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 3000; display: none; }
+        .highlight-toolbar.active { display: block; }
+        .highlight-toolbar button { background: #2563eb; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 500; }
+        .highlight-toolbar button:hover { background: #1d4ed8; }
+
+        /* ======== 4. BOTÓN FAVORITOS ======== */
+        .favorite-btn { background: none; border: none; font-size: 16px; cursor: pointer; transition: all 0.2s; padding: 4px 8px; }
+        .favorite-btn.unfavorited { color: #ccc; }
+        .favorite-btn.favorited { color: #2563eb; }
+        .favorites-list { background: #f8f9fa; border-radius: 8px; padding: 16px; margin: 20px 0; border-left: 4px solid #2563eb; }
+        .favorites-list h4 { font-size: 13px; font-weight: 700; color: #000; margin-bottom: 12px; text-transform: uppercase; }
+        .favorites-list ul { list-style: none; padding: 0; margin: 0; }
+        .favorites-list li { padding: 8px 0; font-size: 13px; color: #555; border-bottom: 1px solid #e5e7eb; }
+        .favorites-list li:last-child { border-bottom: none; }
+        .favorites-list a { color: #2563eb; text-decoration: none; font-weight: 500; }
+        .favorites-list a:hover { text-decoration: underline; }
+
+        /* ======== 5. ZOOM DE IMÁGENES ======== */
+        .zoomable-image { cursor: zoom-in; transition: all 0.2s; }
+        .zoomable-image:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .image-modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 2500; opacity: 0; transition: opacity 0.3s ease; }
+        .image-modal-overlay.active { display: flex; opacity: 1; align-items: center; justify-content: center; }
+        .image-modal-content { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; animation: zoomIn 0.3s ease; }
+        .image-modal-content img { width: 100%; height: auto; border-radius: 8px; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .image-modal-close { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.2); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 24px; transition: all 0.2s; }
+        .image-modal-close:hover { background: rgba(255,255,255,0.4); }
+
+        /* ======== 6. PROGRESO ANIMADO (MEJORADO) ======== */
+        .progress-fill { animation: fillProgress 1s ease-in-out forwards; }
+        @keyframes fillProgress { from { width: 0; } }
+
+        /* ======== 7. TOOLTIPS ======== */
+        .tooltip-text { position: relative; cursor: help; border-bottom: 1px dotted #2563eb; color: #2563eb; font-weight: 500; }
+        .tooltip-text:hover::after { content: attr(data-tooltip); position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background: #1a1a1a; color: white; padding: 8px 12px; border-radius: 6px; white-space: nowrap; font-size: 12px; font-weight: 400; z-index: 2000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .tooltip-text:hover::before { content: ''; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #1a1a1a; z-index: 2000; }
+
+        /* ======== 8. NOTAS PERSONALES ======== */
+        .note-btn { background: none; border: none; font-size: 13px; font-weight: 600; color: #2563eb; cursor: pointer; padding: 4px 8px; transition: all 0.2s; }
+        .note-btn:hover { text-decoration: underline; }
+        .notes-container { margin-top: 12px; padding: 12px; background: #eff6ff; border-left: 3px solid #2563eb; border-radius: 6px; }
+        .note-item { margin-bottom: 12px; padding: 8px; background: white; border-radius: 4px; font-size: 12px; color: #555; border-left: 3px solid #fbbf24; }
+        .note-item:last-child { margin-bottom: 0; }
+        .note-input { width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 4px; font-size: 12px; font-family: 'Inter', sans-serif; margin-bottom: 8px; }
+        .note-actions { display: flex; gap: 6px; }
+        .note-actions button { padding: 4px 10px; font-size: 11px; border: none; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+        .note-save { background: #2563eb; color: white; }
+        .note-save:hover { background: #1d4ed8; }
+        .note-cancel { background: #e5e7eb; color: #666; }
+        .note-cancel:hover { background: #d1d5db; }
+        .note-delete { background: #fee2e2; color: #dc2626; }
+        .note-delete:hover { background: #fca5a5; }
+
         @media (max-width: 768px) {
             .navbar-content { padding: 0 20px; flex-wrap: wrap; gap: 12px; }
             .hero { padding: 60px 20px; }
@@ -300,6 +376,8 @@
             .cert-content { padding: 20px; }
             .cert-buttons { flex-direction: column; }
             .cert-buttons button { min-width: 100%; }
+            .tooltip-text:hover::after { white-space: normal; max-width: 200px; }
+            .tabs-header { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -568,6 +646,7 @@
                     <div class="back-to-courses">
                         <a href="#cursos" onclick="showPage('cursos'); return false;">← Volver a Mis cursos</a>
                     </div>
+                    <div class="modulo-page-indicator" id="modulo-page-indicator" style="text-align: center; margin-bottom: 20px; font-size: 12px; color: #888; font-weight: 500;">Página 1 de 1</div>
                     <img id="modulo-image" class="module-image" src="" alt="Módulo" style="display:none;">
                     <div class="modulo-content" id="modulo-content"></div>
                     <div class="modulo-pagination" id="modulo-pagination">
@@ -582,6 +661,7 @@
                         <button class="btn btn-back" onclick="showPage('cursos')">Volver al Índice</button>
                         <button class="btn btn-primary" onclick="completeCurrentModule()">Marcar como Completado</button>
                     </div>
+                    <div id="favorites-container"></div>
                 </div>
                 <div id="quiz-view" class="hidden">
                     <div class="modulo-header">
@@ -2022,6 +2102,12 @@
 
             document.getElementById('modulo-content').innerHTML = html;
 
+            // Actualizar indicador de página en la parte superior
+            const pageIndicator = document.getElementById('modulo-page-indicator');
+            if (pageIndicator) {
+                pageIndicator.textContent = `Página ${page} de ${totalPages}`;
+            }
+
             // Actualizar controles de paginación
             document.getElementById('pagination-info').textContent = `Página ${page} de ${totalPages}`;
             document.getElementById('btn-prev-page').disabled = page === 1;
@@ -2344,6 +2430,298 @@
         renderModules();
         updateProgress();
         renderExam();
+
+        // ========== ELEMENTO 1: ACORDEONES COLAPSIBLES ==========
+        function initAccordions() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+
+                    document.querySelectorAll('.accordion-header.active').forEach(h => {
+                        h.classList.remove('active');
+                        h.nextElementSibling.classList.remove('active');
+                    });
+
+                    if (!isActive) {
+                        this.classList.add('active');
+                        content.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // ========== ELEMENTO 2: TABS ==========
+        function initTabs() {
+            const tabContainers = document.querySelectorAll('.tabs-container');
+            tabContainers.forEach(container => {
+                const buttons = container.querySelectorAll('.tab-btn');
+                const contents = container.querySelectorAll('.tab-content');
+
+                buttons.forEach((btn, idx) => {
+                    btn.addEventListener('click', () => {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        contents.forEach(c => c.classList.remove('active'));
+                        btn.classList.add('active');
+                        contents[idx].classList.add('active');
+                    });
+                });
+            });
+        }
+
+        // ========== ELEMENTO 3: HIGHLIGHT/RESALTADO ==========
+        function initHighlight() {
+            document.addEventListener('mouseup', function() {
+                const selectedText = window.getSelection().toString().trim();
+                if (selectedText.length > 0) {
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement('span');
+                    span.className = 'text-highlighted';
+                    span.textContent = selectedText;
+                    range.deleteContents();
+                    range.insertNode(span);
+
+                    const highlights = JSON.parse(localStorage.getItem('highlights') || '[]');
+                    highlights.push({text: selectedText, timestamp: new Date().toLocaleString()});
+                    localStorage.setItem('highlights', JSON.stringify(highlights));
+                }
+            });
+        }
+
+        // ========== ELEMENTO 4: BOTÓN FAVORITOS ==========
+        function initFavorites() {
+            const favBtns = document.querySelectorAll('.favorite-btn');
+            const savedFavs = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+            favBtns.forEach(btn => {
+                const sectionId = btn.dataset.sectionId;
+                if (savedFavs.includes(sectionId)) {
+                    btn.classList.remove('unfavorited');
+                    btn.classList.add('favorited');
+                    btn.textContent = '★';
+                } else {
+                    btn.classList.add('unfavorited');
+                    btn.classList.remove('favorited');
+                    btn.textContent = '☆';
+                }
+
+                btn.addEventListener('click', function() {
+                    const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+                    const idx = favs.indexOf(sectionId);
+
+                    if (idx > -1) {
+                        favs.splice(idx, 1);
+                        this.classList.remove('favorited');
+                        this.classList.add('unfavorited');
+                        this.textContent = '☆';
+                    } else {
+                        favs.push(sectionId);
+                        this.classList.add('favorited');
+                        this.classList.remove('unfavorited');
+                        this.textContent = '★';
+                    }
+                    localStorage.setItem('favorites', JSON.stringify(favs));
+                    renderFavoritesList();
+                });
+            });
+        }
+
+        function renderFavoritesList() {
+            const container = document.getElementById('favorites-container');
+            if (!container) return;
+
+            const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+            if (favs.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            const titles = [];
+            favs.forEach(id => {
+                const elem = document.querySelector(`[data-section-id="${id}"]`);
+                if (elem) {
+                    const section = elem.closest('.modulo-section, .card, .accordion-item');
+                    if (section) {
+                        const title = section.querySelector('h3, .card-title');
+                        if (title) titles.push({id, text: title.textContent});
+                    }
+                }
+            });
+
+            container.innerHTML = titles.length > 0 ? `
+                <div class="favorites-list">
+                    <h4>Favoritos</h4>
+                    <ul>${titles.map(t => `<li><a href="#" onclick="return false;">${t.text}</a></li>`).join('')}</ul>
+                </div>
+            ` : '';
+        }
+
+        // ========== ELEMENTO 5: ZOOM DE IMÁGENES ==========
+        function initImageZoom() {
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('zoomable-image')) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'image-modal-overlay active';
+                    const img = e.target.cloneNode();
+                    const content = document.createElement('div');
+                    content.className = 'image-modal-content';
+
+                    const closeBtn = document.createElement('button');
+                    closeBtn.className = 'image-modal-close';
+                    closeBtn.textContent = '×';
+                    closeBtn.onclick = () => overlay.remove();
+
+                    content.appendChild(img);
+                    content.appendChild(closeBtn);
+                    overlay.appendChild(content);
+                    document.body.appendChild(overlay);
+
+                    overlay.addEventListener('click', (evt) => {
+                        if (evt.target === overlay) overlay.remove();
+                    });
+                }
+            });
+        }
+
+        // ========== ELEMENTO 6: PROGRESO ANIMADO (YA MEJORADO CON ANIMACIÓN) ==========
+        function improveProgressAnimation() {
+            const progressFill = document.getElementById('progress-fill');
+            if (progressFill) {
+                progressFill.style.animation = 'none';
+                setTimeout(() => {
+                    progressFill.style.animation = '';
+                }, 10);
+            }
+        }
+
+        // ========== ELEMENTO 7: TOOLTIPS ==========
+        function initTooltips() {
+            document.querySelectorAll('.tooltip-text').forEach(el => {
+                el.style.textDecoration = 'none';
+            });
+        }
+
+        // ========== ELEMENTO 8: NOTAS PERSONALES ==========
+        function initNotes() {
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('note-btn')) {
+                    const section = e.target.closest('.modulo-section, .card, .accordion-item');
+                    if (!section) return;
+
+                    const sectionId = section.dataset.noteId || 'note-' + Math.random();
+                    section.dataset.noteId = sectionId;
+
+                    let notesDiv = section.querySelector('.notes-container');
+                    if (!notesDiv) {
+                        notesDiv = document.createElement('div');
+                        notesDiv.className = 'notes-container';
+                        section.appendChild(notesDiv);
+                    }
+
+                    if (e.target.textContent.includes('Agregar')) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.className = 'note-input';
+                        input.placeholder = 'Escribe tu nota aquí...';
+
+                        const actions = document.createElement('div');
+                        actions.className = 'note-actions';
+
+                        const saveBtn = document.createElement('button');
+                        saveBtn.className = 'note-save';
+                        saveBtn.textContent = 'Guardar';
+
+                        const cancelBtn = document.createElement('button');
+                        cancelBtn.className = 'note-cancel';
+                        cancelBtn.textContent = 'Cancelar';
+
+                        actions.appendChild(saveBtn);
+                        actions.appendChild(cancelBtn);
+
+                        notesDiv.appendChild(input);
+                        notesDiv.appendChild(actions);
+                        input.focus();
+
+                        saveBtn.onclick = () => {
+                            const text = input.value.trim();
+                            if (text) {
+                                const notes = JSON.parse(localStorage.getItem('notes') || '{}');
+                                if (!notes[sectionId]) notes[sectionId] = [];
+                                notes[sectionId].push({text, date: new Date().toLocaleString()});
+                                localStorage.setItem('notes', JSON.stringify(notes));
+                                renderNotes(section, sectionId);
+                            }
+                        };
+
+                        cancelBtn.onclick = () => {
+                            notesDiv.innerHTML = '';
+                        };
+                    }
+                }
+            });
+        }
+
+        function renderNotes(section, sectionId) {
+            const notes = JSON.parse(localStorage.getItem('notes') || '{}');
+            let notesDiv = section.querySelector('.notes-container');
+            if (!notesDiv) {
+                notesDiv = document.createElement('div');
+                notesDiv.className = 'notes-container';
+                section.appendChild(notesDiv);
+            }
+
+            notesDiv.innerHTML = '';
+            if (notes[sectionId] && notes[sectionId].length > 0) {
+                notes[sectionId].forEach((note, idx) => {
+                    const noteItem = document.createElement('div');
+                    noteItem.className = 'note-item';
+                    noteItem.innerHTML = `
+                        ${note.text}
+                        <div style="font-size: 10px; color: #888; margin-top: 4px;">${note.date}</div>
+                        <button class="note-delete" style="margin-top: 4px; padding: 2px 6px;" onclick="deleteNote('${sectionId}', ${idx})">Eliminar</button>
+                    `;
+                    notesDiv.appendChild(noteItem);
+                });
+            }
+        }
+
+        function deleteNote(sectionId, idx) {
+            const notes = JSON.parse(localStorage.getItem('notes') || '{}');
+            if (notes[sectionId]) {
+                notes[sectionId].splice(idx, 1);
+                localStorage.setItem('notes', JSON.stringify(notes));
+                const section = document.querySelector(`[data-note-id="${sectionId}"]`);
+                if (section) renderNotes(section, sectionId);
+            }
+        }
+
+        // Inicializar todos los elementos interactivos
+        setTimeout(() => {
+            initAccordions();
+            initTabs();
+            initHighlight();
+            initFavorites();
+            initImageZoom();
+            initTooltips();
+            initNotes();
+        }, 100);
+
+        // Re-inicializar cuando se carga un módulo
+        const originalShowPage = window.showPage;
+        window.showPage = function(page) {
+            originalShowPage(page);
+            setTimeout(() => {
+                initAccordions();
+                initTabs();
+                initFavorites();
+                initImageZoom();
+                initTooltips();
+                initNotes();
+                renderFavoritesList();
+            }, 100);
+        };
     </script>
 </body>
 </html>
