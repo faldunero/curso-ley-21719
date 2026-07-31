@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ley 21.719 - Capacitación en Protección de Datos</title>
+    <title>Ley Karin - Capacitación en Acoso Laboral</title>
     <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -32,7 +32,8 @@
         .header {
             background: white;
             border-bottom: 1px solid #e2e8f0;
-            sticky: top;
+            position: sticky;
+            top: 0;
             z-index: 100;
             padding: 15px 0;
         }
@@ -52,7 +53,7 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -92,25 +93,25 @@
         }
 
         .nav-btn.active {
-            color: #2563eb;
+            color: #dc2626;
         }
 
         .nav-btn:hover {
-            color: #2563eb;
+            color: #dc2626;
         }
 
         .user-profile {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding-left: 20px;
+            padding-left: 30px;
             border-left: 1px solid #e2e8f0;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -127,86 +128,52 @@
         }
 
         .user-info p {
-            font-size: 11px;
+            font-size: 12px;
             color: #64748b;
             margin: 2px 0 0 0;
         }
 
         /* Main Content */
         .main-content {
+            min-height: calc(100vh - 120px);
             padding: 40px 0;
-        }
-
-        .view-toggle {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 30px;
-            background: #1e293b;
-            padding: 8px;
-            border-radius: 8px;
-            width: fit-content;
-        }
-
-        .toggle-btn {
-            background: #334155;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .toggle-btn.active {
-            background: #2563eb;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            padding: 60px 40px;
+            background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
             border-radius: 16px;
-            margin-bottom: 50px;
+            border: 1px solid #fecaca;
         }
 
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 40px;
             align-items: center;
         }
 
         .hero h1 {
             font-size: 48px;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 16px;
-            line-height: 1.2;
+            color: #dc2626;
         }
 
-        .hero p {
+        .hero > div > p:first-of-type {
             font-size: 18px;
-            color: #dbeafe;
-            margin-bottom: 24px;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #2563eb;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 8px;
+            color: #64748b;
+            margin-bottom: 16px;
             font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-block;
         }
 
-        .btn-primary:hover {
-            background: #f1f5f9;
-            transform: translateY(-2px);
+        .hero > div > p:last-of-type {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 32px;
+            line-height: 1.8;
         }
 
         .hero-grid {
@@ -216,11 +183,11 @@
         }
 
         .hero-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+            background: white;
             padding: 24px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid #fecaca;
+            text-align: center;
         }
 
         .hero-card-icon {
@@ -230,40 +197,84 @@
 
         .hero-card h3 {
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
+            color: #1e293b;
             margin-bottom: 4px;
         }
 
         .hero-card p {
             font-size: 13px;
-            color: #dbeafe;
+            color: #64748b;
+        }
+
+        /* Progress Card */
+        .progress-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .progress-percent {
+            font-size: 14px;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%);
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #64748b;
         }
 
         /* Modules Grid */
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .module-card {
             background: white;
             border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 28px;
+            border-radius: 12px;
+            padding: 24px;
             transition: all 0.3s;
             cursor: pointer;
         }
 
-        .module-card:hover {
-            border-color: #2563eb;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
-            transform: translateY(-4px);
+        .module-card:hover:not(.completed) {
+            border-color: #dc2626;
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.1);
         }
 
         .module-card.completed {
-            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            background: #f0fdf4;
             border-color: #10b981;
         }
 
@@ -276,127 +287,89 @@
 
         .module-icon-title {
             display: flex;
-            gap: 16px;
+            gap: 12px;
+            flex: 1;
         }
 
         .module-icon {
-            font-size: 40px;
+            font-size: 32px;
+            min-width: 32px;
         }
 
         .module-title-section h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
         }
 
         .module-time {
             font-size: 12px;
             color: #64748b;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .checkmark {
-            color: #10b981;
             font-size: 24px;
+            color: #10b981;
         }
 
         .module-desc {
-            color: #475569;
             font-size: 14px;
+            color: #64748b;
             margin-bottom: 16px;
             line-height: 1.6;
         }
 
         .module-action {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .btn-secondary {
-            background: #2563eb;
+            flex: 1;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 14px;
         }
 
         .btn-secondary:hover {
-            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
         }
 
         .completed-badge {
+            flex: 1;
+            padding: 10px 16px;
+            background: #ecfdf5;
             color: #10b981;
+            border-radius: 8px;
+            text-align: center;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 14px;
         }
 
-        /* Progress Bar */
-        .progress-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 30px;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .progress-header span {
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .progress-percent {
-            font-size: 18px;
-            font-weight: 700;
-            color: #2563eb;
-        }
-
-        .progress-bar {
-            background: #e2e8f0;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 12px;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
-            height: 100%;
-            transition: width 0.3s;
-        }
-
-        .progress-text {
-            font-size: 13px;
-            color: #64748b;
-        }
-
-        /* Examen */
+        /* Exam */
         .exam-card {
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 24px;
+            padding: 32px;
             margin-bottom: 24px;
+            transition: all 0.3s;
         }
 
         .exam-card.active {
-            border: 2px solid #2563eb;
-            background: #f0f9ff;
+            border-color: #dc2626;
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.1);
         }
 
         .exam-question {
+            font-size: 16px;
             font-weight: 600;
             margin-bottom: 16px;
             color: #1e293b;
@@ -420,13 +393,13 @@
         }
 
         .option-label:hover {
-            border-color: #2563eb;
-            background: #f0f9ff;
+            border-color: #dc2626;
+            background: #fef2f2;
         }
 
         .option-label.selected {
-            border-color: #2563eb;
-            background: #eff6ff;
+            border-color: #dc2626;
+            background: #ffe4e6;
         }
 
         .option-label input[type="radio"] {
@@ -438,6 +411,8 @@
         .result-container {
             text-align: center;
             padding: 60px 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
         }
 
         .result-icon {
@@ -452,7 +427,7 @@
 
         .result-failed {
             background: linear-gradient(135deg, #fef2f2 0%, #fef2f2 100%);
-            border: 2px solid #ef4444;
+            border: 2px solid #dc2626;
         }
 
         .result-title {
@@ -466,7 +441,7 @@
         }
 
         .result-failed .result-title {
-            color: #ef4444;
+            color: #dc2626;
         }
 
         .result-score {
@@ -480,7 +455,7 @@
         }
 
         .result-failed .result-score {
-            color: #ef4444;
+            color: #dc2626;
         }
 
         /* Certificate */
@@ -512,17 +487,17 @@
         }
 
         .cert-content {
-            background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+            background: linear-gradient(135deg, #fef2f2 0%, #fff7ed 100%);
             padding: 32px;
             border-radius: 12px;
             margin-bottom: 24px;
-            border: 1px solid #bfdbfe;
+            border: 1px solid #fecaca;
         }
 
         .cert-name {
             font-size: 24px;
             font-weight: 700;
-            color: #2563eb;
+            color: #dc2626;
             margin-bottom: 12px;
         }
 
@@ -543,7 +518,7 @@
             color: #64748b;
             margin-top: 24px;
             padding-top: 24px;
-            border-top: 1px solid #bfdbfe;
+            border-top: 1px solid #fecaca;
         }
 
         /* Buttons */
@@ -574,14 +549,16 @@
             box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
         }
 
-        .btn-secondary {
-            background: #2563eb;
+        .btn-primary {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             color: white;
+            font-size: 16px;
+            padding: 16px 32px;
         }
 
-        .btn-secondary:hover {
-            background: #1e40af;
+        .btn-primary:hover {
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
         }
 
         .btn-gray {
@@ -591,6 +568,32 @@
 
         .btn-gray:hover {
             background: #475569;
+        }
+
+        .view-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .toggle-btn {
+            padding: 8px 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn.active {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
         }
 
         /* Responsive */
@@ -642,6 +645,11 @@
             .hero h1 {
                 font-size: 28px;
             }
+
+            .view-toggle {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -652,6 +660,12 @@
         const { useState } = React;
 
         function App() {
+            // AUTENTICACIÓN FUTURA: Agregar verificación de usuario
+            // const currentUser = { id: '123', name: 'Felipe', email: 'faldunate@gmail.com', role: 'estudiante' };
+            // TODO: Verificar si el usuario tiene acceso a este curso
+            // TODO: Cargar progreso desde base de datos
+            // TODO: Guardar progreso en tiempo real
+
             const [currentPage, setCurrentPage] = useState('inicio');
             const [viewMode, setViewMode] = useState('desktop');
             const [completedModules, setCompletedModules] = useState([]);
@@ -662,77 +676,106 @@
             const modules = [
                 {
                     id: 1,
-                    title: 'Introducción a la Ley 21.719',
+                    title: 'Introducción a la Ley Karin',
                     duration: '15 min',
-                    icon: '📋',
-                    content: 'Conoce los fundamentos y objetivos de la Ley de Protección de Datos Personales en Chile.'
+                    icon: '📚',
+                    content: 'Conoce los fundamentos de la Ley 21.643 sobre acoso y violencia laboral, su historia y objetivos principales.'
                 },
                 {
                     id: 2,
-                    title: 'Derechos de los Titulares',
-                    duration: '20 min',
-                    icon: '👤',
-                    content: 'Explora los derechos fundamentales de las personas respecto a sus datos personales.'
+                    title: 'Derechos y Protecciones',
+                    duration: '18 min',
+                    icon: '🛡️',
+                    content: 'Explora los derechos fundamentales de los trabajadores contra el acoso y violencia laboral.'
                 },
                 {
                     id: 3,
-                    title: 'Obligaciones de Responsables',
-                    duration: '25 min',
-                    icon: '⚖️',
-                    content: 'Comprende las responsabilidades de quienes recopilan y procesan datos personales.'
+                    title: 'Identificación del Acoso',
+                    duration: '20 min',
+                    icon: '🔍',
+                    content: 'Aprende a identificar las diferentes formas de acoso, violencia laboral y sus señales de alerta.'
                 },
                 {
                     id: 4,
-                    title: 'Seguridad y Privacidad',
-                    duration: '20 min',
-                    icon: '🔒',
-                    content: 'Aprende sobre medidas de protección y seguridad de datos personales.'
+                    title: 'Procedimientos de Denuncia',
+                    duration: '18 min',
+                    icon: '📋',
+                    content: 'Conoce los pasos para hacer una denuncia interna o externa ante instituciones competentes.'
                 },
                 {
                     id: 5,
-                    title: 'Cumplimiento Normativo',
+                    title: 'Responsabilidades Empresariales',
+                    duration: '17 min',
+                    icon: '⚙️',
+                    content: 'Entiende las obligaciones de las empresas en prevención y atención del acoso laboral.'
+                },
+                {
+                    id: 6,
+                    title: 'Sanciones y Consecuencias',
                     duration: '15 min',
-                    icon: '✅',
-                    content: 'Descubre cómo implementar medidas de cumplimiento en tu organización.'
+                    icon: '⚖️',
+                    content: 'Descubre las sanciones legales y consecuencias por violación de la Ley Karin.'
                 }
             ];
 
+            // AUTENTICACIÓN FUTURA: Cargar preguntas desde base de datos
+            // const examQuestions = await fetchExamQuestions('karin');
             const examQuestions = [
                 {
                     id: 1,
-                    question: '¿Cuál es el objetivo principal de la Ley 21.719?',
-                    options: ['Proteger los datos personales de los ciudadanos', 'Aumentar la recolección de datos', 'Eliminar la privacidad', 'Ninguna de las anteriores'],
-                    correct: 0
+                    question: '¿Cuál es el nombre oficial de la Ley Karin?',
+                    options: ['Ley de Protección de Datos', 'Ley 21.643 de Acoso y Violencia Laboral', 'Ley de Negociación Colectiva', 'Ley de Seguridad Social'],
+                    correct: 1
                 },
                 {
                     id: 2,
-                    question: '¿Cuál es uno de los derechos fundamentales de los titulares?',
-                    options: ['El derecho de opresión', 'El derecho de acceso a sus datos', 'El derecho de destrucción', 'Ninguno'],
+                    question: '¿Qué define como acoso laboral la Ley Karin?',
+                    options: ['Solo insultos verbales', 'Conducta abusiva que atenta contra dignidad del trabajador', 'Diferencias de opinión laboral', 'Cambios en horarios de trabajo'],
                     correct: 1
                 },
                 {
                     id: 3,
-                    question: '¿Quién es responsable de la seguridad?',
-                    options: ['Solo el gobierno', 'El responsable del tratamiento', 'Nadie', 'Solo los empleados'],
+                    question: 'Un gerente excluye constantemente a un trabajador de reuniones sin justificación y lo ignora. ¿Es esto acoso?',
+                    options: ['No, es decisión gerencial', 'Sí, es acoso laboral por exclusión', 'Depende del contrato', 'No afecta la dignidad'],
                     correct: 1
                 },
                 {
                     id: 4,
-                    question: '¿Qué hacer ante una brecha de datos?',
-                    options: ['Ocultar', 'Notificar a afectados', 'Eliminar registros', 'Seguir operando'],
+                    question: '¿A quién se debe reportar una denuncia de acoso laboral inicialmente?',
+                    options: ['Solo a la Inspección del Trabajo', 'Primero a la empresa o sus representantes', 'Solo al Tribunal del Trabajo', 'A Carabineros'],
                     correct: 1
                 },
                 {
                     id: 5,
-                    question: '¿Cuál es el fiscalizador?',
-                    options: ['Sernac', 'Sernanp', 'Dirección General de Protección', 'Superintendencia de Seguros'],
-                    correct: 2
+                    question: '¿Cuál es la obligación principal de las empresas según la Ley Karin?',
+                    options: ['Tolerar el acoso moderado', 'Implementar medidas de prevención y protección', 'Ocultar denuncias', 'No investigar denuncias'],
+                    correct: 1
+                },
+                {
+                    id: 6,
+                    question: '¿Qué sanción puede aplicarse a una empresa por incumplimiento de la Ley Karin?',
+                    options: ['Amonestación verbal', 'Multas de hasta 100 UF', 'Sin sanciones', 'Reducción de impuestos'],
+                    correct: 1
+                },
+                {
+                    id: 7,
+                    question: 'Un jefe hace comentarios ofensivos sobre la apariencia física de un empleado repetidamente. ¿Es acoso?',
+                    options: ['No, son bromas', 'Sí, es acoso que afecta dignidad', 'Solo si es diario', 'No sin testigos'],
+                    correct: 1
+                },
+                {
+                    id: 8,
+                    question: '¿Puede un trabajador ser despedido por denunciar acoso laboral?',
+                    options: ['Sí, libremente', 'No, hay protección contra represalias', 'Solo después de 30 días', 'Depende de la empresa'],
+                    correct: 1
                 }
             ];
 
             const handleCompleteModule = (moduleId) => {
                 if (!completedModules.includes(moduleId)) {
                     setCompletedModules([...completedModules, moduleId]);
+                    // AUTENTICACIÓN FUTURA: Guardar progreso en base de datos
+                    // await saveProgress(currentUser.id, 'karin', moduleId);
                 }
             };
 
@@ -747,10 +790,12 @@
                 });
                 setExamScore(score);
                 setExamSubmitted(true);
+                // AUTENTICACIÓN FUTURA: Guardar calificación y generar certificado
+                // await saveCertificate(currentUser.id, 'karin', score, isPassed);
             };
 
             const progressPercentage = (completedModules.length / modules.length) * 100;
-            const isPassed = examScore >= 4;
+            const isPassed = examScore >= 6; // Mínimo 6 de 8 preguntas (75%)
 
             return (
                 <>
@@ -763,10 +808,10 @@
                         <div className="container">
                             <div className="header-content">
                                 <div className="logo">
-                                    <div className="logo-icon">A</div>
+                                    <div className="logo-icon">K</div>
                                     <div className="logo-text">
                                         <h2>AFAN Learning</h2>
-                                        <p>Protección de Datos</p>
+                                        <p>Ley Karin - Acoso Laboral</p>
                                     </div>
                                 </div>
                                 <div className="nav">
@@ -792,15 +837,15 @@
                                     <div className="hero">
                                         <div className="hero-content">
                                             <div>
-                                                <h1>Ley de Protección de Datos Personales</h1>
-                                                <p>Ley 21.719</p>
-                                                <p>Domina el marco legal chileno de protección de datos con nuestro programa de capacitación certificado</p>
+                                                <h1>Ley Karin</h1>
+                                                <p>Ley 21.643</p>
+                                                <p>Aprende sobre la protección contra acoso y violencia laboral en Chile. Desarrolla competencias para identificar, denunciar y prevenir el acoso en el ambiente laboral.</p>
                                                 <button className="btn-primary" onClick={() => setCurrentPage('cursos')}>Comenzar Ahora →</button>
                                             </div>
                                             <div className="hero-grid">
                                                 <div className="hero-card">
                                                     <div className="hero-card-icon">⏱️</div>
-                                                    <h3>95 minutos</h3>
+                                                    <h3>90 minutos</h3>
                                                     <p>de contenido</p>
                                                 </div>
                                                 <div className="hero-card">
@@ -810,7 +855,7 @@
                                                 </div>
                                                 <div className="hero-card">
                                                     <div className="hero-card-icon">✓</div>
-                                                    <h3>5 Módulos</h3>
+                                                    <h3>6 Módulos</h3>
                                                     <p>estructurados</p>
                                                 </div>
                                                 <div className="hero-card">
@@ -878,7 +923,7 @@
                                 <>
                                     <div className="progress-card">
                                         <h2 style={{marginBottom: '8px'}}>Examen Final</h2>
-                                        <p>Responde correctamente al menos 4 de 5 preguntas (80%) para aprobar</p>
+                                        <p>Responde correctamente al menos 6 de 8 preguntas (75%) para aprobar</p>
                                     </div>
 
                                     <div style={{marginBottom: '32px'}}>
@@ -899,7 +944,7 @@
 
                                     <div className="btn-group">
                                         <button className="btn-gray" onClick={() => setCurrentPage('cursos')}>← Volver</button>
-                                        <button className="btn-secondary" onClick={handleSubmitExam} disabled={Object.keys(examAnswers).length < 5} style={{opacity: Object.keys(examAnswers).length < 5 ? 0.5 : 1}}>Enviar Examen →</button>
+                                        <button className="btn-secondary" onClick={handleSubmitExam} disabled={Object.keys(examAnswers).length < 8} style={{opacity: Object.keys(examAnswers).length < 8 ? 0.5 : 1}}>Enviar Examen →</button>
                                     </div>
                                 </>
                             )}
@@ -909,7 +954,7 @@
                                     <div className={`result-container ${isPassed ? 'result-passed' : 'result-failed'}`} style={{borderRadius: '16px', marginBottom: '40px'}}>
                                         <div className="result-icon">{isPassed ? '🎉' : '📋'}</div>
                                         <h1 className="result-title">{isPassed ? '¡Aprobado!' : 'No Aprobado'}</h1>
-                                        <div className="result-score">{examScore} de 5 preguntas correctas ({Math.round((examScore/5)*100)}%)</div>
+                                        <div className="result-score">{examScore} de 8 preguntas correctas ({Math.round((examScore/8)*100)}%)</div>
                                     </div>
 
                                     {isPassed && (
@@ -917,17 +962,17 @@
                                             <div className="certificate">
                                                 <div className="cert-icon">🏆</div>
                                                 <h2 className="cert-title">Certificado de Aprobación</h2>
-                                                <p className="cert-subtitle">Ley de Protección de Datos Personales 21.719</p>
+                                                <p className="cert-subtitle">Protección contra Acoso y Violencia Laboral - Ley Karin</p>
                                                 <div className="cert-content">
                                                     <div className="cert-name">Felipe Aldunate</div>
                                                     <div className="cert-email">faldunate@gmail.com</div>
                                                     <div className="cert-achievement">
                                                         <p>Ha completado exitosamente el curso de</p>
-                                                        <p style={{fontWeight: '600'}}>Ley de Protección de Datos Personales - Ley 21.719</p>
+                                                        <p style={{fontWeight: '600'}}>Protección contra Acoso y Violencia Laboral - Ley Karin (Ley 21.643)</p>
                                                     </div>
                                                     <div className="cert-date">
                                                         <p>Emitido: {new Date().toLocaleDateString('es-CL')}</p>
-                                                        <p style={{fontSize: '11px', marginTop: '4px'}}>ID: CERT-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, '0')}{String(new Date().getDate()).padStart(2, '0')}-001</p>
+                                                        <p style={{fontSize: '11px', marginTop: '4px'}}>ID: CERT-{new Date().getFullYear()}-{String(new Date().getMonth() + 1).padStart(2, '0')}{String(new Date().getDate()).padStart(2, '0')}-002</p>
                                                     </div>
                                                 </div>
                                                 <button className="btn-secondary" style={{width: '100%', marginBottom: '16px'}}>📥 Descargar Certificado PDF</button>
@@ -937,7 +982,7 @@
 
                                     <div className="btn-group">
                                         <button className="btn-gray" style={{flex: 1}} onClick={() => { setCurrentPage('inicio'); setCompletedModules([]); setExamAnswers({}); setExamSubmitted(false); }}>← Volver al Inicio</button>
-                                        <button className="btn-gray" style={{flex: 1}} onClick={() => window.location.href = 'landing.html'}>↩️ Volver a Cursos</button>
+                                        <button className="btn-secondary" style={{flex: 1}} onClick={() => window.location.href = 'landing.html'}>↩️ Volver a Cursos</button>
                                     </div>
                                 </>
                             )}
